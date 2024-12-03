@@ -31,4 +31,45 @@ public class CateController {
 		return CateService.selectSmallCate(dto);
 	}
 	
+	//대분류 카테고리 입력
+	@PostMapping("bigcateinsert")
+	@ResponseBody()
+	public void BigCateInsert(BigCateDTO dto) {
+		 CateService.insertBigCate(dto);
+	}
+	
+	//소분류 카테고리 입력
+	@PostMapping("smallcateinsert")
+	@ResponseBody()
+	public void SmallCateInsert(SmallCateDTO dto) {
+		 CateService.insertSmallCate(dto);
+	}
+	
+	//대분류 카테고리 수정
+	@PostMapping("bigcateupdate")
+	@ResponseBody()
+	public void bigcateupdate(BigCateDTO dto) {
+		 CateService.bigcateupdate(dto);
+	}
+	
+	//소분류 카테고리 수정
+	@PostMapping("smallcateupdate")
+	@ResponseBody()
+	public void smallcateupdate(SmallCateDTO dto) {
+		 CateService.smallcateupdate(dto);
+	}
+	
+	//대분류 카테고리 삭제
+	@PostMapping("bigcatedelete")
+	@ResponseBody()
+	public void bigcatedelete(BigCateDTO dto) {
+		 CateService.bigcatedelete(dto);
+	}
+	
+	//소분류 카테고리 삭제
+	@PostMapping("Smallcatedelete")
+	@ResponseBody()
+	public void Smallcatedelete(SmallCateDTO dto) {
+		 CateService.Smallcatedelete(dto);
+	}
 }

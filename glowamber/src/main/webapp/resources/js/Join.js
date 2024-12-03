@@ -24,8 +24,6 @@ $('#confirm').click(function(){
                     $("#memberPass").focus();
                     return true;
                 }
-            });
-    
     
     
     
@@ -44,11 +42,7 @@ $('#confirm').click(function(){
     $("#memberName").focus();
     return false;
     }
-<<<<<<< HEAD
     //이메일
-=======
-    
->>>>>>> parent of e9cb8d9 (12/3 성재)
     if($.trim($("#memberEmail").val()) ==''){
     $("#memberEmail").focus();
     return false;
@@ -80,11 +74,8 @@ $('#confirm').click(function(){
     //아이디 중복체크
 	//일부러극적인 효과를 위해 keyup이벤트를 쓰지만 실제롤 잘 안씀;
 	$('#memberId').keyup(function(){
-<<<<<<< HEAD
-          
-=======
+
           clearTimeout(debounceTimeout); // 이전 타이머를 초기화
->>>>>>> parent of e9cb8d9 (12/3 성재)
            debounceTimeout = setTimeout(() => {
        $.ajax({
        
@@ -100,9 +91,4 @@ $('#confirm').click(function(){
        }, 300); // 300ms 대기 후 실행
 	})//로그인
 		
-
-
-
-
-
 })

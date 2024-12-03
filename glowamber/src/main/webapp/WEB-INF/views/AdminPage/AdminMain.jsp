@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Glow Amber</title>
 <!-- css -->
-<link href="resources/css/AdminMain.css" rel="stylesheet">
+<link href="/glowamber/resources/css/AdminMain.css" rel="stylesheet">
 <!-- 부트스트랩 css -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -23,7 +23,9 @@
 <!-- JQUERY script -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <!-- script -->
-<script type="text/javascript" src='resources/js/Admin/Admin.js'></script>
+<script type="text/javascript" src='/glowamber/resources/js/Admin/Admin.js'></script>
+<script type="text/javascript" src='/glowamber/resources/js/Admin/ItemMain.js'></script>
+
 </head>
 <body>
 	<!-- 헤더 -->
@@ -33,159 +35,8 @@
 	<!-- 상품관리 탭 -->
 	<div id='Item' class='container-xxl AdminTab'>
 		<div>
-			<div class='row'>
-			<!-------------------- 상품 입력창 ------------------->
-				<div id="ItemInsert" class='col containBorder'>
-					<div>
-						<div>
-							<table class='infoTable'>
-								<colgroup>
-									<col width='15%'>
-									<col width='*'>
-								</colgroup>
-								<tr>
-									<td>썸네일</td>
-									<td><input type='file' name='' id='' /></td>
-								</tr>
-							</table>
-						</div>
-						<div>
-							<table class='infoTable'>
-								<tr>
-									<td>상품명</td>
-									<td><input type='text' name='' id='' /></td>
-									<td>카테고리</td>
-									<td>
-										<select>
-											<option value=''></option>
-											<!-- 나중에 DB값 받아오기 -->
-										</select>
-									</td>
-								</tr>
-								<tr>
-									<td>판매단위</td>
-									<td><input type='text' name='' id='' /></td>
-									<td>판매가</td>
-									<td><input type='text' name='' id='' /></td>
-								</tr>
-								<tr>
-									<td>원산지</td>
-									<td><input type='text' name='' id='' /></td>
-									<td>용량/중량</td>
-									<td><input type='text' name='' id='' /></td>
-								</tr>
-								<tr>
-									<td>공급업체</td>
-									<td><input type='text' name='' id='' /></td>
-								</tr>
-								<tr>
-									<td>알러지정보</td>
-									<td><textarea></textarea></td>
-								</tr>
-							</table>
-						</div>
-						<div>
-							<table class='infoTable'>
-								<colgroup>
-									<col width='15%'>
-									<col width='*'>
-								</colgroup>
-								<tr>
-									<td>상품설명</td>
-									<td><input type='file' name='' id='' /></td>
-								</tr>
-							</table>
-						</div>
-					</div>
-					<div class='text-end'>
-						<input type='button' name='' id='' value='등록' /> 
-						<input type='button' name='' id='' value='취소' /> 
-						<input type='button' name='' id='' value='수정' /> 
-						<input type='button' name='' id='' value='삭제' />
-					</div>
-				</div>
-			
-				<!------------------------- 카테고리 입력 창---------------------- -->
-				<div id='Category' class='col containBorder'>
-					<div class='row text-center'>
-						<div class='col'>
-							<span>대분류</span>
-						</div>
-						<div class='col'>
-							<span>소분류</span>
-						</div>
-					</div>
-					<div class='row' id='cate'>
-						<div class='col listTable'>
-							<div>
-								<table class='text-center'>
-									<colgroup>
-							            <col width="30%" />
-							            <col width="*"  />
-					      			</colgroup>
-									<tr>
-										<th>번호</th>
-										<th>이름</th>
-									</tr>
-									
-									<!-- DB에 저장된 값 출력 -->
-									
-								</table>
-							</div>
-						</div>
-						<div class='col listTable'>
-							<div>
-								<table class='cate text-center' >
-									<colgroup>
-							            <col width="30%" />
-							            <col width="*"  />
-					      			</colgroup>
-									<tr>
-										<th>번호</th>
-										<th>이름</th>
-										
-										<!-- DB에 저장된 값 출력 -->
-										
-									</tr>
-								</table>
-							</div>
-						</div>
-					</div>
-					<div class='row text-end'>
-						<div class='col'>
-							<table>
-								<tr>
-									<td>번호</td>
-									<td><input type='text' id='BigCateNum' readonly /></td>
-									<td>이름</td>
-									<td><input type='text' id='BigCateInput' /></td>
-								</tr>
-							</table>
-						</div>
-						<div class='col'>
-							<table>
-								<tr>
-									<td>번호</td>
-									<td><input type='text' id='SmallCateNum' readonly/></td>
-									<td>이름</td>
-									<td><input type='text' id='SmallCateInput' /></td>
-								</tr>
-							</table>
-						</div>
-					</div>
-					<div class='row text-center'>
-						<div class='col'>
-							<input type='button' id='BigCateAdd' value='등록' /> 
-							<input type='button' id='BigCateClear' value='취소' /> 
-							<input type='button' id='BigCateDelete' value='삭제' />
-						</div>
-						<div class='col'>
-							<input type='button' id='SmallCateInsert' value='등록' /> 
-							<input type='button' id='SmallCateclear' value='취소' />  
-							<input type='button' id='SmallCateDelete' value='삭제' />
-						</div>
-					</div>
-				</div>
+			<div>
+				<a href="ItemInsert"><input type='button' id='insertPage' value='상품등록'></a>
 			</div>
 			<!-- @@@@@@@@@@@@@ -->
 			<div class='row containBorder' id='ItemList'>
@@ -202,11 +53,11 @@
 				</div>
 				<div class='listTable'>
 					<div>
-						<table>
+						<table id='ItemTable'>
 							<colgroup>
 					            <col width="5%" />
 					            <col width="*"  />
-					            <col width="8%" />
+					           <%--  <col width="8%" /> --%>
 					            <col width="8%"/>
 					            <col width="7%" />
 					            <col width="10%" />
@@ -216,8 +67,8 @@
 							<tr>
 								<th>번호</th>
 								<th>이름</th>
-								<th>대분류</th>
-								<th>소분류</th>
+								<!-- <th>대분류</th> -->
+								<!-- <th>소분류</th> -->
 								<th>판매단위</th>
 								<th>용량/중량</th>
 								<th>판매가</th>
@@ -608,7 +459,7 @@
 			<!-- @@@@@@@@@@@@@ -->
 			<div class='row containBorder' id='MemberList'>
 				<div class='text-end'>
-					<select>
+					<select id='memberSelectCate'>
 						<option value=''>이름</option>
 						<option value=''>아이디</option>
 						<option value=''>전화번호</option>
@@ -617,11 +468,11 @@
 						<option value=''>가입일</option>
 					</select>
 					<input type='text' id='' name='' />
-					<input type='button' id='' name='' value='검색' />
+					<input type='button' id='memberSelectBtn' value='검색' />
 				</div>
 				<div class='listTable'>
 					<div>
-						<table>
+						<table id='memberTable'>
 							<colgroup>
 					            <col width="9%" />
 					            <col width="11%" />
@@ -635,6 +486,11 @@
 								<th>전화번호</th>
 								<th>이메일</th>
 								<th>가입일</th>
+								<!-- <th>접속일</th> -->
+								<th>구매횟수</th>
+								<th>구매총액</th>
+								<!-- <th>회원등급</th> -->
+								<th>탈퇴여부</th>
 							</tr>
 							
 							<!-- DB에 저장된 값 출력 -->

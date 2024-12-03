@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Glow Amber</title>
 <!-- css -->
-<link href="resources/css/AdminHeader.css" rel="stylesheet">
+<link href="/glowamber/resources/css/AdminHeader.css" rel="stylesheet">
 <!-- 부트스트랩 css -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -28,7 +28,7 @@
 			<div class="container header_logo_search d-flex justify-content-center text-center">
 				<span id='admin_font'> 
 					<a href="#">
-						<img id="logo_img" alt="로고이미지"src="resources/imgs/glow_amber_logo.png">
+						<img id="logo_img" alt="로고이미지"src="/glowamber/resources/imgs/glow_amber_logo.png">
 					</a><br/>
 					관리자 페이지
 				</span> 

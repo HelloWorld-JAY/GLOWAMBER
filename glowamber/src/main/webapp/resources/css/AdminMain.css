@@ -143,13 +143,10 @@ div>.listTable_store>div{
 .infoTable input{
 	width:100%;
 }
-#BigCateNum, #SmallCateNum {
+#CateNum{
 	width:38px;	
 }
 
-#BigCateInput, #SmallCateInput {
-	width:165px;
-}
 
 input[type="text"], input[type="file"], select {
     padding: 5px;
