@@ -44,14 +44,9 @@
 				<div class="row">
 					<div class="col-2 join_tit text-end align-self-center">ID</div>
 					<div class="col-8 bm text-center">
-<<<<<<< HEAD
 						<input type="text" placeholder="아이디를 입력하세요" name="memberId"
 							id="memberId"> <br> <span id="idCheckResult"
 							style="width: 150px; color: red; font-size: 10px;"></span>
-=======
-						<input type="text" placeholder="아이디를 입력하세요" name="memberId" id="memberId"> 
-						<span id="idCheckResult" style="width: 150px; color: red" ></span>
->>>>>>> parent of e9cb8d9 (12/3 성재)
 					</div>
 					<div class="col-2"></div>
 				</div>
@@ -79,12 +74,8 @@
 				<div class="row">
 					<div class="col-2 join_tit text-end align-self-center">이름</div>
 					<div class="col-8 bm text-center">
-<<<<<<< HEAD
 						<input type="text" placeholder="이름을 입력하세요" name="memberName"
 							id="memberName">
-=======
-						<input type="text" placeholder="이름을 입력하세요" name="memberName" id="">
->>>>>>> parent of e9cb8d9 (12/3 성재)
 					</div>
 					<div class="col-2"></div>
 				</div>
@@ -95,7 +86,6 @@
 					<div class="col-8 em text-center">
 
 
-<<<<<<< HEAD
 						<input type="text" placeholder="이메일을 입력하세요" name="memberEmail"
 							id="memberEmail"> <span>@ </span> 
 							<select class="combo"
@@ -105,18 +95,7 @@
 							<option value="@naver.com">naver.com</option>
 							<option value="@daum.net">daum.net</option>
 							<option value="@hanmail.net">hanmail.net</option>
-=======
-						<input type="text" placeholder="이메일을 입력하세요"> <span>@
-						</span> <select class="combo">
-							<option>선택하기</option>
-							<option>gmail.com</option>
-							<option>naver.com</option>
-							<option>daum.net</option>
-							<option>hanmail.net</option>
->>>>>>> parent of e9cb8d9 (12/3 성재)
 						</select>
-
-
 					</div>
 					<div class="col-2">
 						<button class="ejoin">이메일 인증</button>
@@ -126,12 +105,8 @@
 				<div class="row">
 					<div class="col-2 join_tit text-end align-self-center">전화번호</div>
 					<div class="col-8 bm text-center">
-<<<<<<< HEAD
 						<input type="text" placeholder="전화번호를 입력하세요" name="memberTel"
 							id="memberTel">
-=======
-						<input type="text" placeholder="전화번호를 입력하세요">
->>>>>>> parent of e9cb8d9 (12/3 성재)
 					</div>
 					<div class="col-2"></div>
 				</div>
