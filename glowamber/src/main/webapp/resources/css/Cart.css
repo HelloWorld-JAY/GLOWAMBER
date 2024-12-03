@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+/* 바디 컨테이너 */
+#body_container{
+	margin-top: 30px;
+	background: #5a5a5a;
+	border-radius: 15px;
+	padding: 50px;
+	
+}
+
+/* 카트 리스트 선택부위 */
+#cart_check{
+	background: white;
+	margin-bottom: 25px;
+	border-radius: 10px;
+	font-size: 18px;
+	font-weight: 500px;
+	height: 80px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+/* 카트리스트 상품부분 */
+#product_list{
+	background: white;
+	border-radius: 10px;
+}
+/* 카트 결제부분 */
+#cart_order{
+	position:sticky;
+	top:150px;
+}
+#cart_order > .row:first-of-type{
+	background: white;
+	border-radius: 10px;
+	padding: 20px;
+}
+/* 선택해제 버튼 */
+#cart_deselect{
+	background: transparent;
+	padding: 4px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-radius: 3px;
+}
+/* 결제탭 타이틀 글씨 사이즈 조절 */
+.cart_title{
+	font-size: 20px;
+	font-weight: 600;
+}
+
+/* 결제하기 버튼 */
+#pay_button{
+	margin-top:25px;
+	width: 100%;
+	padding: 10px;
+	border-radius: 10px;
+	background: white;
+	border: none;
+	font-size: 25px;
+	font-weight: 600;
+	letter-spacing: 4px;
+}

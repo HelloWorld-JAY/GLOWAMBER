@@ -1,0 +1,75 @@
+@charset "UTF-8";
+
+/*고객센터 헤드*/
+.center_h{
+	font-size: 25px;
+	font-weight: bold;
+	text-align: left;
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+/*고객센터 테두리*/
+.ser_rec{
+	
+	 text-align:left;
+}
+/*고객센터 버튼 테두리*/
+.rec_ser button{
+	width:150px;
+	height:80px;
+	border-color:#ADADAD;
+	border-radius:1px;  
+	background-color:#FFFFFF;
+	margin: 0px;
+
+}
+.mtom div{
+	/* border:2px solid red; */
+}
+
+/* 1:1 문의 헤드 */
+.mtom_h{
+	font-size: 25px;
+	font-weight: bold;
+	text-align: left;
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+/*문의 타이틀 패딩*/
+.mtom_title{
+	padding:10px;
+}
+/*문의 타이틀*/
+.mtom_title>div{
+	font-size: 18px;
+	font-weight: bold;
+}
+/* 문의 기입란 패딩*/
+.mtom_con{
+	padding:10px;
+}
+
+/*사진 첨부*/
+.mtom_photo{
+	font-size: 10px;
+	
+}
+/*답변 수신 참고 사항*/
+.res_msg{
+	font-size: 13px;
+}
+/*답변- 전화번호 체크박스 옆 글 개인정보 수정 패딩*/
+.res_in{
+	padding:10px;
+}
+
+.mtom_checkin{
+	text-align: center;
+}
+/*등록버튼*/
+.mtom_checkin<button{
+	
+	width: 200px;
+}
+
+

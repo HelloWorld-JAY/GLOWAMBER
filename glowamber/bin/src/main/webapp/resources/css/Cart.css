@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+/* 바디 컨테이너 */
+#body_container{
+	margin-top: 100px;
+	background: #5a5a5a;
+	border-radius: 30px;
+	padding: 50px;
+}
+/* 카트 리스트 선택부위 */
+#cart_check{
+	height: 100px;
+	background: white;
+	margin-bottom: 25px;
+	border-radius: 15px;
+}
+/* 카트 리스트 전체 로우 */
+#cart_list{
+	margin-right: 12.5px;	
+}
+/* 카트리스트 상품부분 */
+#product_list{
+	background: white;
+	border-radius: 15px;
+}
+/* 카트 결제부분 */
+#cart_order{
+	background: white;
+	border-radius: 15px;
+	height: 100px;
+}

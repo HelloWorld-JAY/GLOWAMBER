@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ProductDAO">
+
+	<select id="SelectAllProduct" resultType="ItemDTO">
+		SELECT *
+		FROM ITEMTABLE
+	</select>
+
+	<select id="SelectDetail" resultType="ItemDTO"
+		parameterType="ItemDTO">
+		SELECT *
+		FROM ITEMTABLE
+		WHERE itemnum = #{itemNum}
+	</select>
+	<insert id="InsertCart" parameterType="CartDTO">
+		INSERT INTO
+		CARTTABLE(CARTNUM,ITEMNUM,CARTITEMCOUNT,CARTADDDATE,GUESTID,MEMBERID)
+		VALUES(cartnum_seq.nextval,${itemNum},${cartItemCount},sysdate,#{guestId},#{memberId})
+	</insert>
+
+	<select id="SelectCartOne" parameterType="CartDTO"
+		resultType="CartDTO">
+		SELECT *
+		FROM CARTTABLE
+		WHERE guestid = #{guestId} AND
+		itemnum = #{itemNum}
+	</select>
+	<update id="UpdateCart" parameterType="CartDTO">
+		UPDATE CARTTABLE
+		SET
+		CARTITEMCOUNT = #{cartItemCount}
+		WHERE guestid = #{guestId} AND itemnum
+		= #{itemNum}
+	</update>
+
+	<select id="SelectProductList" parameterType="ItemDTO"
+		resultType="ItemDTO">
+		SELECT *
+		FROM ITEMTABLE
+		<where>
+			<if test="bigCateNum != null">
+				AND bigcatenum = #{bigCateNum}
+			</if>
+			<if test="smallCateNum != null">
+				AND smallcatenum = #{smallCateNum}
+			</if>
+		</where>
+		ORDER BY smallcatenum DESC
+	</select>
+
+	<select id="SelectCate" parameterType="ItemDTO"
+		resultType="HashMap">
+		SELECT
+		s.smallcatename AS smallcatename,
+		s.smallcatenum AS smallcatenum,
+		b.bigcatenum AS bigcatenum,
+		b.bigcatename AS bigcatename
+		FROM
+		smallcatetable s
+		INNER JOIN
+		bigcatetable b
+		ON s.bigcatenum = b.bigcatenum
+		<where>
+			<if test="bigCateNum != null">
+				AND s.bigcatenum = #{bigCateNum}
+			</if>
+			<if test="smallCateNum != null">
+				AND s.bigcatenum = (
+				SELECT bigcatenum
+				FROM smallcatetable
+				WHERE smallcatenum = #{smallCateNum})
+			</if>
+		</where>
+		ORDER BY smallcatenum asc
+	</select>
+</mapper>

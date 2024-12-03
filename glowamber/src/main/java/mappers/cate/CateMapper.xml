@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CateDAO">
+
+	<select id="SelectBigCate" resultType="BigCateDTO">
+		SELECT *
+		FROM bigcatetable
+	</select>
+	
+	<select id="SelectSmallCate" resultType="SmallCateDTO" parameterType="SmallCateDTO">
+		SELECT *
+		FROM smallcatetable
+		where bigcatenum = #{bigCateNum}
+	</select>
+	
+</mapper>

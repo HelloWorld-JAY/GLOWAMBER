@@ -1,0 +1,87 @@
+@charset "UTF-8";
+
+#mp div {
+	/* margin-top: 30px; */
+	/* border: 2px solid red; */
+}
+
+/*배경색*/
+.my_back {
+	background-color: #5a5a5a;
+	padding: 30px 30px 30px 30px;
+	border-radius: 15px;
+}
+/**************레이아웃 크기조절*********************  */
+/*이름 적립금*/
+.my_card_rec {
+	padding: 20px;
+	width: 100%;
+	height: 150px;
+	background-color: #FFFFFF;
+	border-radius: 15px 15px 0 0;
+	margin: 10px;
+}
+/*목록*/
+.my_list_rec {
+	padding: 20px;
+	width: 100%;
+	background-color: #FFFFFF;
+	border-radius: 0 0 15px 15px;
+	margin: 10px;
+}
+/* 주문내역 버튼*/
+.myorder_rec {
+	padding: 10px;
+	width: 100%;
+	background-color: #FFFFFF;
+	border-radius: 15px;
+	margin: 10px;
+}
+/*주문목록*/
+.myorder_list_rec {
+	padding: 20px;
+	width: 100%;
+	background-color: #FFFFFF;
+	border-radius: 15px;
+	margin: 10px;
+}
+/*  ************버튼크기 조절*************  */
+/*주문내역*/
+.mp_title {
+	font-size: 25px;
+	font-weight: bold;
+}
+/*주문내역 버튼*/
+.mp_btn button {
+	width: 150px;
+	height: 40px;
+	text-align: center;
+	border-radius: 15px;
+	font-size: 20px;
+	font-weight: bold;
+	background-color: #5a5a5a;
+	color: #DEBD7E;
+}
+/* 이름 위치 */
+.name_rec {
+	text-align: center;
+	padding: 20px;
+}
+/*고객명*/
+.my_card_name {
+	font-size: 30px;
+	font-weight: bold;
+}
+
+/*목록 글씨 크기 조절*/
+.mylist_title {
+	font-size: 13px;
+	padding: 10px;
+}
+/*버튼 위치*/
+.mp_btn>div {
+	text-align: center;
+}
+.order_title{
+	
+}
