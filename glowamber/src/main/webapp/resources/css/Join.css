@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 #join_membership div{
- 	/*  border:2px solid blue; */   
+ 	 /*  border:2px solid blue;  */
  
 	padding:3px;
 }
@@ -9,13 +9,13 @@
  	 
  }
  /* 회원가입 베너 */
-.tit{
-	font-style: normal;
-	font-size: 32px;
-	margin-top: 40px;
-	margin-bottom: 40px;
-	text-align: center;
-	font-weight: bold;
+.tit_bn{
+	font-style: normal !important;
+	font-size: 32px !important;
+	margin-top: 40px !important;
+	margin-bottom: 40px !important;
+	text-align: center !important;
+	font-weight: bold !important;
 	
 } 
  

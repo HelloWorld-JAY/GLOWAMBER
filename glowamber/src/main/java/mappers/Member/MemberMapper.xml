@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <insert id="memberInsert" parameterType="memberDTO">
 
 INSERT INTO MEMBERTABLE(MEMBERNUM ,MEMBERID, MEMBERPASS, MEMBERNAME, MEMBERTEL, MEMBEREMAIL, MEMBERJOINDATE, MEMBERAUTH)
-VALUES (MEMBERNUM_SEQ.nextval,#{memberId},#{memberPass},#{memberName},#{memberTel},#{memberEmail},sysdate,'0' )
+VALUES (MEMBERNUM_SEQ.nextval,#{memberId},#{memberPass},#{memberName},#{memberTel},CONCAT(#{memberEmail}, #{emailAddr}),sysdate,'0' )
 </insert>
 <!-- 회원가입 유효성 검사 -->
 

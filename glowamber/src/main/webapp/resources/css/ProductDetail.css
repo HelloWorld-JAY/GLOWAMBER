@@ -178,6 +178,10 @@
 	margin-top: 50px;
 }
 /**********************************************************후기 댓글 */
+/* div 경계선 */
+#reply_container div{
+	/* border: 2px solid red; */
+}
 /* 리플페이지 넘김버튼 */
 #reply_page_button i{
 	border: 1px solid #bbbbbb;
@@ -191,7 +195,7 @@
 	  /* border: 2px solid blue;   */
 }
 /* 문의 페이지 간격 */
-#board_container,#reply_container{
+#board_container{
 	margin-top: 50px; 
 }
 /* 문의하기 버튼 */
@@ -222,8 +226,3 @@
 	border: 0;
 	opacity: 100;
 }
-/* 스크롤 테스트 */
-/* #scroll1,#scroll2,#scroll3,#scroll4{
-	border: 2px solid red;
-	height: 3000px;
-}  */

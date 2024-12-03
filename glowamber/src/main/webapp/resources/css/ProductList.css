@@ -57,7 +57,7 @@
 	box-shadow: 0px 0px 2px #aaaaaa;
 	border-radius: 5px;
 	color: #444;
-	font-size: 18px;
+	font-size: 16px;
 	font-weight: 600;
 	line-height: 50px;
 }
@@ -136,14 +136,14 @@
 /* 상품 상품명*/
 .carouesl_name {
 	font-size: 18px;
-	font-weight: 500;
+	font-weight: 600;
 	color: #555555;
 	text-align: left;
 	cursor: pointer;
 }
 /* 상품 가격*/
 .carouesl_price {
-	font-size: 18px;
+	font-size: 16px;
 	font-weight: 600;
 	color: #555555;
 	text-align: left;

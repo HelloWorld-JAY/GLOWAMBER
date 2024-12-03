@@ -9,7 +9,7 @@
 <link href="/glowamber/resources/css/Join.css" rel="stylesheet">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script type="text/javascript" src="../resources/js/Join.js"></script>
+<script type="text/javascript" src="/glowamber/resources/js/Join.js"></script>
 <!-- 부트스트랩 아이콘CDN -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
@@ -32,11 +32,11 @@
 	<!-- 헤더 -->
 	<jsp:include page="../headerfooter/Header.jsp" />
 	<!-- 헤더 -->
-
+<form action="memberJoin" method="post" id="frm">
 	<div class='container' id="join_membership">
 		<div class="row">
 			<div class="col-4"></div>
-			<div class="col-4 tit">회원가입</div>
+			<div class="col-4" style="font-size: 32px;font-style: normal;margin-top: 40px;margin-bottom: 40px;text-align: center;font-weight: bold;">회원가입</div>
 			<div class="col-4"></div>
 			<hr>
 			<div class="col-2"></div>
@@ -44,8 +44,14 @@
 				<div class="row">
 					<div class="col-2 join_tit text-end align-self-center">ID</div>
 					<div class="col-8 bm text-center">
+<<<<<<< HEAD
+						<input type="text" placeholder="아이디를 입력하세요" name="memberId"
+							id="memberId"> <br> <span id="idCheckResult"
+							style="width: 150px; color: red; font-size: 10px;"></span>
+=======
 						<input type="text" placeholder="아이디를 입력하세요" name="memberId" id="memberId"> 
 						<span id="idCheckResult" style="width: 150px; color: red" ></span>
+>>>>>>> parent of e9cb8d9 (12/3 성재)
 					</div>
 					<div class="col-2"></div>
 				</div>
@@ -53,7 +59,8 @@
 					<div class="col-2 join_tit text-end align-self-center">비밀번호</div>
 					<div class="col-8 bm text-center">
 
-						<input type="text" placeholder="비밀번호를입력하세요" name="memberPass" id="memberPads">
+						<input type="password" placeholder="비밀번호를입력하세요" name="memberPass"
+							id="memberPass">
 
 					</div>
 					<div class="col-2"></div>
@@ -63,7 +70,8 @@
 						확인</div>
 					<div class="col-8 bm text-center ">
 
-						<input type="text" placeholder="비밀번호를 다시 입력하세요" name="memberPass2" id="memberPass2">
+						<input type="password" placeholder="비밀번호를 다시 입력하세요"
+							name="memberPass2" id="memberPass2">
 
 					</div>
 					<div class="col-2"></div>
@@ -71,7 +79,12 @@
 				<div class="row">
 					<div class="col-2 join_tit text-end align-self-center">이름</div>
 					<div class="col-8 bm text-center">
+<<<<<<< HEAD
+						<input type="text" placeholder="이름을 입력하세요" name="memberName"
+							id="memberName">
+=======
 						<input type="text" placeholder="이름을 입력하세요" name="memberName" id="">
+>>>>>>> parent of e9cb8d9 (12/3 성재)
 					</div>
 					<div class="col-2"></div>
 				</div>
@@ -82,6 +95,17 @@
 					<div class="col-8 em text-center">
 
 
+<<<<<<< HEAD
+						<input type="text" placeholder="이메일을 입력하세요" name="memberEmail"
+							id="memberEmail"> <span>@ </span> 
+							<select class="combo"
+							name="emailAddr" id="emailAddr">
+							<option value="" selected="selected">선택하기</option>
+							<option value="@gmail.com">gmail.com</option>
+							<option value="@naver.com">naver.com</option>
+							<option value="@daum.net">daum.net</option>
+							<option value="@hanmail.net">hanmail.net</option>
+=======
 						<input type="text" placeholder="이메일을 입력하세요"> <span>@
 						</span> <select class="combo">
 							<option>선택하기</option>
@@ -89,6 +113,7 @@
 							<option>naver.com</option>
 							<option>daum.net</option>
 							<option>hanmail.net</option>
+>>>>>>> parent of e9cb8d9 (12/3 성재)
 						</select>
 
 
@@ -101,7 +126,12 @@
 				<div class="row">
 					<div class="col-2 join_tit text-end align-self-center">전화번호</div>
 					<div class="col-8 bm text-center">
+<<<<<<< HEAD
+						<input type="text" placeholder="전화번호를 입력하세요" name="memberTel"
+							id="memberTel">
+=======
 						<input type="text" placeholder="전화번호를 입력하세요">
+>>>>>>> parent of e9cb8d9 (12/3 성재)
 					</div>
 					<div class="col-2"></div>
 				</div>
@@ -113,8 +143,9 @@
 					<div class="col-2"></div>
 				</div>
 			</div>
+			<div class="col-2"></div>
 		</div>
-
+</form>
 		<!-- 약관동의 -->
 
 		<div class='container' id="join_agree">
