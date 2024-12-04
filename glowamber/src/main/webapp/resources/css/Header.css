@@ -38,8 +38,7 @@ body {
 	border-radius: 2px;
 }
 /* 네비게이션 중 li 글씨 */
-#header_nav>li:nth-child(1), #header_nav>li:nth-child(3), #header_nav>li:nth-child(5)
-	{
+.nav-letter	{
 	padding-left: 12px;
 	padding-right: 12px;
 	padding-top: 8px;
@@ -50,15 +49,13 @@ body {
 	font-family: 'Gyeonggi_Batang_Regular';
 }
 /* 네비게이션 중 li 글씨 호버 */
-#header_nav>li:nth-child(1):hover, #header_nav>li:nth-child(3):hover,
-	#header_nav>li:nth-child(5):hover, #header_nav>li:nth-child(7):hover {
+.nav-letter:hover,#header_nav >.nav-service:hover {
 	border-radius: 5px;
 	color: #DEBD7E;
 	font-family: 'Gyeonggi_Batang_Regular';
 }
 /* 네비게이션 중 li 구분자 */
-#header_nav>li:nth-child(2), #header_nav>li:nth-child(4), #header_nav>li:nth-child(6)
-	{
+.nav-division	{
 	padding-top: 8px;
 	font-style: normal;
 	font-weight: 500;
@@ -67,7 +64,7 @@ body {
 	color: white;
 }
 /* 헤더 네비게이션 고객센터*/
-#header_nav>li:last-child {
+#header_nav > .nav-service {
 	font-style: normal;
 	font-weight: 500;
 	font-size: 17px;
@@ -76,12 +73,12 @@ body {
 	font-family: 'Gyeonggi_Batang_Regular';
 }
 /* 고객센터 배경 및 글씨색 */
-#header_nav>li:last-child .dropdown-menu {
+#header_nav>.nav-service .dropdown-menu {
 	color: white !important;
 	background-color: #5A5A5A !important
 }
 /* 고객센터 배경 및 글씨색 호버시 */
-#header_nav>li:last-child .dropdown-item:hover {
+#header_nav>.nav-service .dropdown-item:hover {
 	color: #DEBD7E !important;
 	background-color: #5A5A5A !important
 }
@@ -96,7 +93,7 @@ a {
 	margin-top: 30px;
 	align-items: center;
 	padding-left: 15px;
-	width: 30%;
+	width: 40%;
 	height: 60px;
 	border: 3px solid #DEBD7E;
 	border-radius: 8px;
@@ -133,7 +130,7 @@ a {
 #logo_img {
 	position: relative;
 	top: -5%;
-	width: 120%;
+	width: 100%;
 }
 /* 헤더 메인 네비게이션*/
 .main_nav {

@@ -25,41 +25,70 @@ $(function(){
 
 		let itemNum = $(this).attr('value');
 		let itemcount =$('#product_count').text();
+		// 최소수량체크
 		if(itemcount != 0) {
-			// 쿠키에 비회원 고유아이디가 없을시 생성
 			let guestId = Cookies.get('guestId');
-			if(!guestId) {
-				guestId = 'guset-' + Math.random().toString(36).substr(2,9);
-				Cookies.set('guestId',guestId,{expires:30 ,path:'/'});
-			}
-
-			// 에이젝스 통신으로 db에 쿠키의 고유 아이디 담아서 장바구니 전송
-			$.ajax({
-				type:'post',
-				data:{guestId:guestId,itemNum:itemNum,cartItemCount:itemcount,memberId:null},
-				dataType:'json',
-				url:'non_member_cart_add',
-				success:function(result){
-					if(result == 1) {
-						alert("장바구니에 상품을 담았습니다.");
-					}else if(result == 10) {
-						alert("장바구니에 이미 해당상품이 있습니다.");
-					}
-				},
-				error: function(){
-					alert("장바구니에 상품을 담는데 오류가 발생하였습니다.");
+			// 세션에 로그인 됬는지 확인
+			if(!sessionId) {
+				// 로그인 안되있고 쿠키에 비회원 고유아이디가 없을시 생성
+				if(!guestId) {
+					guestId = 'guset-' + Math.random().toString(36).substr(2,9);
+					Cookies.set('guestId',guestId,{expires:30 ,path:'/'});
 				}
-			});
-		}else {
+			} //세션 로그인 확인 및 비회원시 쿠키 고유값생성 -end
+
+			// 아이디 있고 게스트아이디 없음 아이디만 카트에 추가
+			if(sessionId && !guestId) {
+				// 에이젝스 통신으로 db에 쿠키의 고유 아이디 담아서 장바구니 전송
+				$.ajax({
+					type:'post',
+					data:{guestId:"",itemNum:itemNum,cartItemCount:itemcount,memberId:sessionId},
+					dataType:'json',
+					url:'memberCartAdd',
+					success:function(result){
+						if(result == 1) {
+							alert("장바구니에 상품을 담았습니다.");
+						}else if(result == 10) {
+							alert("장바구니에 이미 해당상품이 있어서 수량을 추가하였습니다.");
+						}
+					},
+					error: function(){
+						alert("장바구니에 상품을 담는데 오류가 발생하였습니다.");
+					}
+				});// 에이젝스 통신으로 db에 쿠키의 고유 아이디 담아서 장바구니 전송 -end
+			}// 아이디 있고 게스트아이디 없고 -end
+
+			// 아이디는 없고 게스트아이디만 있어서 비회원으로 카트에 담기
+			else if(!sessionId && guestId) {
+				// 에이젝스 통신으로 db에 쿠키의 고유 아이디 담아서 장바구니 전송
+				$.ajax({
+					type:'post',
+					data:{guestId:guestId,itemNum:itemNum,cartItemCount:itemcount,memberId:""},
+					dataType:'json',
+					url:'nonMemberCartAdd',
+					success:function(result){
+						if(result == 1) {
+							alert("장바구니에 상품을 담았습니다.");
+						}else if(result == 10) {
+							alert("장바구니에 이미 해당상품이 있어서 수량을 추가하였습니다.");
+						}
+					},
+					error: function(){
+						alert("장바구니에 상품을 담는데 오류가 발생하였습니다.");
+					}
+				});// 에이젝스 통신으로 db에 쿠키의 고유 아이디 담아서 장바구니 전송 -end
+			}// 아이디 없고 게스트아이디 있고 -end
+
+		}// 최소수량체크 if -end
+		else {
 			alert("최소구매 수량은 1개입니다.");
-		}
-	}); //에이젝스 통신으로 db에 쿠키의 고유 아이디 담아서 장바구니 전송 -end
+		}// 최소수량체크 else -end
+	}); // 장바구니 담기 버튼 클릭시 쿠키에 저장 -end
 
 	// 상세설명 버튼 누를시 스크롤이동
 	$('.scroll_move').click(function(e){
 		e.preventDefault();
-		var targetSection = $($(this).find('a').attr('href'))[0];
-		targetSection.scrollIntoView({behavior:'instant'});
+		$('html,body').animate({scrollTop:$($(this).find('a').attr('href')).offset().top}, 1);
 		$('.scroll_move').css({"border-bottom":'','font-weight':'','background':''});
 		$(this).css({"border-bottom":'none','font-weight':'600','background':'white'});
 	});// 상세설명 버튼 누를시 스크롤이동 -end
@@ -81,7 +110,5 @@ $(function(){
 			}
 		});
 	});// 스크롤이동시 해당 버튼 위치면 눌려지고 벗어나면 해제하기 -end
-
-
 
 });		

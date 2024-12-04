@@ -25,6 +25,13 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
 	crossorigin="anonymous"></script>
+	<!-- 세션값 설정후 js 파일에 보내기 -->
+<script>
+    let sessionId = "<%= session.getAttribute("id") != null ? session.getAttribute("id") : "" %>";
+</script>	
+	<!-- 쿠키사용 스크립트 -->
+<script
+	src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
 <!-- 제이쿼리 -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -88,7 +95,26 @@
 							<div class="col-12 col-12 col-sm-12 col-md-12 carouesl_img" value="${ product.itemNum }">
 								<img alt="상품사진 ^^" src="${ product.itemThumnail }">
 							</div>
-								<div class="col-12 col-sm-12 col-md-12 carouesl_button"><button><i class="bi bi-bag"></i> 담기</button></div>
+								<div class="col-12 col-sm-12 col-md-12 carouesl_button"><button type="button" data-bs-toggle="modal" data-bs-target="#modal-${ product.itemNum }"><i class="bi bi-bag"></i> 담기</button>
+									<div class="modal fade" id="modal-${ product.itemNum }" data-bs-backdrop="false" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal-${ product.itemNum }Label" aria-hidden="true">
+										<div class="modal-dialog modal-dialog-centered modal-md" >
+										<div class="modal-content">
+										<div class="modal-header text-center"">
+										<h1 class="modal-title fs-4 mx-auto" id="modal-${ product.itemNum }Label" style="font-weight: 600;">장 바 구 니</h1>
+										</div>
+										<div class="modal-body"><div class="row "><div class="col-1"></div><div class="col-3" ><img class="modal_img" src="${ product.itemThumnail }"></div>
+										<div class="col-7 text-end"><div class="row">
+										<div class="col-12 text-end" style="font-size: 20px; text-align:left;">${ product.itemName }</div><br/><br/><br/>
+										<div class="col-12 align-self-end text-end" style="text-align:left; font-size:16px;"><span>상품금액:</span> <span class="product_price" value="${product.itemPrice}"><fmt:formatNumber value="${product.itemPrice}" type="number" groupingUsed="true" />원</span></div>
+										<div class="col-12 align-self-center text-end product_counter"><div><span class="minus"><i class="bi bi-dash fs-5"></i></span><span class="product_count" draggable="false">0</span><span class="plus"><i class="bi bi-plus fs-5"></i></span></div></div>
+										</div></div><div class="col-1"></div>
+										</div></div>
+										<div class="modal-footer d-flex justify-content-between w-100">
+										<div class="col-12 d-flex justify-content-between w-100" style="font-size: 20px; font-weight: 600; padding-right: 10%;padding-left: 10%;"><span>합계</span><span><span class="total_price">0원</span></span></div>
+										<button type="button" class="btn_cancel " data-bs-dismiss="modal">취소</button>
+										<button type="button" class="btn_add" data-bs-dismiss="modal" value="${ product.itemNum }">장바구니 담기</button>
+										</div></div></div></div>
+								</div>
 
 							<div class="col-12 col-sm-12 col-md-12 carouesl_name" value="${ product.itemNum }">${ product.itemName }</div>
 							<div class="col-12 col-sm-12 col-md-12 carouesl_price" value="${ product.itemNum }"><fmt:formatNumber value="${product.itemPrice}" type="number" groupingUsed="true" />원</div>

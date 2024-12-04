@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.java.glowamber.model.dto.BigCateDTO;
@@ -34,17 +35,40 @@ public class ProductController {
 		m.addAttribute("itemDTO", service.selectDetail(dto));
 		return "products/ProductDetail";
 	}
-	//장바구니로 디비저장(비회원) 추후 회원있는지 비교해서 회원가입시 장바구니 통합필요
-	@PostMapping("non_member_cart_add")
+	//장바구니로 디비저장 세션에 아이디 값이 없어서 비회원으로 담기
+	@PostMapping("nonMemberCartAdd")
 	@ResponseBody
 	public Integer nonMemberCartAdd(CartDTO dto) {
 		System.out.println(dto.toString());
 		CartDTO cart = service.selectCart(dto);
-		
+
 		if(cart != null) {
+			service.updateCart(dto);
 			return 10;
 		}else {
 			return service.insertCart(dto);
+		}
+	}
+	//장바구니로 디비저장 비회원으로 담은적이 없어서 회원으로 저장
+	@PostMapping("memberCartAdd")
+	@ResponseBody
+	public Integer memberCartAdd(CartDTO dto) {
+		System.out.println(dto.toString());
+		CartDTO cart = service.selectCart(dto);
+		if(cart != null) {
+			service.updateCart(dto);
+			return 10;
+		}else {
+			return service.insertCart(dto);
+		}
+	}
+	//로그인시 기존 카트에 담긴 게스트 아이디 지우고 로그인아이디로 변경
+	@PostMapping("memberCartAddGuestDelete")
+	@ResponseBody
+	public void memberCartAddGuestDelete(CartDTO dto) {
+		System.out.println(dto.toString());
+		if(dto.getGuestId() != null) {
+		service.updateCart(dto);
 		}
 	}
 	//헤더 대분류 카테고리 눌러서 들어갔을때 리스트 띄우기

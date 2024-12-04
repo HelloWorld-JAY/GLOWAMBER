@@ -31,13 +31,24 @@
 		<div class="container header_background">
 			<div class="container">
 				<ul class="nav justify-content-end" id="header_nav">
-					<li class="nav-item"><a href="/glowamber/member/Join">회원가입</a></li>
-					<li class="nav-item">ㅣ</li>
-					<li class="nav-item"><a href="/glowamber/member/Login">로그인</a></li>
-					<li class="nav-item">ㅣ</li>
-					<li class="nav-item"><a href="/glowamber/products/Cart">장바구니</a></li>
-					<li class="nav-item">ㅣ</li>
-					<li class="nav-item"><a class="nav-link dropdown-toggle"
+				<%if(session.getAttribute("id")== null){%>
+					<li class="nav-item nav-letter"><a href="/glowamber/member/Join">회원가입</a></li>
+					<%} %>
+					<%if(session.getAttribute("id")!= null){%>
+					<li class="nav-item nav-letter"><a href="#">마이페이지</a></li>
+					<%} %>
+					<li class="nav-item nav-division">ㅣ</li>
+					
+					<%if(session.getAttribute("id")!= null){%>
+					<li class="nav-item nav-letter"><a href="/glowamber/member/logout">로그아웃</a></li>
+					<%} %>
+					<%if(session.getAttribute("id")== null){%>
+					<li class="nav-item nav-letter"><a href="/glowamber/member/Login">로그인</a></li>
+					<%} %>
+					<li class="nav-item nav-division">ㅣ</li>
+					<li class="nav-item nav-letter"><a href="/glowamber/products/Cart">장바구니</a></li>
+					<li class="nav-item nav-division">ㅣ</li>
+					<li class="nav-item nav-service"><a class="nav-link dropdown-toggle"
 						href="#" id="customerServiceDropdown" role="button"
 						data-bs-toggle="dropdown" aria-expanded="false">고객센터</a>
 						<ul class="dropdown-menu"

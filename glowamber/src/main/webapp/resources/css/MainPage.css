@@ -119,13 +119,13 @@
 }
 /***********************************************************************************모달창*/
 /* 추천상품 담기버튼 클릭시 나오는 모달창 버튼사이즈 */
-.btn_add{
+.btn_add,.btn_cancel{
 	width: 48% !important;
 	height: 40px !important;
 }
 /* 모달 이미지 */
 .modal_img{
-	width: 71%;
+	width: 100%;
 	border-radius: 5px;
 	box-shadow: 0 0 1px #888888;
 }

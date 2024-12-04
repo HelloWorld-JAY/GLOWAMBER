@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.java.glowamber.dao.product.ProductDAO;
 import com.java.glowamber.model.dto.CartDTO;
@@ -37,9 +38,10 @@ public class ProductServiceImpl implements ProductService{
 	public CartDTO selectCart(CartDTO dto) {
 		return dao.selectCart(dto);
 	}
-
+	
 	@Override
 	public Integer updateCart(CartDTO dto) {
+		
 		return dao.updateCart(dto);
 	}
 
@@ -52,5 +54,6 @@ public class ProductServiceImpl implements ProductService{
 	public List<HashMap> selectCate(ItemDTO dto) {
 		return dao.selectCate(dto);
 	}
+
 
 }

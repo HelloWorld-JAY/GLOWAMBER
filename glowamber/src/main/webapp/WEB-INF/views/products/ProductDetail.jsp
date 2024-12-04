@@ -31,6 +31,10 @@
 <!-- 제이쿼리 -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- 세션값 설정후 js 파일에 보내기 -->
+<script>
+    let sessionId = "<%= session.getAttribute("id") != null ? session.getAttribute("id") : "" %>";
+</script>
 <!-- js파일연결 -->
 <script type="text/javascript"
 	src="/glowamber/resources/js/ProductDetail.js"></script>

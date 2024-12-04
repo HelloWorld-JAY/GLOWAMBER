@@ -46,8 +46,9 @@
 }
 /* 결제탭 타이틀 글씨 사이즈 조절 */
 .cart_title{
-	font-size: 20px;
+	font-size: 18px;
 	font-weight: 600;
+	user-select: none; 
 }
 
 /* 결제하기 버튼 */
@@ -61,4 +62,8 @@
 	font-size: 25px;
 	font-weight: 600;
 	letter-spacing: 4px;
+}
+/* 전체선택버튼 커서 */
+.select-all{
+	cursor: pointer;
 }
