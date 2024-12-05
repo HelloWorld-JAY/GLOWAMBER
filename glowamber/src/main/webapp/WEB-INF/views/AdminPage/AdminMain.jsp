@@ -223,14 +223,14 @@
 							<tr>
 								<td>상태</td>
 								<td>
-									<select>
-										<option>전체</option>
-										<option>신규</option>
-										<option>대기</option>
-										<option>배송중</option>
-										<option>완료</option>
-										<option>환불</option>
-										<option>교환</option>
+									<select id='orderStatus'>
+										<option value='all'>전체</option>
+										<option value='new'>신규</option>
+										<option value='wait'>대기</option>
+										<option value='delivery'>배송중</option>
+										<option value='complete'>완료</option>
+										<option value='refund'>환불</option>
+										<option value='exchange'>교환</option>
 									</select>
 								</td>
 							</tr>
@@ -303,7 +303,7 @@
 							</div>
 						<div class='listTable'>
 							<div>
-								<table>
+								<table id='orderTable'>
 									<colgroup>
 							            <col width="8%"  />
 							            <col width="11%" />
@@ -313,7 +313,7 @@
 							            <col width="15%"/>
 							      	</colgroup>
 									<tr>
-										<th>상태</th>
+										<th>주문번호</th>
 										<th>이름</th>
 										<th>상품명</th>
 										<th>수량</th>
