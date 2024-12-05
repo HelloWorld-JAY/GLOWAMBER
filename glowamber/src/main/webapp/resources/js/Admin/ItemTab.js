@@ -1,3 +1,4 @@
+/* 스마트에디터 설정 */
 let oEditors=[];
 	smartEditor= function (){
 		nhn.husky.EZCreator.createInIFrame({
@@ -7,42 +8,55 @@ let oEditors=[];
 			, fCreator : "createSEditor2"
 		})
 	}
+	
 $(function(){
-
+	/* 카테고리 화면 숨기기*/
+	$('#category').hide()
+	
 	/* 스마트에디터 출력 */
 	smartEditor()
 	
 	/* 카테고리 출력 */
 	selectBigCate()
 	
-	/* 저장버튼 클릭시 상품 정보 입력 */
-	$('#itemInsertBtn').click(function(){
+	/*************************************** 상품정보페이지 ********************************/
+	/* 저장버튼 누르면 수정한 상품정보 저장 */
+	$('#itemUpdateBtn').click(function(){
 		oEditors.getById['itemdetail'].exec("UPDATE_CONTENTS_FIELD",[])
-		
-		ItemParam = {
-						samllCateNum :	$('#samllCateNum').val()
-						,itemName	  :	$('#itemName').val()
-						,itemUnit	  :	$('#itemUnit').val()
-						,itemOrigin	  :	$('#itemOrigin').val()
-						,itemVolume   :	$('#itemVolume').val()
-						,itemAllErgyinfo :	$('#itemAllErgyinfo').val()
-						,itemCost		 :	$('#itemCost').val()
-						,itemPrice		 :	$('#itemPrice').val()
-						,itemSupplier	 :	$('#itemSupplier').val()
-						,itemThumnail	 :	$('#itemThumnail').val()
-						,itemDetail   : $('#itemdetail').val()
-				    }
-		
+	})
+	
+	
+	
+	/* 입고버튼 클릭시 해당상품 재고입고 */
+	$('#inventoryStoreBtn').click(function(){
+		let inventoryStoreParam ={ 
+		 	  itemNum	: $('#itemNum').val()
+		  	 ,storeCount : $('#storeItemCount').val()
+		  	 ,storeExpirDate : $('#storeExpirDate').val()
+		  	 ,storePrice : $('#storePrice').val()
+		 }
 		$.ajax({
 			type : 'post'
-			, data : ItemParam
-			, url : '/glowamber/iteminsert'
+			, data : inventoryStoreParam
+			, url : '/glowamber/itemStore'
 			, success : function(){
-				console.log(ItemParam.toString())
+				$('#storeItemCount').val("")
+				,$('#storeExpirDate').val("")
+				,$('#storePrice').val("")
 			}
 		})
 	})
 	
+	
+	/****************************** 상품 등록 페이지 **************************/
+	
+	/* 저장버튼 클릭시 상품 정보 입력 */
+	$('#itemInsertBtn').click(function(){
+		oEditors.getById['itemdetail'].exec("UPDATE_CONTENTS_FIELD",[])
+	})
+	
+	
+/****************************** 상품 수정/등록 공통기능 *****************************/
 	/* 카테고리 등록*/
 	$('#CateInsertBtn').click(function(){
 	
@@ -91,7 +105,6 @@ $(function(){
 			})
 		}	
 	})
-	
 	/* 카테고리 수정*/
 	$('#CateUpdateBtn').click(function(){
 	
@@ -186,8 +199,6 @@ $(function(){
 			})
 	})
 	
-	
-	
 	/* 카테고리 출력 */
 	/* 대분류 출력 */
 	function selectBigCate(){
@@ -248,9 +259,16 @@ $(function(){
 		$('#CateNum').val($(this).find('input').val())
 		$('#UpdateCateType').val('소분류')
 		$('#UpdateCateName').val($(this).text())
-		$('#samllCateNum').val($(this).children().first().val())
+		$('#smallCateNum').val($(this).children().first().val())
 	})
 	
-	/* 소분류 출력 */
+	/* 카테고리 화면 띄우기 */
+	$('#categoryUp').click(function(){
+		$('#category').show()
+	})
+	
+	$('#categoryhide').click(function(){
+		$('#category').hide()
+	})
 	
 })

@@ -29,10 +29,10 @@
 </head>
 <body>
 	<!-- 관리자 페이지 헤더 -->
-<%-- 	<jsp:include page="AdminHeader.jsp" /> --%>
+	<jsp:include page="AdminHeader.jsp" />
 	
 	
-	<div class='container-xxl'>
+	<div class='container'>
 		<div class='col' id='category'>
 			<div class='text-end'>
 				<input type='button' id='categoryhide' value='x' />
@@ -144,123 +144,149 @@
 				</div>
 		</div>
 		
-		<div class='row'>
-			<!-- 카테고리 생성-->
-			
+		<div class='row'>	
 			<!-- 상품 정보 입력 -->
-			<div class='col'>
-
-				<div>
-					<div>
-						<span>이미지</span>
-					</div>
-					<div>
-						<input type='text' id='itemThumnail' value='${item.itemDetail}' />
-					</div>
-				</div>
-				<div>
-					<div>
-						<span>상품명</span>
-					</div>
-					<div>
-					<div>
-						<input type='text' id='itemName' value='${item.itemName}' />
-					</div>
-				</div>
-				<div>
-					<div>
-						<span>카테고리</span>
-					</div>	
-					<div>
-						<input type='text' id='samllCateNum' value='${item.smallCateNum}' />
-						<input type='button' id='categoryUp' value='선택' />
-					</div>	
-				</div>
-				<div>
-					<div>
-						<span>판매가</span>
-					</div>	
-					<div>	
-						<input type='text' id='itemPrice' value='${item.itemPrice}' />
-					</div>	
-				</div>
-				<div>
-					<div>
-						<span>원가</span>
-					</div>	
-					<div>		
-						<input type='text' id='itemCost' value='${item.itemCost}' />
-					</div>	
-				</div>				
-				<div>
-					<div>
-						<span>원산지</span>
-					</div>	
-					<div>	
-						<input type='text' id='itemOrigin' value='${item.itemOrigin}' />
-					</div>	
-				</div>
-				<div>
-					<div>
-						<span>용량/중량</span>
-					</div>
-					<div>	
-						<input type='text' id='itemVolume' value='${item.itemVolume}' />
-					</div>
-				</div>
-				<div>
-					<div>
-						<span>판매단위</span>
-					</div>
-					<div>	
-						<input type='text' id='itemUnit' value='${item.itemUnit}' />
-					</div>
-				</div>
-				<div>
-					<div>
-						<span>공급업체</span>
-					</div>
-					<div>	
-						<input type='text' id='itemSupplier' value='${item.itemSupplier}' />
-					</div>
-				</div>
-				<div>
-					<div>
-						<span>알러지정보</span>
-					</div>
-					<div>	
-							<c:choose>
-								<c:when test="${item.itemAllErgyinfo == null}">
-									<textarea id='itemAllErgyinfo'></textarea>
-								</c:when>
-								<c:otherwise>
-									<textarea id='itemAllErgyinfo'>${item.itemAllErgyinfo}</textarea>
-								</c:otherwise>
-								
-							</c:choose>			
-					</div>	
-				</div>
-				<div>
-					<div>
-						<span>상품설명</span>
-					</div>
-					<div id='smarteditor'>
-						<textarea rows="20" cols="10" name='editorTxt' id="itemdetail" placeholder="내용을 입력해 주세요"
-						style="width:500px">${item.itemDetail}</textarea>
-					</div>
-				</div>
-			</div>
+		<form action='/glowamber/itemupdate' name='itemupdate' method="post">
+			
 			<div>
-				<input type='button' id='itemInsertBtn' value='등록'>
-				<input type='button' id='itemInsertCancle' value='취소' /> 
+				<input type='submit' id='itemUpdateBtn' value='저장'>
+				<a href='AdminPage/ItemList'><input type='button' id='itemUpdateCancle' value='취소' /></a>
+			</div>
+			<div class='col'>
+					<div>
+						<div>
+							<span>이미지</span>
+						</div>
+						<div>
+							<input type='text' name='itemThumnail'  id='itemThumnail' value='${item.itemDetail}' />
+						</div>
+					</div>
+					<div>
+						<div>
+							<input type='hidden' name='itemNum' id='itemNum' value='${item.itemNum}' />
+							<span>상품명</span>
+						</div>
+						<div>
+							<input type='text' name='itemName' id='itemName' value='${item.itemName}' />
+						</div>
+						<div>
+							<div>
+								<span>카테고리</span>
+							</div>	
+							<div>
+								<input type='text' name='smallCateNum' id='smallCateNum' value='${item.smallCateNum}' />
+								<input type='button' id='categoryUp' value='선택' />
+							</div>	
+						</div>
+						<div>
+							<div>
+								<span>판매가</span>
+							</div>	
+							<div>	
+								<input type='text' name='itemPrice' id='itemPrice' value='${item.itemPrice}' />
+							</div>	
+						</div>
+						<div>
+							<div>
+								<span>원가</span>
+							</div>	
+							<div>		
+								<input type='text' name='itemCost' id='itemCost' value='${item.itemCost}' />
+							</div>	
+						</div>				
+						<div>
+							<div>
+								<span>원산지</span>
+							</div>	
+							<div>	
+								<input type='text' name='itemOrigin' id='itemOrigin' value='${item.itemOrigin}' />
+							</div>	
+						</div>
+						<div>
+							<div>
+								<span>용량/중량</span>
+							</div>
+							<div>	
+								<input type='text' name='itemVolume' id='itemVolume' value='${item.itemVolume}' />
+							</div>
+						</div>
+						<div>
+							<div>
+								<span>판매단위</span>
+							</div>
+							<div>	
+								<input type='text' name='itemUnit' id='itemUnit' value='${item.itemUnit}' />
+							</div>
+						</div>
+						
+						<div>
+							<div>
+								<span>공급업체</span>
+							</div>
+							<div>	
+								<input type='text' name='itemSupplier' id='itemSupplier' value='${item.itemSupplier}' />
+							</div>
+						</div>
+						<div>
+							<div>
+								<span>알러지정보</span>
+							</div>
+							<div>	
+								<c:choose>
+									<c:when test="${item.itemAllErgyinfo == null}">
+										<textarea name='itemAllErgyinfo' id='itemAllErgyinfo'></textarea>
+									</c:when>
+									<c:otherwise>
+										<textarea name='itemAllErgyinfo' id='itemAllErgyinfo'>${item.itemAllErgyinfo}</textarea>
+									</c:otherwise>
+									
+								</c:choose>			
+							</div>	
+						</div>
+						<div>
+							<div>
+								<span>상품설명</span>
+							</div>
+							<div id='smarteditor'>
+								<textarea rows="20" cols="10" name='itemDetail' id="itemdetail" placeholder="내용을 입력해 주세요"
+								style="width:500px">${item.itemDetail}</textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+			<!-- 재고입력 -->
+			<div>
+				<div>
+					<div>
+						<span>재고</span>
+						<input type='text'>
+					</div>
+					<div>
+						<span>입고수량</span>
+						<input type='text' id='storeItemCount' />
+					</div>
+					<div>
+						<span>유통기한</span>	
+						<input type='date' id='storeExpirDate' />
+					</div>
+					<div>
+						<span>입고가</span>
+						<input type='text' id='storePrice' />
+					</div>
+					<!-- <div>
+						<table id='inventory'></table>
+					</div> -->
+					<div>
+						<input type='button' id='inventoryStoreBtn' value='입고'>
+						<input type='button' id='inventoryStoreCancle' value='취소' /> 
+					</div>
+				
+				</div>
 			</div>
 		</div>
 	</div>
-<!-- 	<form action="insertStudentInfoForm" method='post'> -->
-		
-<!-- 	</form> -->
 
-		
 	
 </body>
 </html>

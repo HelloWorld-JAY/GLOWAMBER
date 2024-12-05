@@ -67,6 +67,7 @@ CREATE TABLE storetable				-- 입고테이블
 	,itemnum			NUMBER				-- 상품번호 (fk)
 	,storecount		NUMBER		NOT NULL 	-- 입고수량
 	,storeexpirdate		DATE				-- 유통기한
+	,storeprice		NUMBER					-- 입고가격
 	,storedate		DATE				-- 입고일
 	,CONSTRAINT pk_store_storenum PRIMARY KEY (storenum)
 	,CONSTRAINT fk_store_itemnum FOREIGN KEY (itemnum) REFERENCES itemtable(itemnum)

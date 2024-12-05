@@ -33,59 +33,6 @@
 	<jsp:include page="AdminHeader.jsp" />
 	<!-- 헤더 -->
 	
-	<!-- 상품관리 탭 -->
-	<div id='Item' class='container-xxl AdminTab'>
-		<div>
-			<div>
-				<a href="ItemInsert"><input type='button' id='insertPage' value='상품등록'></a>
-			</div>
-			<!-- @@@@@@@@@@@@@ -->
-			<div class='row containBorder' id='ItemList'>
-				<div class='text-end'>
-					<select id='ItemSelectCate'>
-						<option value='itemName'>이름</option>
-						<option value='bigCateNum'>대분류</option>
-						<option value='smallCateNum'>소분류</option>
-						<option value='ItemSupplier'>공급처</option>
-						<option value='itemDate'>등록일</option>
-					</select>
-					<input type='text'/>
-					<input type='button' id='ItemSelectBtn' value='검색' />
-				</div>
-				<div class='listTable'>
-					<div>
-						<table id='ItemTable'>
-							<colgroup>
-					            <col width="5%" />
-					            <col width="*"  />
-					            <col width="8%" />
-					            <col width="8%"/>
-					            <col width="7%" />
-					            <col width="10%" />
-					            <col width="10%"/>
-					            <col width="13%" />
-					      	</colgroup>
-							<tr>
-								<th>번호</th>
-								<th>이름</th>
-								<th>대분류</th>
-								<th>소분류</th>
-								<th>판매단위</th>
-								<th>용량/중량</th>
-								<th>판매가</th>
-								<th>공급처</th>
-								<th>등록일</th>
-							</tr>
-							
-							<!-- DB에 저장된 값 출력 -->
-							
-						</table>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	
 	<!-- 주문관리 탭 -->
 	<div id='Order' class='container-xxl AdminTab'>
 		<div>
@@ -108,7 +55,6 @@
 								<td>상태</td>
 								<td>
 									<select id='orderStatus'>
-										<option value='all'>전체</option>
 										<option value='new'>신규</option>
 										<option value='wait'>대기</option>
 										<option value='delivery'>배송중</option>
