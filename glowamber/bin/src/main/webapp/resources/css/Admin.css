@@ -1,0 +1,120 @@
+@charset "UTF-8";
+
+/* 어드민 헤더 로그인 정보 위치 */
+#admin_login {
+	font-size : 17px;
+	font-style: normal;
+	color: white !important;
+}
+
+/* 어드민 페이지 안내 문구 글씨색 및 위치 */
+#admin_font {
+	color: #DEBD7E !important;
+	font-size : 30px;
+	font-style: normal;
+}
+
+/* 재고 리스트 */
+#inventory{
+	background-color: #F5F5F5;
+	padding: 20px;
+	border-radius: 10px;
+	margin-top : 20px;
+	height : 750px;
+	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#inventory_data {
+border-radius: 8px;
+font-size : 50px;
+}
+
+#inventory_data input[type="date"] {
+    font-size: 25px;
+    padding: 5px 10px;
+    margin: 0 5px;
+    border: 1px solid #CCCCCC; 
+    border-radius: 5px;
+    color: #4A4A4A;
+}
+
+#inventory .text-start input[type="button"],
+#inventory .text-end input[type="button"] 
+{
+	font-size: 14px;
+	padding: 8px 12px;
+	margin-right: 10px;
+	border: 1px solid #CCCCCC;
+	border-radius: 5px;
+	background-color: #E0E0E0;
+	color: #4A4A4A;
+}
+
+#inventory .text-end select {
+    font-size: 14px;
+    padding: 5px 10px;
+    margin-right: 10px;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    color: #4A4A4A;
+}
+
+#inventory .text-end input[type="text"] {
+    font-size: 14px;
+    padding: 5px 10px;
+    margin-right: 10px;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    color: #4A4A4A;
+}
+
+.row{
+	margin : 10px;
+}
+
+#inventory_table{
+	width: 100%;
+	border-collapse: collapse;
+	margin: 20px 0;
+	font-size: 16px;
+	text-align: center;
+	background-color: #F5F5F5;
+	color: #4A4A4A;
+	border-radius: 8px;
+	overflow-y: auto;
+    border: 1px solid #CCCCCC;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+	max-height : 500px;
+}
+
+#inventory_table th{
+	background: #E0E0E0;
+	color: #333333;
+	font-weight: bold;
+	padding: 12px 15px;
+	border-bottom: 2px solid #CCCCCC;
+	/* text-align: center; */
+}
+
+#inventory_table td {
+padding: 10px 15px;
+border: 1px solid #DDDDDD;
+color: #555555;
+}
+
+#inventory_table tr:nth-child(even) {
+background-color: #FAFAFA;
+}
+
+#inventory_table tr:nth-child(odd) {
+    background-color: #FFFFFF;
+}
+
+#inventory_date {
+	font-size : 30px;
+	margin-bottom : 50px;
+	
+}
+

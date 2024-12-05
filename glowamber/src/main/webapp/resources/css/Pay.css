@@ -1,0 +1,108 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'Gyeonggi_Batang_Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2410-3@1.0/Batang_Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GowunDodum-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 바디 컨테이너 */
+#body_container {
+	margin-top: 30px;
+	background: #5a5a5a;
+	border-radius: 15px;
+	padding: 50px;
+	box-shadow: 0 0 3px #aaaaaa;
+	font-family: 'GowunDodum-Regular';
+}
+/* 바디 컨테이너 hr */
+#body_container hr {
+	opacity: 100;
+	border: none;
+	height: 2px;
+	background: #5a5a5a;
+}
+
+/* 주문상품 */
+#order_product {
+	margin-top: 25px;
+	background: white;
+	border-radius: 10px;
+	padding: 20px;
+	box-shadow: 0 0 8px #222222;
+}
+
+/* 주문자 정보 */
+#order_member {
+	margin-top: 25px;
+	background: white;
+	border-radius: 10px;
+	padding: 20px;
+	box-shadow: 0 0 8px #222222;
+}
+
+/* 배송 정보 */
+#order_delivery {
+	margin-top: 25px;
+	background: white;
+	border-radius: 10px;
+	padding: 20px;
+	box-shadow: 0 0 8px #222222;
+}
+/* 결제 스티키 */
+#order_pay {
+	position: sticky;
+	top: 25px;
+}
+/* 할인 */
+#order_discount {
+	margin-top: 25px;
+	background: white;
+	border-radius: 10px;
+	padding: 20px;
+	box-shadow: 0 0 8px #222222;
+}
+
+/* 개인정보 동의 */
+#order_agree {
+	margin-top: 25px;
+	background: white;
+	border-radius: 10px;
+	padding: 20px;
+	box-shadow: 0 0 8px #222222;
+}
+
+/* 결제하기 버튼 */
+#order_button button {
+	margin-top: 25px;
+	width: 100%;
+	height: 50px;
+	background: white;
+	border: none;
+	border-radius: 10px;
+	font-size: 20px;
+	letter-spacing: 4px;
+	font-weight: 600;
+	box-shadow: 0 0 8px #222222;
+}
+/* 제목 글씨 */
+.order_title {
+	font-size: 23px;
+	font-weight: 600;
+}
+/* 배송버튼 */
+.delivery_button{
+	border: 1px solid;
+	padding-left: 14px;
+	background: white;
+	border-radius: 3px;
+	letter-spacing: 10px;
+	text-align: center;
+}

@@ -1,0 +1,91 @@
+
+/* ajax 복사해서 쓰기 */
+$.ajax({
+			type  : ''
+			,data : ''
+			,dataType : ''
+			,url : '' 
+			,success : function(){}
+		})
+
+$('')
+
+
+
+
+/**************************** orderManage.js *******************/
+$(function(){
+	SelectOrder()
+	
+	/* 주문상태 콤보박스 변경시 */
+	$('#orderStatus').change(function(){
+		SelectOrder()
+	})
+	
+	/* 주문목록 출력 */
+	function SelectOrder(){
+		let OrderCondition = {  orderStatus : $('#orderStatus').val()}
+		$.ajax({
+			type  : 'post'
+			,data : OrderCondition
+			,dataType : 'json'
+			,url : '/glowamber/SelectOrder' 
+			,success : function(result){
+				$('#orderTable').empty()
+				for(orderlist of result){
+					$('#orderTable').append(
+											$('<tr/>').append([
+															  	$('<td/>').html()
+															  	,$('<td/>').text()
+															  	,$('<td/>').text()
+															  	,$('<td/>').text()
+															  ])
+										   )
+				}
+			}
+		})
+	}
+})
+
+
+/**************************** OrderManageController.java *******************/
+
+public List<OrderDetailDTO> SelectOrder(OrderDetailDTO dto);
+
+@Autowired
+private OrderManageService ordermanageservice;
+
+@PostMapping("SelectOrder")
+@ResponseBody()
+public List<OrderDetailDTO> SelectOrder(OrderDetailDTO dto){
+	return ordermanageservice.SelectOrder(dto);
+}
+/**************************** OrderManageService.java *******************/
+
+public List<OrderDetailDTO> SelectOrder(OrderDetailDTO dto);
+
+@Autowired
+private OrderManageDAO ordermanagedao;
+
+public List<OrderDetailDTO> SelectOrder(OrderDetailDTO dto){
+	return ordermanagedao.SelectOrder(dto);
+}
+
+/**************************** OrderManageDAO.java *******************/
+@Autowired
+private SqlSessionTemplate mybatis;
+
+public List<OrderDetailDTO> SelectOrder(OrderDetailDTO dto){
+	return mybatis.selectList("OrderDetailDAO.SelectOrder", dto);
+}
+
+/**************************** OrderManageDAO.java *******************/
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="OrderDetailDAO">
+	<select id="SelectOrder" resultType="OrderDetailDTO" parameterType='OrderDetailDTO'>
+		SELECT *
+		FROM 
+	</select>
+</mapper>
+

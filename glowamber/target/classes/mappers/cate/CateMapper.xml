@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CateDAO">
+
+	<select id="SelectBigCate" resultType="BigCateDTO">
+		SELECT *
+		FROM bigcatetable
+	</select>
+	
+	<select id="SelectSmallCate" resultType="SmallCateDTO" parameterType="SmallCateDTO">
+		SELECT *
+		FROM smallcatetable
+		where bigcatenum = #{bigCateNum}
+	</select>
+		<insert id="InsertBigCate" parameterType="BigCateDTO">
+		INSERT INTO bigcatetable( bigcatenum, bigcatename)
+		VALUES (sequence_bigcate.nextval , #{bigCateName})
+	</insert>
+	
+	<insert id="InsertSmallCate" parameterType="SmallCateDTO">
+		INSERT INTO smallcatetable( smallcatenum, bigcatenum, smallcatename)
+		VALUES (sequence_smallcate.nextval, #{bigCateNum}, #{smallCateName})
+	</insert>
+		
+	<update id="UpdateBigCate" parameterType="BigCateDTO">
+		UPDATE bigcatetable
+		SET	   bigcatename = #{bigCateName}
+		WHERE  bigcatenum = #{bigCateNum}
+	</update>
+	
+	<update id="UpdateSmallCate" parameterType="SmallCateDTO">
+		UPDATE smallcatetable
+		SET	   smallcatename = #{smallCateName}
+		WHERE  smallcatenum  = #{smallCateNum}
+	</update>
+	
+	<delete id="bigcatedelete" parameterType="BigCateDTO">
+		DELETE	
+		FROM	bigcatetable
+		WHERE	bigcatenum = #{bigCateNum}
+	</delete>
+	
+	<delete id="Smallcatedelete" parameterType="SmallCateDTO">
+		DELETE
+		FROM	smallcatetable
+		WHERE	smallcatenum  = #{smallCateNum}
+	</delete>
+	
+	
+</mapper>

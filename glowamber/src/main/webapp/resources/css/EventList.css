@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+.evt{
+		margin-top:30px;
+}
+
+/*뒷배경 색깔*/
+.back_gr{
+	background-color:#5a5a5a; 
+	padding:0 30px 30px 30px;
+	border-radius: 15px;
+}
+
+/*이미지 크기, 마진*/
+img{
+	width:100%;
+	margin-top:30px;
+}
+

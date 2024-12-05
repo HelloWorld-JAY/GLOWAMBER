@@ -1,0 +1,164 @@
+@charset "UTF-8";
+
+
+/* *************퀵메뉴************ */
+/* 퀵메뉴 */
+#quick_menu {
+	float: left;
+	position: sticky;
+	top: 250px;
+	left: calc(50% + 720px);
+	text-align: center;
+	display: inline-block;
+	width: auto;
+	border: 1px solid #888888;
+	box-shadow: 0px 0px 3px #888888;
+	border-radius: 5px;
+	font-weight: 600;
+	z-index: 1050;
+	background-color: white;
+}
+/* 사이즈가 작아지면 퀵메뉴 삭제 */
+@media all and (max-width: 1700px) {
+	/* 퀵메뉴 */
+	#quick_menu {
+		display: none;
+	}
+}
+/* 퀵메뉴 리스트 */
+#quick_menu li {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+/* 퀵메뉴 리스트 아이콘 */
+#quick_menu li svg {
+	margin-bottom: 10px;
+}
+/* 퀵메뉴 hr태그 */
+#quick_menu hr {
+	margin: auto;
+	padding: 0;
+	width: 70%;
+}
+
+/* *************퀵메뉴************ */
+
+/* 바디 컨테이너 */
+#body_container {
+	padding: 0 !important;
+	text-align: center;
+	margin-bottom: 200px;
+}
+/* 상품 컨테이너 */
+#main_products {
+	text-align: center;
+}
+/* 상품 컨테이너 h2*/
+#main_products h2 {
+	margin-bottom: 50px;
+}
+/* 캐러샐 이미지 */
+.carousel_img img{
+	height: 100%;
+	width: 98%;
+	border-radius: 5px; 
+	box-shadow: 0px 0px 3px #888888;
+	cursor: pointer;
+}
+/* 캐러샐 버튼 */
+.carousel_button button{
+	border: none;
+	margin-top: 16px;
+	margin-bottom: 8px;
+	width: 98.2%;
+	border-radius: 2px; 
+	box-shadow: 0px 0px 3px #888888;
+	background: white;
+	color: #555555;
+	font-size: 18px;
+	letter-spacing: 4px;
+	cursor: pointer;
+}
+/* 캐러샐 상품명*/
+.carousel_name {
+	font-size: 18px;
+	font-weight: 500;
+	color: #555555;
+	text-align: left;
+	cursor: pointer;
+}
+/* 캐러샐 가격*/
+.carousel_price {
+	font-size: 18px;
+	font-weight: 600;
+	color: #555555;
+	text-align: left;
+	cursor: pointer;
+}
+/* 버튼범위 및 버튼 */
+#main_products .carousel-control-prev,#main_products .carousel-control-next {
+    position:absolute;
+    top:50%;
+    width: 50px !important; /* 너비 줄이기 */
+    height: 50px; /* 높이 줄이기 */
+    border-radius: 50% ;
+    background: white ;
+    box-shadow: 0 0 3px #888888 ;
+}
+
+/* 아이콘 크기 및 색상 */
+#main_products .carousel-control-prev-icon,#main_products .carousel-control-next-icon {
+    width: 30px ; /* 아이콘 너비 */
+	height: 30px ; /* 아이콘 높이 */
+    filter: invert(1) ;
+}
+
+/* 버튼 hover 효과 */
+#main_products .carousel-control-prev:hover,#main_products .carousel-control-next:hover {
+    background-color: rgba(f, f, f, 1); /* hover 시 진한 배경색 */
+}
+/***********************************************************************************모달창*/
+/* 추천상품 담기버튼 클릭시 나오는 모달창 버튼사이즈 */
+.btn_add,.btn_cancel{
+	width: 48% !important;
+	height: 40px !important;
+}
+/* 모달 이미지 */
+.modal_img{
+	width: 100%;
+	border-radius: 5px;
+	box-shadow: 0 0 1px #888888;
+}
+/* 상품갯수 조절 div */
+.product_counter>div {
+	display: inline-block;
+	border: 1px solid #aaaaaa;
+	border-radius: 2px;
+	box-shadow: 0 0 1px #aaaaaa;
+	user-select: none; 
+	font-size: 18px;
+}
+/* 상품갯수 조절 중간 패딩 */
+.product_counter span:nth-last-of-type(2) {
+	display: inline-block;
+	padding-left: 10px;
+	padding-right: 10px;
+	
+}
+/* 상품갯수 조절 중간 패딩 */
+.product_counter span:nth-last-of-type(1),.product_counter span:nth-last-of-type(3) {
+	display: inline-block;
+	padding-left: 5px;
+	padding-right: 5px;
+	cursor: pointer;
+	
+}
+/* 상품갯수 조절 중간 라인 */
+.product_counter span:nth-of-type(3) {
+	display: inline-block;
+	border-left: 1px solid #888888;
+}
+/* 상품갯수 조절 중간 라인 */
+.product_counter span:nth-of-type(1) {
+	border-right: 1px solid #888888;
+}
