@@ -26,11 +26,11 @@
 <!-- 제이쿼리 -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<!-- 세션값 설정후 js 파일에 보내기 -->
+<!-- 세션값 설정후 js 파일에 보내기 -->
 <script>
-    let sessionId = "<%= session.getAttribute("id") != null ? session.getAttribute("id") : "" %>";
-</script>	
-	<!-- 쿠키사용 스크립트 -->
+    let sessionId = "<%=session.getAttribute("id") != null ? session.getAttribute("id") : ""%>";
+</script>
+<!-- 쿠키사용 스크립트 -->
 <script
 	src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
 <!-- js파일연결 -->
@@ -51,22 +51,25 @@
 			<div class="col-7">
 				<div class="container" id="cart_list">
 					<div class="row d-flex align-items-center" id="cart_check">
-						<div class="col-1 text-end select-all align-self-center">
-							<i class="bi bi-square fs-3"></i>
+						<div class="col-1 text-end align-self-center">
+							<i class="bi bi-check-square-fill fs-5 check-box select-all"></i>
 						</div>
-						<div class="col-6 align-self-center">
-							<span class="cart_title">전체선택</span><span class="cart_title">0/0</span>
+						<div class="col-7 align-self-center">
+							<span class="cart_title">전체선택 </span><span class="cart_title selectCartCount">0</span><span
+								class="cart_title"> / </span><span class="cart_title totalCartCount">0</span>
 						</div>
-						<div class="col-5 text-end align-self-center">
-							<button class="cart_title" id="cart_deselect">선택삭제</button>
+						<div class="col-4 text-end align-self-center">
+							<button class ="align-self-center" id="cart_deselect">선택삭제</button>
 						</div>
 					</div>
-
-					<div class="col-12 text-center">
-						<h3 style="margin-top: 110px; font-weight: 600; color: #DEBD7E; user-select: none;">장바구니에 담긴 상품이
-							없습니다</h3>
+					<div class="row d-flex align-items-center" id ="product_list">
+						<div class="col-12 text-center cart-item">
+							<h3
+								style="margin-top: 110px; font-weight: 600; color: #DEBD7E; user-select: none;">장바구니에
+								담긴 상품이 없습니다</h3>
+						</div>
+						<div class="col-12" ></div>
 					</div>
-					<div class="col-12" id="product_list"></div>
 				</div>
 			</div>
 			<div class="col-5">
@@ -79,21 +82,21 @@
 						<div class="col-6">
 							<span class="cart_title">상품금액</span>
 						</div>
-						<div class="col-6 text-end">
+						<div class="col-6 text-end orderProductTotalPrice">
 							<span style="user-select: none;">0원</span>
 						</div>
 						<br /> <br />
 						<div class="col-6">
 							<span class="cart_title">상품할인금액</span>
 						</div>
-						<div class="col-6 text-end">
+						<div class="col-6 text-end ">
 							<span style="user-select: none;">0원</span>
 						</div>
 						<br /> <br />
 						<div class="col-6">
-							<span class="cart_title">배송비</span>
+							<span class="cart_title ">배송비</span>
 						</div>
-						<div class="col-6 text-end">
+						<div class="col-6 text-end orderDeliveryPrice">
 							<span style="user-select: none;">0원</span>
 						</div>
 						<div class="col-12">
@@ -103,8 +106,8 @@
 						<div class="col-6 align-self-center">
 							<span class="cart_title">결제예정금액</span>
 						</div>
-						<div class="col-6 text-end align-self-center">
-							<span style="font-size: 30px; font-weight: 600; user-select: none;">0원</span>
+						<div class="col-6 text-end align-self-center ">
+							<span class="orderTotalPrice" style="font-size: 24px; font-weight: 600; user-select: none;">0원</span>
 						</div>
 					</div>
 					<div class="row">
