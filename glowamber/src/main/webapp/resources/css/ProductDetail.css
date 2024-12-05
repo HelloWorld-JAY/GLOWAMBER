@@ -210,6 +210,7 @@
 	font-size: 18px;
 	font-weight: 600;
 }
+/* 문의하기 hr */
 #reply_container hr:first-of-type {
 	height:2px;
 	background: #5a5a5a;
@@ -222,8 +223,3 @@
 	border: 0;
 	opacity: 100;
 }
-/* 스크롤 테스트 */
-/* #scroll1,#scroll2,#scroll3,#scroll4{
-	border: 2px solid red;
-	height: 3000px;
-}  */

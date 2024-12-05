@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -42,14 +43,14 @@ public class MemberController {
 		}else {
 			//로그인 성공한 경우 =>세션에 아이디값 저장하기
 			session.setAttribute("id", result.getMemberId());
-			return "mainpage/MainPage";
+			return "redirect:/mainpage/MainPage";
 		}
 	}
 	//로그아웃
 	@RequestMapping("logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute("id");
-		return "member/Login";
+		return "mainpage/MainPage";
 	}
 
 	@RequestMapping(value="idCheck", produces="application/text;charset=utf-8")

@@ -16,7 +16,7 @@ public interface ProductService {
 	public Integer insertCart(CartDTO dto);
 	// 장바구니 상품있는지 검색
 	public CartDTO selectCart(CartDTO dto);
-	// 장바구니 상품 있을시 갯수
+	// 장바구니 담기 회원 있을시 게스트id 삭제 
 	public Integer updateCart(CartDTO dto);
 	// 대분류&소분류에 따른 상품불러오기
 	public List<ItemDTO> selectProductList(ItemDTO dto);
