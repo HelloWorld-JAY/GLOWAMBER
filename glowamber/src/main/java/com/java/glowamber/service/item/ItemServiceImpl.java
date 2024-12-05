@@ -20,8 +20,13 @@ public class ItemServiceImpl implements ItemService{
 	}
 
 	@Override
-	public List<ItemDTO> SelectItem() {
-		return itemdao.SelectItem();
+	public List<ItemDTO> SelectItem(ItemDTO dto) {
+		return itemdao.SelectItem(dto);
+	}
+
+	@Override
+	public ItemDTO SelectItemOne(ItemDTO dto) {
+		return itemdao.SelectItemOne(dto);
 	}
 
 }

@@ -1,57 +1,60 @@
 $(function(){
 	SelectMember()
 	
-	/* 전체회원 목록검색 */
-	function SelectMember(){
+	/* 전체회원 목록출력 */
+	function SelectMember(memberSelect){
 		$.ajax({
 			type:'post'
+			,data : memberSelect
 			,dataType : 'json'
-			,url : '/glowamber/selectMember'
+			,url : '/glowamber/member/selectMemberList'
 			,success : function(result){
-							$('#memberTable').empty()
-							for(member of result){
-								$('#memberTable').append(
-														 $('<tr/>').append([
-														 				     $('<td/>').text(member['1'])
-														 				     ,$('<td/>').text(member['2'])
-														 				     ,$('<td/>').text(member['3'])
-													 				     ,$('<td/>').text(member['4'])
-													 				     ,$('<td/>').text(member['5'])    
-													 			])
-							)
-				  	}
+				//alert('ok')
+				$('#memberTable').empty()
+				for(member of result){
+					$('#memberTable').append(
+											 $('<tr/>').append([
+											 				     $('<td/>').text(member['memberName'])
+											 				     ,$('<td/>').text(member['memberId'])
+											 				     ,$('<td/>').text(member['memberTel'])
+										 				     ,$('<td/>').text(member['memberEmail'])
+										 				     ,$('<td/>').text(member['memberJoinDate'])    
+										 					  ])
+											 )
+				 }
 			 }
 		})
 	}
 	
 	/* 검색버튼 클릭시 */
 	$('#memberSelectBtn').click(function(){
-		let membercate = $('#memberSelectCate').val()
-		let memberSelect = { 
-				membercate : $('#memberSelectCate').next().val()
-		}
+		let memberSelect = { }
+		memberSelect[$('#memberSelectCate').val()] = $('#memberSelectCate').next().val()
 		
 		/* 검색어에 해당하는 회원목록 검색 */
+		SelectMember(memberSelect)
+	})
+	
+	/* 회원목록에서 회원클릭시 */
+	$('#memberTable').on('click','tr',function(){
 		$.ajax({
-		type :'post'
-		,data : memberSelect
-		,dataType:'json'
-		,url:'/glowamber/selectMember'
-		,success : function(result){
-						$('#memberTable').empty();
-						for(member of result){
-							$('#memberTable').append(
-													 $('<tr/>').append([
-													 				     $('<td/>').text(member['1'])
-													 				     ,$('<td/>').text(member['2'])
-													 				     ,$('<td/>').text(member['3'])
-													 				     ,$('<td/>').text(member['4'])
-													 				     ,$('<td/>').text(member['5'])    
-													 			])
-											  )
-				  		}
-					}
-		})	
+			type:'post'
+			,data : { memberId : $(this).children(':eq(1)').text() }
+			,dataType : 'json'
+			,url : '/glowamber/member/selectMember'
+			,success : function(result){
+				$('#username').text(result['memberName'])
+				$('#userid').text(result['memberId'])
+				$('#usertel').text(result['memberTel'])
+				$('#useremail').text(result['memberEmail'])
+				$('#userbuycount').text(result[''])
+				$('#usertotalamount').text(result[''])
+				$('#useraddr').text(result['emailAddr'])
+				$('#useraddrdetail').text(result[''])
+			}
+		})
+		
+		
 	})
 	
 })

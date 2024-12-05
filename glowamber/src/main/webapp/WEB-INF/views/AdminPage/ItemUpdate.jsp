@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix='c' uri="http://java.sun.com/jsp/jstl/core"%>
-<%  String FilePath = request.getSession().getServletContext().getRealPath("/");  %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,6 +40,7 @@
 			<div class='row text-center'>
 				<div class='col'>
 					<span>카테고리</span>
+					
 				</div>
 				<div class='col text-end'>
 					<input type='button' value='등록' />
@@ -153,10 +153,9 @@
 				<div>
 					<div>
 						<span>이미지</span>
-						<input type='hidden' value='<%= FilePath%>'>
 					</div>
 					<div>
-						<input type='text' id='itemThumnail' />
+						<input type='text' id='itemThumnail' value='${item.itemDetail}' />
 					</div>
 				</div>
 				<div>
@@ -165,7 +164,7 @@
 					</div>
 					<div>
 					<div>
-						<input type='text' id='itemName' />
+						<input type='text' id='itemName' value='${item.itemName}' />
 					</div>
 				</div>
 				<div>
@@ -173,7 +172,7 @@
 						<span>카테고리</span>
 					</div>	
 					<div>
-						<input type='text' id='samllCateNum' />
+						<input type='text' id='samllCateNum' value='${item.smallCateNum}' />
 						<input type='button' id='categoryUp' value='선택' />
 					</div>	
 				</div>
@@ -182,7 +181,7 @@
 						<span>판매가</span>
 					</div>	
 					<div>	
-						<input type='text' id='itemPrice' />
+						<input type='text' id='itemPrice' value='${item.itemPrice}' />
 					</div>	
 				</div>
 				<div>
@@ -190,7 +189,7 @@
 						<span>원가</span>
 					</div>	
 					<div>		
-						<input type='text' id='itemCost' />
+						<input type='text' id='itemCost' value='${item.itemCost}' />
 					</div>	
 				</div>				
 				<div>
@@ -198,7 +197,7 @@
 						<span>원산지</span>
 					</div>	
 					<div>	
-						<input type='text' id='itemOrigin' />
+						<input type='text' id='itemOrigin' value='${item.itemOrigin}' />
 					</div>	
 				</div>
 				<div>
@@ -206,7 +205,7 @@
 						<span>용량/중량</span>
 					</div>
 					<div>	
-						<input type='text' id='itemVolume' />
+						<input type='text' id='itemVolume' value='${item.itemVolume}' />
 					</div>
 				</div>
 				<div>
@@ -214,7 +213,7 @@
 						<span>판매단위</span>
 					</div>
 					<div>	
-						<input type='text' id='itemUnit' />
+						<input type='text' id='itemUnit' value='${item.itemUnit}' />
 					</div>
 				</div>
 				<div>
@@ -222,7 +221,7 @@
 						<span>공급업체</span>
 					</div>
 					<div>	
-						<input type='text' id='itemSupplier' />
+						<input type='text' id='itemSupplier' value='${item.itemSupplier}' />
 					</div>
 				</div>
 				<div>
@@ -230,7 +229,15 @@
 						<span>알러지정보</span>
 					</div>
 					<div>	
-						<textarea id='itemAllErgyinfo'></textarea>
+							<c:choose>
+								<c:when test="${item.itemAllErgyinfo == null}">
+									<textarea id='itemAllErgyinfo'></textarea>
+								</c:when>
+								<c:otherwise>
+									<textarea id='itemAllErgyinfo'>${item.itemAllErgyinfo}</textarea>
+								</c:otherwise>
+								
+							</c:choose>			
 					</div>	
 				</div>
 				<div>
@@ -239,7 +246,7 @@
 					</div>
 					<div id='smarteditor'>
 						<textarea rows="20" cols="10" name='editorTxt' id="itemdetail" placeholder="내용을 입력해 주세요"
-						style="width:500px"></textarea>
+						style="width:500px">${item.itemDetail}</textarea>
 					</div>
 				</div>
 			</div>

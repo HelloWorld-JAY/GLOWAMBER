@@ -7,9 +7,38 @@
 		VALUES (sequence_itemnum.nextval, #{samllCateNum}, #{itemName}, #{itemThumnail} , #{itemDetail}, #{itemUnit}, #{itemOrigin}, #{itemVolume}, #{itemAllErgyinfo}, #{itemCost}, #{itemPrice}, sysdate, #{itemSupplier})
 	</insert>
 	
-	<select id="SelectItem" resultType="ItemDTO">
+	<select id="SelectItem" resultType="ItemDTO" parameterType="ItemDTO">
 		SELECT *
-		FROM   itemtable
+		FROM   ITEMTABLE i INNER JOIN SMALLCATETABLE s 
+							ON i.SMALLCATENUM = s.SMALLCATENUM 
+						   INNER JOIN BIGCATETABLE b 
+							ON b.BIGCATENUM = s.BIGCATENUM 
+		<where>
+			<if test='itemName != null'>
+				AND i.itemname like '%${itemName}%'
+			</if>
+			<if test='bigCateName != null'>
+				AND	b.bigcatename like '%${bigCateName}%'
+			</if>
+			<if test='smallCateName != null'>
+				AND	s.smallcatename like '%${smallCateName}%'
+			</if>	
+			<if test='ItemSupplier != null'>
+				AND	i.itemsupplier like '%${ItemSupplier}%'
+			</if>
+			<if test='itemDate != null'>
+				AND	i.itemdate like '%${itemDate}%'
+			</if>
+		</where>
+		ORDER BY i.itemnum
+	</select>
+	<select id="SelectItemOne" resultType="ItemDTO" parameterType="ItemDTO">
+		SELECT *
+		FROM   ITEMTABLE i INNER JOIN SMALLCATETABLE s 
+							ON i.SMALLCATENUM = s.SMALLCATENUM 
+						   INNER JOIN BIGCATETABLE b 
+							ON b.BIGCATENUM = s.BIGCATENUM 
+		WHERE i.itemnum = #{itemNum}
 	</select>
 	
 </mapper>

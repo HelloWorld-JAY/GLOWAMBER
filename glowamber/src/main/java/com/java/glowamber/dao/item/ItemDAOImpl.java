@@ -21,8 +21,13 @@ public class ItemDAOImpl implements ItemDAO{
 	}
 
 	@Override
-	public List<ItemDTO> SelectItem() {
-		return mybatis.selectList("ItemDAO.SelectItem");
+	public List<ItemDTO> SelectItem(ItemDTO dto) {
+		return mybatis.selectList("ItemDAO.SelectItem",dto);
+	}
+
+	@Override
+	public ItemDTO SelectItemOne(ItemDTO dto) {
+		return mybatis.selectOne("ItemDAO.SelectItemOne",dto);
 	}
 
 }

@@ -38,7 +38,7 @@
 			<ul class="nav nav-pills nav-fill main_nav_ui">
 				<li class="nav-item">대시보드</li>
 				<li class="nav-item">상품관리</li>
-				<li class="nav-item">재고관리</li>
+				<li class="nav-item"><a href='StoreTab'>재고관리</a></li>
 				<li class="nav-item">주문관리</li>
 				<li class="nav-item">회원관리</li>
 			</ul>
