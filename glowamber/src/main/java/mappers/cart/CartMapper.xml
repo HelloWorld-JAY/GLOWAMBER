@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CartDAO">
+
+	<select id="SelectCartID" resultType="HashMap"
+		parameterType="CartDTO">
+		SELECT c.cartitemcount cartitemcount,
+		c.memberid memberid,
+		c.guestid
+		guestid,
+		c.cartnum cartnum,
+		c.itemnum itemnum,
+		i.itemname itemname,
+		i.itemprice itemprice,
+		i.itemthumnail itemthumnail
+		FROM CARTTABLE c
+		INNER JOIN ITEMTABLE i ON c.ITEMNUM =
+		i.ITEMNUM
+		<where>
+			<if test="memberId != ''">
+				AND memberid = #{memberId}
+			</if>
+			<if test="guestId != ''">
+				AND guestid = #{guestId}
+			</if>
+		</where>
+	</select>
+
+	<update id="CartUpdateCount" parameterType="CartDTO">
+		UPDATE CARTTABLE
+		SET cartitemcount = #{cartItemCount}
+		where itemnum =
+		#{itemNum}
+		<if test="memberId != ''">
+			AND memberid = #{memberId}
+		</if>
+		<if test="guestId != ''">
+			AND guestid = #{guestId}
+		</if>
+
+	</update>
+	<delete id="deleteCartProduct" parameterType="CartDTO">
+	DELETE FROM CARTTABLE
+	WHERE itemnum =	#{itemNum}
+	<if test="memberId != ''">
+			AND memberid = #{memberId}
+		</if>
+		<if test="guestId != ''">
+			AND guestid = #{guestId}
+		</if>
+	</delete>
+
+</mapper>
