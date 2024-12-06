@@ -1,0 +1,16 @@
+@charset "UTF-8";
+/* 공지사항 열람페이지*/
+
+.notice div{
+	border: 2px solid red;
+}
+
+.col-2>div{
+	font-size: 15px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.col-2{
+	background-color: #DEBD7E;
+}
