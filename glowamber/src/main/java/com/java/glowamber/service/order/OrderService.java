@@ -6,4 +6,5 @@ import com.java.glowamber.model.dto.OrderDetailDTO;
 
 public interface OrderService {
 	public List<OrderDetailDTO> selectOrderList(OrderDetailDTO dto);
+	public OrderDetailDTO selectOrderDetail(OrderDetailDTO dto);
 }

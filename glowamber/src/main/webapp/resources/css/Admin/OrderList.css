@@ -34,15 +34,15 @@ div{
 }
 
 /* 상품목록테이블 */
-#itemListHead{
+#OrderListHead{
 	padding-bottom : 0px;
 }
 
-#itemListHead>div{
+#OrderListHead>div{
 	padding-bottom : 0px;
 }
 
-#itemListHead table{
+#OrderListHead table{
 	width : 100%;
 	padding-bottom : 0px;
 	background : #FFFFFF;
@@ -50,15 +50,15 @@ div{
 	border-bottom : 0px;
 }
 
-#itemListHead table th{
+#OrderListHead table th{
 	height : 40px;
 }
 
-#itemListBody{
+#orderListBody{
 	padding-top : 0px;
 }
 
-#itemListBody>div{
+#orderListBody>div{
 	padding : 0px;
 	margin : 0px 12px 30px;
 	height : 100vh;
@@ -67,11 +67,15 @@ div{
 	overflow-y: auto;
 }
 
-#itemListBody table{
+#orderListBody table{
 	width : 100%;
 	
 }
 
-#ItemTable td{
+#orderTable td{
 	padding : 20px 0px;
+}
+
+#orderTable input{
+	width : 20%;
 }

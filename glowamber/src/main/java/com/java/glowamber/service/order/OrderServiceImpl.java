@@ -19,4 +19,9 @@ public class OrderServiceImpl implements OrderService{
 		return orderdao.selectOrderList(dto);
 	}
 
+	@Override
+	public OrderDetailDTO selectOrderDetail(OrderDetailDTO dto) {
+		return orderdao.selectOrderDetail(dto);
+	}
+
 }

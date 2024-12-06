@@ -4,14 +4,15 @@ import lombok.Data;
 
 @Data
 public class OrderDetailDTO {
-	private Integer orderdetailnum;
-	private Integer ordernum;
-	private String membername;
-	private String orderdate;
-	private String itemname;
-	private Integer orderdetailcount;
-	private Integer orderdetailprice;
-	private String orderdetailstatus;
+	private Integer orderDetailNum;
+	private Integer orderNum;
+	private String memberName;
+	private String orderDate;
+	private String itemName;
+	private Integer orderDetailCount;		   // 상품수량
+	private Integer orderDetailPrice;
+	private String orderDetailStatus;
+	private Integer orderItemCount;            // 주문한상품갯수
 	
 	
 

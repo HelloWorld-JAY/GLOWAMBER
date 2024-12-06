@@ -20,9 +20,13 @@ public class OrderController {
 	@ResponseBody
 	public List<OrderDetailDTO> selectOrderList(OrderDetailDTO dto) {
 		List<OrderDetailDTO> result =	orderservice.selectOrderList(dto);
-		for(OrderDetailDTO dt : result) {
-			System.out.println(dt.toString());
-		}
+		return result;
+	}
+	
+	@PostMapping("selectOrderDetail")
+	@ResponseBody
+	public OrderDetailDTO selectOrderDetail(OrderDetailDTO dto) {
+		OrderDetailDTO result =	orderservice.selectOrderDetail(dto);
 		return result;
 	}
 }

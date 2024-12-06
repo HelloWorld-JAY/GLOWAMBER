@@ -7,7 +7,9 @@
 	<linkhref="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"  rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 	<!-- css -->
 	<link href="/glowamber/resources/css/Admin/OrderList.css" rel="stylesheet">
-
+	<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+	rel="stylesheet">
 <meta charset="UTF-8">
 <title>GlowAmber</title>
 	<!-- 부트스트랩 script -->
@@ -22,37 +24,45 @@
 	<!-- 헤더 -->
 	<jsp:include page="AdminHeader.jsp" />
 	<!-- 헤더 -->
-<div class='container itemcontainer text-center'>
-	<!-- 상품등록 -->
+	<div class='container itemcontainer text-center'>
+	
+	<!-- 주문검색 -->
 	<div class='row justify-content-end'>
 		<div class='col-md-1 '>
-			<a href="ItemInsert"><input type='button' value='상품등록' /></a>
-		</div>
-	</div>
-	<!-- 상품검색 -->
-	<div class='row'>
-		<div class='col-1'>
 			<select id='orderStatus'>
-				<option value='new'>신규</option>
-				<option value='wait'>대기</option>
-				<option value='delivery'>배송중</option>
-				<option value='complete'>완료</option>
-				<option value='refund'>환불</option>
-				<option value='exchange'>교환</option>
+				<option value='신규'>신규</option>
+				<option value='대기'>대기</option>
+				<option value='배송중'>배송중</option>
+				<option value='완료'>완료</option>
+				<option value='환불'>환불</option>
+				<option value='교환'>교환</option>
 			</select>
 		</div>
-		<div class='col'>
-			<input type='text'/>
+	</div>
+	<!-- 주문상태변경 -->
+	<div class='row'>
+		<div class='col-1'>
+			<input type='button' value='대기' />
 		</div>
 		<div class='col-1'>
-			<input type='button' id='orderSelectBtn' value='검색' />
+			<input type='button' value='배송중' />
+		</div>
+		<div class='col-1'>
+			<input type='button' value='완료' />
+		</div>
+		<div class='col-1'>
+			<input type='button' value='환불' />
+		</div>
+		<div class='col-1'>
+			<input type='button' value='교환' />
 		</div>
 	</div>
-	<!-- 상품리스트 -->
-	<div class='row' id='itemListHead'>
+	<!-- 주문리스트 -->
+	<div class='row' id='OrderListHead'>
 		<div class='col'>
 			<table>
 				<tr>
+					<th><input type='checkbox' class='selectAll' name='selectAll'></th>
 					<th>주문번호</th>
 					<th>상품명</th>
 					<th>금액</th>
@@ -65,7 +75,6 @@
 	<div class='row text-center' id='orderListBody'>
 		<div class='col'>
 			<table id='orderTable'>
-				
 			</table>
 		</div>
 	</div>
