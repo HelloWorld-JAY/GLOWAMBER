@@ -67,5 +67,24 @@ public class MemberController {
 	  return msg;
 	}
 	
+	/* 관리자 페이지*/
+	/* 회원 목록 검색 */
+	@PostMapping("selectMemberList")
+	@ResponseBody
+	public List<MemberDTO> selectMemberList(MemberDTO dto) {
+		return memberService.selectMemberList(dto);
+	}
+	
+	@PostMapping("selectMember") 
+	@ResponseBody
+	public MemberDTO selectMemberInfo(MemberDTO dto) {
+		return memberService.selectMemberInfo(dto);
+	}
+
+	
+	
+	
+	
+	
 
 }

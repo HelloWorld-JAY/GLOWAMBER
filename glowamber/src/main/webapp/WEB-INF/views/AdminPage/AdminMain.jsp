@@ -25,182 +25,13 @@
 <!-- script -->
 <script type="text/javascript" src='/glowamber/resources/js/Admin/Admin.js'></script>
 <script type="text/javascript" src='/glowamber/resources/js/Admin/ItemMain.js'></script>
+<script type="text/javascript" src='/glowamber/resources/js/Admin/MemberManage.js'></script>
 
 </head>
 <body>
 	<!-- 헤더 -->
 	<jsp:include page="AdminHeader.jsp" />
 	<!-- 헤더 -->
-	
-	<!-- 상품관리 탭 -->
-	<div id='Item' class='container-xxl AdminTab'>
-		<div>
-			<div>
-				<a href="ItemInsert"><input type='button' id='insertPage' value='상품등록'></a>
-			</div>
-			<!-- @@@@@@@@@@@@@ -->
-			<div class='row containBorder' id='ItemList'>
-				<div class='text-end'>
-					<select>
-						<option value=''>이름</option>
-						<option value=''>대분류</option>
-						<option value=''>소분류</option>
-						<option value=''>공급처</option>
-						<option value=''>등록일</option>
-					</select>
-					<input type='text' id='' name='' />
-					<input type='button' id='' name='' value='검색' />
-				</div>
-				<div class='listTable'>
-					<div>
-						<table id='ItemTable'>
-							<colgroup>
-					            <col width="5%" />
-					            <col width="*"  />
-					           <%--  <col width="8%" /> --%>
-					            <col width="8%"/>
-					            <col width="7%" />
-					            <col width="10%" />
-					            <col width="10%"/>
-					            <col width="13%" />
-					      	</colgroup>
-							<tr>
-								<th>번호</th>
-								<th>이름</th>
-								<!-- <th>대분류</th> -->
-								<!-- <th>소분류</th> -->
-								<th>판매단위</th>
-								<th>용량/중량</th>
-								<th>판매가</th>
-								<th>공급처</th>
-								<th>등록일</th>
-							</tr>
-							
-							<!-- DB에 저장된 값 출력 -->
-							
-						</table>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	<!-- 재고관리 탭 -->
-	<div id='Inventory' class='container-xxl AdminTab'>
-		<div>
-			<div class='col text-center containBorder'>
-				<input type='date' id='' value=''  />
-				~
-				<input type='date' id='' value=''  />
-			</div>	
-			<div class='containBorder'>
-				<div>
-					<table class='infoTable'>
-						<colgroup>
-							<col width="7%">
-							<col width="7%">
-							<col width="7%">
-							<col width="15%">
-							<col width="5%">
-							<col width="7%">
-							<col width="7%">
-							<col width="*">
-						</colgroup>
-						<tr>
-							<td>상품번호</td>
-							<td><input type='text' name='' readonly></td>
-							<td>상품이름</td>
-							<td><input type='text' name=''></td>
-							<td>수량</td>
-							<td><input type='text' name=''></td>
-							<td>유통기한</td>
-							<td><input type='text' name=''></td>
-						</tr>
-					</table>
-				</div>
-				<div class='text-end'>
-					<input type='button' name='' id='' value='입고' /> 
-					<input type='button' name='' id='' value='취소' /> 
-				</div>
-			</div>
-			<div class='containBorder'>
-				<div class='row'>
-					<div class='col text-start'>
-						<input type='button' id='' value='전체'  />
-						<input type='button' id='' value='입고' />
-						<input type='button' id='' value='출고' />
-					</div>
-					<div class='col text-end'>
-						<select id=''>
-							<option value=''></option>
-							<option value=''></option>
-							<option value=''></option>
-							<option value=''></option>
-							<option value=''></option>
-						</select>
-						<input type='text' id='' />
-						<input type='button' id='' value='검색' />
-					</div>
-				</div>
-				<div>
-					<div class='listTable listTable_store'>
-						<div>
-							<table>
-								<colgroup>
-						            <col width="8%" />
-						            <col width="*"  />
-						            <col width="8%" />
-						            <col width="20%"/>
-						            <col width="8%" />
-						            <col width="10%" />
-						            <col width="13%"/>
-						            <col width="9%" />
-					       		 </colgroup>
-								<tr>
-									<th>유형</th>
-									<th>상품명</th>
-									<th>수량</th>
-									<th>유통기한</th>
-									<th>단가</th>
-									<th>총액</th>
-									<th>공급업체</th>
-									<th>날짜</th>
-								</tr>
-								<c:forEach begin="0" end="20" step="1">
-									<tr>
-										<td>유형</td>
-										<td>상품명</td>
-										<td>수량</td>
-										<td>유통기한</td>
-										<td>단가</td>
-										<td>총액</td>
-										<td>공급업체</td>
-										<td>날짜</td>
-									</tr>
-								</c:forEach>								
-							</table>
-						</div>
-					</div>
-					<div class='text-end' id='totalCount'>
-						<table class='totalCount'>
-							<colgroup>
-								<col width="*">
-								<col width="10%">
-								<col width="9%">
-								<col width="15%">
-							</colgroup>
-							<tr>
-								<th>전체 수량 :</th>
-								<th></th>
-								<th>전체 금액 :</th>
-								<th></th>
-							</tr>
-						</table>
-					</div>
-				</div>	
-			</div>
-		</div>
-	</div>
 	
 	<!-- 주문관리 탭 -->
 	<div id='Order' class='container-xxl AdminTab'>
@@ -224,7 +55,6 @@
 								<td>상태</td>
 								<td>
 									<select id='orderStatus'>
-										<option value='all'>전체</option>
 										<option value='new'>신규</option>
 										<option value='wait'>대기</option>
 										<option value='delivery'>배송중</option>
@@ -389,35 +219,35 @@
 							</colgroup>
 							<tr>
 								<td>이름</td>	
-								<td></td>
+								<td id='username'></td>
 							</tr>
 							<tr>
 								<td>아이디</td>
-								<td></td>
+								<td id='userid'></td>
 							</tr>
 							<tr>
 								<td>전화번호</td>
-								<td></td>
+								<td id='usertel'></td>
 							</tr>
 							<tr>
 								<td>이메일</td>
-								<td></td>
+								<td id='useremail'></td>
 							</tr>
 							<tr>
 								<td>구매횟수</td>
-								<td></td>
+								<td id='userbuycount'></td>
 							</tr>
 							<tr>
 								<td>총액</td>
-								<td></td>
+								<td id='usertotalamount'></td>
 							</tr>
 							<tr>
 								<td>주소</td>
-								<td></td>
+								<td id='useraddr'></td>
 							</tr>
 							<tr>
 								<td>상세주소</td>
-								<td></td>
+								<td id='useraddrdetail'></td>
 							</tr>
 						</table>
 					</div>
@@ -460,12 +290,12 @@
 			<div class='row containBorder' id='MemberList'>
 				<div class='text-end'>
 					<select id='memberSelectCate'>
-						<option value=''>이름</option>
-						<option value=''>아이디</option>
-						<option value=''>전화번호</option>
-						<option value=''>구매횟수</option>
-						<option value=''>구매총액</option>
-						<option value=''>가입일</option>
+						<option value='memberName'>이름</option>
+						<option value='memberId'>아이디</option>
+						<option value='memberTel'>전화번호</option>
+				   <!-- <option value=''>구매횟수</option>
+						<option value=''>구매총액</option> -->
+						<option value='memberJoinDate'>가입일</option>
 					</select>
 					<input type='text' id='' name='' />
 					<input type='button' id='memberSelectBtn' value='검색' />

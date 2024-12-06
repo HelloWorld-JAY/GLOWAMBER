@@ -44,20 +44,18 @@
 	<update id="UpdateCart" parameterType="CartDTO">
 		<if test="!guestId.equals('') and !memberId.equals('')">
 		BEGIN
-		MERGE INTO CARTTABLE C
-		USING(
-			SELECT itemnum, cartitemcount ,cartadddate
-			FROM CARTTABLE
-			WHERE guestid = #{guestId}
-		) g
-		ON (c.itemnum = g.itemnum AND c.memberid = #{memberId})
-		WHEN MATCHED THEN
-			UPDATE SET
-				c.cartitemcount = c.cartitemcount + g.cartitemcount
-		WHEN NOT MATCHED THEN
-			INSERT(CARTNUM,MEMBERID,ITEMNUM,CARTITEMCOUNT,CARTADDDATE)
-			VALUES(CARTNUM_SEQ.NEXTVAL,#{memberId},g.itemnum,g.cartitemcount,g.cartadddate);
-			
+		UPDATE CARTTABLE c
+		SET c.CARTITEMCOUNT = c.CARTITEMCOUNT + (
+		SELECT CARTITEMCOUNT FROM CARTTABLE
+		WHERE guestid = #{guestId}
+		AND itemnum = c.itemnum
+		)
+		WHERE c.memberid = #{memberId}
+		AND EXISTS(
+			SELECT 1 FROM CARTTABLE c2
+			WHERE c2.guestid = #{guestId}
+			AND c2.itemnum = c.itemnum
+		);
 		DELETE FROM CARTTABLE
 		WHERE guestid =	#{guestId};
 		END;

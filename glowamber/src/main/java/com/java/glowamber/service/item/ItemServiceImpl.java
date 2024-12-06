@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.java.glowamber.dao.item.ItemDAO;
 import com.java.glowamber.model.dto.ItemDTO;
+import com.java.glowamber.model.dto.StoreDTO;
 
 @Service
 public class ItemServiceImpl implements ItemService{
@@ -20,8 +21,23 @@ public class ItemServiceImpl implements ItemService{
 	}
 
 	@Override
-	public List<ItemDTO> SelectItem() {
-		return itemdao.SelectItem();
+	public List<ItemDTO> SelectItem(ItemDTO dto) {
+		return itemdao.SelectItem(dto);
+	}
+
+	@Override
+	public ItemDTO SelectItemOne(ItemDTO dto) {
+		return itemdao.SelectItemOne(dto);
+	}
+
+	@Override
+	public void itemStore(StoreDTO dto) {
+		itemdao.itemStore(dto);
+	}
+
+	@Override
+	public void itemUpdate(ItemDTO dto) {
+		itemdao.itemUpdate(dto);
 	}
 
 }

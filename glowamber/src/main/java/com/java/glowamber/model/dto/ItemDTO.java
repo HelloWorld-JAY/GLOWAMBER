@@ -15,7 +15,9 @@ public class ItemDTO {
 	private Integer itemCost;
 	private Integer itemPrice;
 	private String	itemDate;
-	private String	ItemSupplier;
+	private String	 itemSupplier;
 	private	String	itemThumnail;
 	private String	itemDetail;
+	private String  bigCateName;
+	private String  smallCateName;
 }

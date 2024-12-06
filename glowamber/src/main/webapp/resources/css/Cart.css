@@ -74,6 +74,7 @@
 .select-all{
 	cursor: pointer;
 }
+<<<<<<< HEAD
 /* 카트 이미지 사이즈 */
 .cartImg{
 	width: 95px;
@@ -125,3 +126,5 @@
 .cancel-box{
 	cursor: pointer;
 }
+=======
+>>>>>>> origin/창신
