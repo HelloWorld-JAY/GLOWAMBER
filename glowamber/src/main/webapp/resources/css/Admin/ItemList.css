@@ -1,0 +1,77 @@
+@charset "UTF-8";
+
+/* 공통부분 */
+.itemcontainer{
+	background : #F1F1F1;
+	margin-top : 2px;
+	padding-top : 0px;
+	border : 1px #EBEBEB solid;
+}
+
+.itemcontainer .justify-content-end{
+	background : #FFFFFF;
+	border-bottom : 1px #EBEBEB solid;
+}
+
+input {
+	width : 100%;
+	padding : 5px;
+	border : 1px #EBEBEB solid;
+	border-radius: 2px;
+	background : #FFFFFF;
+}
+
+select {
+	width : 100%;
+	height : 100%;
+	border : 1px #EBEBEB solid;
+	border-radius: 2px;
+	background : #FFFFFF;
+}
+
+div{
+	padding : 3px 0px;
+}
+
+/* 상품목록테이블 */
+#itemListHead{
+	padding-bottom : 0px;
+}
+
+#itemListHead>div{
+	padding-bottom : 0px;
+}
+
+#itemListHead table{
+	width : 100%;
+	padding-bottom : 0px;
+	background : #FFFFFF;
+	border : 1px #EBEBEB solid;
+	border-bottom : 0px;
+}
+
+#itemListHead table th{
+	height : 40px;
+}
+
+#itemListBody{
+	padding-top : 0px;
+}
+
+#itemListBody>div{
+	padding : 0px;
+	margin : 0px 12px 30px;
+	height : 100vh;
+	border : 1px #EBEBEB solid;
+	background : #FFFFFF;
+	overflow-y: auto;
+}
+
+#itemListBody table{
+	width : 100%;
+	
+}
+
+#ItemTable td{
+	padding : 20px 0px;
+}

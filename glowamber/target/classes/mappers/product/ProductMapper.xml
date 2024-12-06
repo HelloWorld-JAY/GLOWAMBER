@@ -14,25 +14,62 @@
 		FROM ITEMTABLE
 		WHERE itemnum = #{itemNum}
 	</select>
+
 	<insert id="InsertCart" parameterType="CartDTO">
 		INSERT INTO
 		CARTTABLE(CARTNUM,ITEMNUM,CARTITEMCOUNT,CARTADDDATE,GUESTID,MEMBERID)
-		VALUES(cartnum_seq.nextval,${itemNum},${cartItemCount},sysdate,#{guestId},#{memberId})
+		VALUES(cartnum_seq.nextval,${itemNum},${cartItemCount},sysdate,
+		<if test="memberId == ''">
+			#{guestId},
+		</if>
+		<if test="memberId != ''">
+			'',
+		</if>
+		#{memberId})
 	</insert>
 
 	<select id="SelectCartOne" parameterType="CartDTO"
 		resultType="CartDTO">
 		SELECT *
 		FROM CARTTABLE
-		WHERE guestid = #{guestId} AND
-		itemnum = #{itemNum}
+		WHERE itemnum = #{itemNum}
+		<if test="guestId != ''">
+		 AND guestid = #{guestId}
+		</if>
+		<if test="memberId != ''">
+		 AND memberid = #{memberId}
+		</if>
 	</select>
+
 	<update id="UpdateCart" parameterType="CartDTO">
+		<if test="!guestId.equals('') and !memberId.equals('')">
+		BEGIN
+		UPDATE CARTTABLE c
+		SET c.CARTITEMCOUNT = c.CARTITEMCOUNT + (
+		SELECT CARTITEMCOUNT FROM CARTTABLE
+		WHERE guestid = #{guestId}
+		AND itemnum = c.itemnum
+		)
+		WHERE c.memberid = #{memberId}
+		AND EXISTS(
+			SELECT 1 FROM CARTTABLE c2
+			WHERE c2.guestid = #{guestId}
+			AND c2.itemnum = c.itemnum
+		);
+		DELETE FROM CARTTABLE
+		WHERE guestid =	#{guestId};
+		END;
+		</if>
+		<if test="!guestId.equals('') and memberId.equals('')">
 		UPDATE CARTTABLE
-		SET
-		CARTITEMCOUNT = #{cartItemCount}
-		WHERE guestid = #{guestId} AND itemnum
-		= #{itemNum}
+		SET CARTITEMCOUNT = CARTITEMCOUNT + #{cartItemCount}
+		WHERE guestid =	#{guestId} AND itemnum = #{itemNum}
+		</if>
+		<if test="guestId.equals('') and !memberId.equals('')">
+		UPDATE CARTTABLE
+		SET CARTITEMCOUNT = CARTITEMCOUNT + #{cartItemCount}
+		WHERE memberid = #{memberId} AND itemnum = #{itemNum}
+		</if>
 	</update>
 
 	<select id="SelectProductList" parameterType="ItemDTO"

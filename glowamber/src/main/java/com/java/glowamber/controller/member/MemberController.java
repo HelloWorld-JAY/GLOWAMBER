@@ -1,10 +1,13 @@
 package com.java.glowamber.controller.member;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -66,6 +69,25 @@ public class MemberController {
 	  }
 	  return msg;
 	}
+	
+	/* 관리자 페이지*/
+	/* 회원 목록 검색 */
+	@PostMapping("selectMemberList")
+	@ResponseBody
+	public List<MemberDTO> selectMemberList(MemberDTO dto) {
+		return memberService.selectMemberList(dto);
+	}
+	
+	@PostMapping("selectMember") 
+	@ResponseBody
+	public MemberDTO selectMemberInfo(MemberDTO dto) {
+		return memberService.selectMemberInfo(dto);
+	}
+
+	
+	
+	
+	
 	
 
 }

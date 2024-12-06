@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="order">
+	<select id="selectOrderList" parameterType="OrderDetailDTO" resultType="OrderDetailDTO">
+		SELECT * 
+		FROM 	ORDERDETAILTABLE o INNER JOIN ORDERTABLE o2
+										   ON o.ORDERNUM = o2.ORDERNUM 
+									INNER JOIN MEMBERTABLE m 
+											ON o2.MEMBERNUM = m.MEMBERNUM 
+									INNER JOIN STORETABLE s 
+										    ON o.STORENUM =s.STORENUM 
+									INNER JOIN ITEMTABLE i 
+											ON i.ITEMNUM = s.ITEMNUM 
+		ORDER BY o2.ordernum
+	</select>
+</mapper>

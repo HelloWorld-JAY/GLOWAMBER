@@ -3,8 +3,8 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ItemDAO">
 	<insert id='ItemInsert' parameterType="ItemDTO">
-		INSERT INTO itemtable(itemnum, smallcatenum, itemname, itemthumnail, itemdetail, itemunit, itemorigin, itemvolume, itemallergyinfo, itemcost, itemprice, itemdate, itemsupplier )
-		VALUES (sequence_itemnum.nextval, #{samllCateNum}, #{itemName}, #{itemThumnail} , #{itemDetail}, #{itemUnit}, #{itemOrigin}, #{itemVolume}, #{itemAllErgyinfo}, #{itemCost}, #{itemPrice}, sysdate, #{itemSupplier})
+		INSERT INTO itemtable(itemnum, smallcatenum, itemname, itemthumnail, itemdetail, itemunit, itemorigin, itemvolume, itemallergyinfo, itemcost, itemprice, itemdate,   itemsupplier )
+		VALUES (sequence_itemnum.nextval , #{smallCateNum}, #{itemName}, #{itemThumnail} , #{itemDetail}, #{itemUnit}, #{itemOrigin}, #{itemVolume}, #{itemAllErgyinfo}, #{itemCost}, #{itemPrice}, sysdate, #{ itemSupplier})
 	</insert>
 	
 	<select id="SelectItem" resultType="ItemDTO" parameterType="ItemDTO">
@@ -23,8 +23,8 @@
 			<if test='smallCateName != null'>
 				AND	s.smallcatename like '%${smallCateName}%'
 			</if>	
-			<if test='ItemSupplier != null'>
-				AND	i.itemsupplier like '%${ItemSupplier}%'
+			<if test=' itemSupplier != null'>
+				AND	i.itemsupplier like '%${ itemSupplier}%'
 			</if>
 			<if test='itemDate != null'>
 				AND	i.itemdate like '%${itemDate}%'
@@ -32,6 +32,7 @@
 		</where>
 		ORDER BY i.itemnum
 	</select>
+	
 	<select id="SelectItemOne" resultType="ItemDTO" parameterType="ItemDTO">
 		SELECT *
 		FROM   ITEMTABLE i INNER JOIN SMALLCATETABLE s 
@@ -40,5 +41,27 @@
 							ON b.BIGCATENUM = s.BIGCATENUM 
 		WHERE i.itemnum = #{itemNum}
 	</select>
+	
+	<insert id="itemStore" parameterType="StoreDTO">
+		INSERT INTO storetable(storenum,itemnum,storecount,storeexpirdate,storeprice,storedate)
+		VALUES (SEQUENCE_storenum.nextval,#{itemNum},#{storeCount},#{storeExpirDate},#{storePrice},sysdate)
+	</insert>
+	
+	<update id="itemUpdate" parameterType="ItemDTO">
+		UPDATE itemtable
+		SET   itemthumnail 	= #{itemThumnail}
+			  ,itemname		= #{itemName}
+			  ,smallcatenum 	= #{smallCateNum}
+			  ,itemprice 	= #{itemPrice}
+			  ,itemcost 		= #{itemCost}
+			  ,itemorigin 	= #{itemOrigin}
+			  ,itemvolume 	= #{itemVolume}
+			  ,itemunit 		= #{itemUnit}
+			  ,itemsupplier 	= #{itemSupplier}
+			  ,itemallergyinfo = #{itemAllErgyinfo}
+			  ,itemdetail 	= #{itemDetail}
+			  
+		WHERE itemnum = #{itemNum}
+	</update>
 	
 </mapper>

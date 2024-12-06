@@ -9,10 +9,14 @@
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName"
 			value="oracle.jdbc.driver.OracleDriver"></property>
-		<property name="url"
+	<property name="url"
+			value="jdbc:oracle:thin:@localhost:1521:xe"></property>
+		<property name="username" value="project"></property>
+		<property name="password" value="1234"></property>
+		<!-- <property name="url"
 			value="jdbc:oracle:thin:@192.168.0.184:1521:xe"></property>
 		<property name="username" value="jinsang"></property>
-		<property name="password" value="hwang"></property>
+		<property name="password" value="hwang"></property> -->
 	</bean>
 
 	<!-- ##### SqlSessionFactory 연동 + 마이바티즈 연동 ##### -->

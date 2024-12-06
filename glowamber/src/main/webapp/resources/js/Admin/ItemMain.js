@@ -20,7 +20,7 @@ $(function(){
 																,$('<td/>').text(ItemList['itemUnit'])
 																,$('<td/>').text(ItemList['itemVolume'])
 																,$('<td/>').text(ItemList['itemPrice'])
-																,$('<td/>').text(ItemList['ItemSupplier'])
+																,$('<td/>').text(ItemList['itemSupplier'])
 																,$('<td/>').text(ItemList['itemDate'])	
 															 ])
 										  )
@@ -33,8 +33,7 @@ $(function(){
 	$('#ItemSelectBtn').click(function(){
 		/* 검색어에 해당하는 상품 출력 */
 			let ItemSelect = { }
-			ItemSelect[$('#ItemSelectCate').val()] = $('#ItemSelectCate').next().val()
-
+			ItemSelect[$('#ItemSelectCate').val()] = $('#ItemSelectCate').parent().next().children('input[type="text"]').val()
 		
 		SelectAllItem(ItemSelect)
 	})
@@ -42,6 +41,5 @@ $(function(){
 	/* 상품목록의 상품 클릭시 */
 	$('#ItemTable').on('click','tr',function(){
 		 location="/glowamber/itemUpdate?itemNum="+$(this).children(':eq(0)').text()
-		
 	})
 })

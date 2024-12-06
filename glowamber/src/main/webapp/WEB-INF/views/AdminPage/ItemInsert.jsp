@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix='c' uri="http://java.sun.com/jsp/jstl/core"%>
-<%  String FilePath = request.getSession().getServletContext().getRealPath("/");  %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,10 +29,10 @@
 </head>
 <body>
 	<!-- 관리자 페이지 헤더 -->
-<%-- 	<jsp:include page="AdminHeader.jsp" /> --%>
+	<jsp:include page="AdminHeader.jsp" />
 	
-	
-	<div class='container-xxl'>
+	<!-- 카테고리 생성-->
+	<div class='container'>
 		<div class='col' id='category'>
 			<div class='text-end'>
 				<input type='button' id='categoryhide' value='x' />
@@ -143,117 +142,108 @@
 					</div>
 				</div>
 		</div>
-		
+
 		<div class='row'>
-			<!-- 카테고리 생성-->
-			
 			<!-- 상품 정보 입력 -->
+			<form action='/glowamber/iteminsert' name='iteminsert' method="post">
+				<div>
+					<input type='submit' id='itemInsertBtn' value='저장'>
+					<a href='ItemList'><input type='button' id='itemInsertCancle' value='취소' /> </a>
+				</div>
 			<div class='col'>
-
-				<div>
 					<div>
-						<span>이미지</span>
-						<input type='hidden' value='<%= FilePath%>'>
+						<div>
+							<span>이미지</span>
+						</div>
+						<div>
+							<input type='text' name='itemThumnail'  id='itemThumnail' />
+						</div>
 					</div>
 					<div>
-						<input type='text' id='itemThumnail' />
-					</div>
-				</div>
-				<div>
-					<div>
-						<span>상품명</span>
-					</div>
-					<div>
-					<div>
-						<input type='text' id='itemName' />
-					</div>
-				</div>
-				<div>
-					<div>
-						<span>카테고리</span>
-					</div>	
-					<div>
-						<input type='text' id='samllCateNum' />
-						<input type='button' id='categoryUp' value='선택' />
-					</div>	
-				</div>
-				<div>
-					<div>
-						<span>판매가</span>
-					</div>	
-					<div>	
-						<input type='text' id='itemPrice' />
-					</div>	
-				</div>
-				<div>
-					<div>
-						<span>원가</span>
-					</div>	
-					<div>		
-						<input type='text' id='itemCost' />
-					</div>	
-				</div>				
-				<div>
-					<div>
-						<span>원산지</span>
-					</div>	
-					<div>	
-						<input type='text' id='itemOrigin' />
-					</div>	
-				</div>
-				<div>
-					<div>
-						<span>용량/중량</span>
-					</div>
-					<div>	
-						<input type='text' id='itemVolume' />
-					</div>
-				</div>
-				<div>
-					<div>
-						<span>판매단위</span>
-					</div>
-					<div>	
-						<input type='text' id='itemUnit' />
-					</div>
-				</div>
-				<div>
-					<div>
-						<span>공급업체</span>
-					</div>
-					<div>	
-						<input type='text' id='itemSupplier' />
-					</div>
-				</div>
-				<div>
-					<div>
-						<span>알러지정보</span>
-					</div>
-					<div>	
-						<textarea id='itemAllErgyinfo'></textarea>
-					</div>	
-				</div>
-				<div>
-					<div>
-						<span>상품설명</span>
-					</div>
-					<div id='smarteditor'>
-						<textarea rows="20" cols="10" name='editorTxt' id="itemdetail" placeholder="내용을 입력해 주세요"
-						style="width:500px"></textarea>
+						<div>
+							<span>상품명</span>
+						</div>
+						<div>
+							<input type='text' name='itemName' id='itemName' />
+						</div>
+						<div>
+							<div>
+								<span>카테고리</span>
+							</div>	
+							<div>
+								<input type='text' name='smallCateNum' id='smallCateNum' />
+								<input type='button' id='categoryUp' value='선택' />
+							</div>	
+						</div>
+						<div>
+							<div>
+								<span>판매가</span>
+							</div>	
+							<div>	
+								<input type='text' name='itemPrice' id='itemPrice' />
+							</div>	
+						</div>
+						<div>
+							<div>
+								<span>원가</span>
+							</div>	
+							<div>		
+								<input type='text' name='itemCost' id='itemCost' />
+							</div>	
+						</div>				
+						<div>
+							<div>
+								<span>원산지</span>
+							</div>	
+							<div>	
+								<input type='text' name='itemOrigin' id='itemOrigin' />
+							</div>	
+						</div>
+						<div>
+							<div>
+								<span>용량/중량</span>
+							</div>
+							<div>	
+								<input type='text' name='itemVolume' id='itemVolume' />
+							</div>
+						</div>
+						<div>
+							<div>
+								<span>판매단위</span>
+							</div>
+							<div>	
+								<input type='text' name='itemUnit' id='itemUnit' />
+							</div>
+						</div>
+						<div>
+							<div>
+								<span>공급업체</span>
+							</div>
+							<div>	
+								<input type='text' name='itemSupplier' id='itemSupplier' />
+							</div>
+						</div>
+						<div>
+							<div>
+								<span>알러지정보</span>
+							</div>
+							<div>			
+								<textarea name='itemAllErgyinfo' id='itemAllErgyinfo'></textarea>
+							</div>	
+						</div>
+						<div>
+							<div>
+								<span>상품설명</span>
+							</div>
+							<div id='smarteditor'>
+								<textarea rows="20" cols="10" name='itemDetail' id="itemdetail" placeholder="내용을 입력해 주세요"
+								style="width:500px"></textarea>
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div>
-				<input type='button' id='itemInsertBtn' value='등록'>
-				<input type='button' id='itemInsertCancle' value='취소' /> 
-			</div>
-		</div>
+			</form>
 	</div>
-<!-- 	<form action="insertStudentInfoForm" method='post'> -->
-		
-<!-- 	</form> -->
-
-		
-	
+</div>
 </body>
 </html>

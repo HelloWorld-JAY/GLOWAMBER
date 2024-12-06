@@ -15,15 +15,7 @@ $('#confirm').click(function(){
     if($.trim($("#memberId").val()) ==''){
     $("#memberId").focus();
     return false;
-    }else if(!checkID.test($("#memberId").val())) {
-
-                    $("#memberId").focus();                
-                    return false;
-                }else if(checkID.test($("#memberId").val())) {
-                     
-                    $("#memberPass").focus();
-                    return true;
-                }
+    }
     
     
     
@@ -63,7 +55,7 @@ $('#confirm').click(function(){
     //자료 전송한다
     $('#frm').submit();
     
-
+	alert('ok')
     
     
 
@@ -75,8 +67,8 @@ $('#confirm').click(function(){
 	//일부러극적인 효과를 위해 keyup이벤트를 쓰지만 실제롤 잘 안씀;
 	$('#memberId').keyup(function(){
 
-          clearTimeout(debounceTimeout); // 이전 타이머를 초기화
-           debounceTimeout = setTimeout(() => {
+         
+       debounceTimeout = setTimeout(() => {
        $.ajax({
        
           type : 'post'

@@ -29,7 +29,7 @@ $(function(){
 	/* 검색버튼 클릭시 */
 	$('#memberSelectBtn').click(function(){
 		let memberSelect = { }
-		memberSelect[$('#memberSelectCate').val()] = $('#memberSelectCate').next().val()
+		memberSelect[$('#memberSelectCate').val()] = $('#memberSelectCate').parent().next().children('input[type="text"]').val()
 		
 		/* 검색어에 해당하는 회원목록 검색 */
 		SelectMember(memberSelect)
