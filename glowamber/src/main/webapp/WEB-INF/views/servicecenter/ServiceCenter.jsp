@@ -8,8 +8,6 @@
 <link href="/glowamber/resources/css/ServiceCenter.css" rel="stylesheet">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script type="text/javascript"
-	src="/glowamber/resources/js/MtomService.js"></script>
 <!-- 부트스트랩 아이콘CDN -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
@@ -25,159 +23,78 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
 	crossorigin="anonymous"></script>
+<!-- js파일연결 -->
+<script type="text/javascript"
+	src="/glowamber/resources/js/ServiceCenter.js"></script>
+	<script type="text/javascript">	let tab = '${param.tab}'</script>
 </head>
 <body>
 	<!-- 헤더 -->
 	<jsp:include page="../headerfooter/Header.jsp" />
 	<!-- 헤더 -->
+	<!-- 바디컨테이너 시작 -->
+	<div class="container" id="body_container">
 
-	<div class="container" id="dd">
 		<div class="row">
-			<!-- 고객센터 버튼 -->
-			<div class="col-2">
-				<div class="row service_center">
-					<div class="center_h">고객센터</div>
-					<div class="ser_rec  ">
-
-						<ul class="nav nav-tabs flex-column" id="myTab" role="tablist">
-
-							<div class="row rec_ser">
-								<div class="col-12">
-									<li class="nav-item" role="presentation">
-										<button class="nav-link active" id="notice-tab"
-											data-bs-toggle="tab" data-bs-target="#notice" type="button"
-											role="tab" aria-controls="notice" aria-selected="true">공지사항</button>
-									</li>
-								</div>
-							</div>
-							<div class="row rec_ser">
-								<div class="col">
-									<li class="nav-item" role="presentation">
-										<button class="nav-link " id="question-tab"
-											data-bs-toggle="tab" data-bs-target="#question" type="button"
-											role="tab" aria-controls="question" aria-selected="false">자주하는
-											질문</button>
-									</li>
-								</div>
-							</div>
-							<div class="row rec_ser">
-								<div class="col">
-									<li class="nav-item" role="presentation">
-										<button class="nav-link " id="mtom-tab" data-bs-toggle="tab"
-											data-bs-target="#mtom" type="button" role="tab"
-											aria-controls="mtom" aria-selected="false">1:1 문의</button>
-									</li>
-								</div>
-							</div>
-						</ul>
-					</div>
+			<!-- 좌측 탭 시작 -->
+			<div class="col-3" id="menu_container">
+				<div class="col-12" style="margin-bottom: 30px;">
+					<h2 style="font-weight: 600;">고객센터</h2>
+				</div>
+				<div class="col-12 tap-style d-flex justify-content-between notice"
+					style="border-bottom: none;">
+					<span>공지사항</span><i class="bi bi-caret-right"></i>
+				</div>
+				<div
+					class="col-12 tap-style d-flex justify-content-between question"
+					style="border-bottom: none;">
+					<span>자주하는 질문</span><i class="bi bi-caret-right"></i>
+				</div>
+				<div class="col-12 tap-style d-flex justify-content-between mtom">
+					<span>1:1 문의</span><i class="bi bi-caret-right"></i>
 				</div>
 			</div>
-			<!-- tab content -->
-			<div class="col-10">
-				<div class="tab-content" id="myTabContent">
-					<div class="row sc_board tab-pane fade show active" role="tabpanel"
-						aria-labelledby="notice-tab" id="notice">
-						<div class="board_h">공지사항</div>
-						<hr />
-						<div class="row head_line">
+			<!-- 좌측 탭 끝 -->
 
-							<div class="col-1">번호</div>
-							<div class="col-7">제목</div>
-							<div class="col-2">작성자</div>
-							<div class="col-2">날짜</div>
-
-						</div>
-						<hr />
-						<div class="row board_line">
-							<div class="col-1">번호</div>
-							<div class="col-7">제목</div>
-							<div class="col-2">작성자</div>
-							<div class="col-2">날짜</div>
-
-						</div>
-						<hr />
-						<div class="row">
-
-							<div class=" ak">
-								<a href="" id="left"><i class="bi bi-chevron-left"></i></a> <a
-									href="" id="right"><i class="bi bi-chevron-right"></i></a>
-							</div>
-						</div>
-						<div class="row">
-							<button><a href="NoticeWriter">글쓰기</a></button>
-						</div>
-
+			<!-- 게시판 본문 시작 -->
+			<div class="col-9" id="borad_container">
+				<div class="col-12" style="margin-bottom: 33px;">
+					<h3 class="body_title">공지사항</h3>
+				</div>
+				<div class="col-12">
+					<hr style="border: 0; height: 2px; background: #444; opacity: 100%" />
+				</div>
+				<div class="col-12 board_title">
+					<div class="row text-center">
+						<div class="col-2">번호</div>
+						<div class="col-6">제목</div>
+						<div class="col-2">작성자</div>
+						<div class="col-2">작성일</div>
 					</div>
-
-					<div class="row sc_question tab-pane fade " role="tabpanel"
-						aria-labelledby="question-tab" id="question">
-						<div class="board_h">자주하는 질문</div>
-						<hr />
-						<div class="row head_line">
-
-							<div class="col-1">번호</div>
-							<div class="col-3">카테고리</div>
-							<div class="col-8">제목</div>
-
-
-						</div>
-						<hr />
-						<div class="">
-							<div class="row board_line">
-								<div class="col-1">번호</div>
-								<div class="col-3">카테고리</div>
-								<div class="col-8">제목</div>
-
-
-							</div>
-							<hr />
-							<div class="ak">
-								<a href="" id="left_1"><i class="bi bi-chevron-left"></i></a> <a
-									href="" id="right_1"><i class="bi bi-chevron-right"></i></a>
-							</div>
-						</div>
-					</div>
-
-					<div class="row sc_mtom tab-pane fade " role="tabpanel"
-						aria-labelledby="mtom-tab" id="mtom">
-						<div class="board_h">1:1 문의</div>
-						<hr />
-						<div class="row head_line">
-
-							<div class="col-6">제목</div>
-							<div class="col-3">작성일</div>
-							<div class="col-3">답변상태</div>
-
-
-						</div>
-						<hr />
-						<div class="">
-							<div class="row board_line">
-								<div class="col-6">제목</div>
-								<div class="col-3">작성일</div>
-								<div class="col-3">답변상태</div>
-
-
-							</div>
-							<hr />
-							<div class="qna">
-								<button>
-									<a href="/glowamber/servicecenter/Mtom">문의하기</a>
-								</button>
-							</div>
-						</div>
-					</div>
-
-
+				</div>
+				<!-- hr -->
+				<div class="col-12">
+					<hr style="border: 0; height: 1px; background: #444; opacity: 100%" />
+				</div>
+				<!-- hr -->
+				<div class="col-12 board_content"></div>
+				<!-- hr -->
+				<div class="col-12">
+					<hr />
+				</div>
+				<!-- hr -->
+				<div class="col-12 text-center" id="page_button">
+					<a href=""><i class="bi bi-chevron-left fs-3"></i></a> <a href=""><i
+						class="bi bi-chevron-right fs-3"></i></a>
 				</div>
 			</div>
+			<!-- 게시판 본문 끝 -->
+
 		</div>
-	</div>
 
-	<!-- Bootstrap JS (for interactive tabs) -->
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+	</div>
+	<!-- 바디컨테이너 끝 -->
+
 	<!-- 풋터 -->
 	<jsp:include page="../headerfooter/Footer.jsp" />
 	<!-- 풋터 -->

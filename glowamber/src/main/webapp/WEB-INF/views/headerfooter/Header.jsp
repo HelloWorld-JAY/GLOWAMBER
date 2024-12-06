@@ -34,7 +34,10 @@
 				<%if(session.getAttribute("id")== null){%>
 					<li class="nav-item nav-letter"><a href="/glowamber/member/Join">회원가입</a></li>
 					<%} %>
-					<%if(session.getAttribute("id")!= null){%>
+					<%if(session.getAttribute("id")!= null && session.getAttribute("admin").equals("1")){ %>
+					<li class="nav-item nav-letter"><a href="/glowamber/AdminPage/AdminMain">관리자페이지</a></li>
+					<%} %>
+					<%if(session.getAttribute("id")!= null && session.getAttribute("admin").equals("0")){%>
 					<li class="nav-item nav-letter"><a href="#">마이페이지</a></li>
 					<%} %>
 					<li class="nav-item nav-division">ㅣ</li>
@@ -49,13 +52,13 @@
 					<li class="nav-item nav-letter"><a href="/glowamber/products/Cart">장바구니</a></li>
 					<li class="nav-item nav-division">ㅣ</li>
 					<li class="nav-item nav-service"><a class="nav-link dropdown-toggle"
-						href="#" id="customerServiceDropdown" role="button"
+						href="/glowamber/servicecenter/ServiceCenter?tab=notice" id="customerServiceDropdown" role="button"
 						data-bs-toggle="dropdown" aria-expanded="false">고객센터</a>
 						<ul class="dropdown-menu"
 							aria-labelledby="customerServiceDropdown">
-							<li><a class="dropdown-item" href="#">공지사항</a></li>
-							<li><a class="dropdown-item" href="#">1:1문의</a></li>
-							<li><a class="dropdown-item" href="#">자주하는질문</a></li>
+							<li><a class="dropdown-item" href="/glowamber/servicecenter/ServiceCenter?tab=notice">공지사항</a></li>
+							<li><a class="dropdown-item" href="/glowamber/servicecenter/ServiceCenter?tab=question">자주하는질문</a></li>
+							<li><a class="dropdown-item" href="/glowamber/servicecenter/ServiceCenter?tab=mtom">1:1문의</a></li>
 						</ul></li>
 				</ul>
 			</div>

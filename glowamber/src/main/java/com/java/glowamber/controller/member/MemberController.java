@@ -1,10 +1,12 @@
 package com.java.glowamber.controller.member;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -41,8 +43,10 @@ public class MemberController {
 			return "member/Login";
 
 		}else {
+			System.out.println(result.getMemberAuth());
 			//로그인 성공한 경우 =>세션에 아이디값 저장하기
 			session.setAttribute("id", result.getMemberId());
+			session.setAttribute("admin", (String)result.getMemberAuth());
 			return "redirect:/mainpage/MainPage";
 		}
 	}
