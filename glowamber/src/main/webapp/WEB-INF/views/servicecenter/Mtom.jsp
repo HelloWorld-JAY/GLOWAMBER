@@ -5,20 +5,29 @@
 <head>
 <meta charset="UTF-8">
 <title>Mtom</title>
-<link href="resources/css/Mtom.css" rel="stylesheet">
+<link href="/glowamber/resources/css/Mtom.css" rel="stylesheet">
+
 <!-- 부트스트랩 아이콘CDN -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
 	rel="stylesheet">
+<!-- 부트스트랩 css -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
 	crossorigin="anonymous">
+<!-- 부트스트랩 script -->
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-	crossorigin="anonymous"></script>
+	crossorigin="anonymous"></script>	
+	<!-- 스마트에디터 js -->
+<script type="text/javascript" src="/glowamber/resources/smarteditor/js/HuskyEZCreator.js" charset="UTF-8"></script>
+<!-- jquery js -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+ <!-- user js -->
+<script type="text/javascript" src='/glowamber/resources/js/MtomService.js'></script>
 </head>
 <body>
 	<!-- 헤더 -->
@@ -78,7 +87,7 @@
 								</div>
 								<div>
 									<div class="row mtom_con">
-										<textarea rows="20" cols="50"></textarea>
+										<textarea rows="20" cols="50" id="mtom_service"></textarea>
 									</div>
 								</div>
 								<div class="row">

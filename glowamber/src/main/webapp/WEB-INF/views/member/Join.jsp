@@ -25,7 +25,8 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
 	crossorigin="anonymous"></script>
-
+	<!-- 주소찾기 API -->
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 <body>
 
@@ -110,10 +111,17 @@
 					</div>
 					<div class="col-2"></div>
 				</div>
+				
+				<!-- 주소 -->
 				<div class="row">
 					<div class="col-2 join_tit text-end align-self-center">주소</div>
 					<div class="col-8 bm text-center">
 						<button class="addr_btn">주소 찾기</button>
+						<input type="text" id="sample6_postcode" placeholder="우편번호">
+<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+<input type="text" id="sample6_address" placeholder="주소"><br>
+<input type="text" id="sample6_detailAddress" placeholder="상세주소">
+<input type="text" id="sample6_extraAddress" placeholder="참고항목">
 					</div>
 					<div class="col-2"></div>
 				</div>
