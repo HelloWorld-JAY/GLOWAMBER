@@ -27,17 +27,7 @@
 </script>
 </head>
 <body>
-	<%
-	String clientId = "dKYs7trxDJBkPUXsQkKk";//애플리케이션 클라이언트 아이디값";
-	String redirectURI = URLEncoder.encode("http://localhost:8080/glowamber/member/Login", "UTF-8");
-	SecureRandom random = new SecureRandom();
-	String state = new BigInteger(130, random).toString();
-	String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code" + "&client_id=" + clientId
-			+ "&redirect_uri=" + redirectURI + "&state=" + state;
-	session.setAttribute("state", state);
-	%>
-
-
+	
 	<!-- 헤더 -->
 	<jsp:include page="../headerfooter/Header.jsp" />
 	<!-- 헤더 -->
@@ -65,7 +55,8 @@
 			<div class="container text-center">
 				<div class="row">
 					<div class="col-4">
-						<a href="<%=apiURL%>"><img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
+						<a href="/glowamber/auth/naver/login">
+						<img height="50" src="/glowamber/resources/imgs/loginbtn/btnG_naver.png"/></a>
 					</div>
 					<div class="col-4">카카오</div>
 					<div class="col-4">구글</div>
