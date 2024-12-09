@@ -2,6 +2,7 @@ package com.java.glowamber.service.product;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.java.glowamber.model.dto.CartDTO;
 import com.java.glowamber.model.dto.ItemDTO;
@@ -18,8 +19,8 @@ public interface ProductService {
 	public CartDTO selectCart(CartDTO dto);
 	// 장바구니 담기 회원 있을시 게스트id 삭제 
 	public Integer updateCart(CartDTO dto);
-	// 대분류&소분류에 따른 상품불러오기
-	public List<ItemDTO> selectProductList(ItemDTO dto);
+	// 대분류&소분류에 따른 상품불러오기 + 페이징
+	public Map<String,Object> selectProductList(ItemDTO dto, Integer pageNum,String arr);
 	// 상품 카테고리 불러오기
 	public List<HashMap> selectCate(ItemDTO dto);
 }

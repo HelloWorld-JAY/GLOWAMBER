@@ -2,6 +2,7 @@ package com.java.glowamber.service.product;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.java.glowamber.dao.product.ProductDAO;
 import com.java.glowamber.model.dto.CartDTO;
 import com.java.glowamber.model.dto.ItemDTO;
+import com.java.glowamber.model.dto.PageMaker;
 import com.java.glowamber.model.dto.SmallCateDTO;
 
 @Service
@@ -44,10 +46,36 @@ public class ProductServiceImpl implements ProductService{
 		
 		return dao.updateCart(dto);
 	}
-
+	// 대분류&소분류에 따른 상품불러오기 + 페이징
 	@Override
-	public List<ItemDTO> selectProductList(ItemDTO dto) {
-		return dao.selectProductList(dto);
+	public Map<String,Object> selectProductList(ItemDTO dto, Integer pageNum,String arr) {
+		
+		System.out.println(dao.selectProductCount(dto));
+		// 전체 상품 갯수 조회 
+		Integer totalBoard = dao.selectProductCount(dto);
+		// 페이지 블럭 크기 설정 
+		Integer blockSize = 5;
+		// 페이지 상품 출력 개수
+		Integer pageSize = 20;
+		// 페이지메이커 생성자
+		PageMaker pageMaker = new PageMaker(pageNum, totalBoard, pageSize, blockSize);
+		
+		Map<String, Object> pageMap = new HashMap<String,Object>();
+		pageMap.put("startRow", pageMaker.getStartRow());
+		pageMap.put("endRow", pageMaker.getEndRow());
+		pageMap.put("totalBoard", pageMaker.getTotalBoard());
+		pageMap.put("selectKeyword", dto.getSelectKeyword());
+		pageMap.put("bigCateNum", dto.getBigCateNum());
+		pageMap.put("smallCateNum", dto.getSmallCateNum());
+		pageMap.put("arr", arr);
+		
+		List<ItemDTO> itemList = dao.selectProductList(pageMap);
+		
+		Map<String, Object> resultMap = new HashMap<String,Object>();
+		resultMap.put("itemList", itemList);
+		resultMap.put("pageMaker", pageMaker);
+		
+		return resultMap;
 	}
 
 	@Override

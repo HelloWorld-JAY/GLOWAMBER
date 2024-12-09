@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>PAY</title>
 <!-- css연결 -->
-<link href="resources/css/Pay.css" rel="stylesheet">
+<link href="/glowamber/resources/css/Pay.css" rel="stylesheet">
 <!-- 부트스트랩 아이콘CDN -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
@@ -26,7 +28,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- js파일연결 -->
-<script type="text/javascript" src="resources/js/Pay.js"></script>
+<script type="text/javascript" src="/glowamber/resources/js/Pay.js"></script>
 </head>
 <body>
 	<!-- 헤더 -->
@@ -38,14 +40,36 @@
 	<div class="container" id="body_container">
 		<div class="row">
 			<div class="col-12 text-center">
-				<h1 style="font-weight: 600; color: #DEBD7E; text-shadow: 0 0 10px #222; font-family: 'Gyeonggi_Batang_Regular';">주 문 서</h1>
+				<h1
+					style="font-weight: 600; color: #DEBD7E; text-shadow: 0 0 10px #222; font-family: 'Gyeonggi_Batang_Regular';">주
+					문 서</h1>
 			</div>
-			<div class="col-8">
+			<div class="col-7">
 				<div class="col-12" id="order_product">
 					<div class="order_title">주문상품</div>
 					<hr />
-					<div class="col-12">여기에 상품이 담길예쩡</div>
-					<br /> <br />
+					<div class="col-12">
+						<c:forEach var="product" items="${cart}">
+							<div class="row">
+								<div class="col-3 product_img">
+									<img alt="" src="${ product.ITEMTHUMNAIL }">
+								</div>
+								<div class="col-9">
+									<div class="row text-end">
+										<div class="col-12">
+											<h5 style="font-weight: 600;">${ product.ITEMNAME }</h5>
+										</div>
+										<div class="col-12" style="margin-top: 50px;"> <h6> 수량 : ${ product.CARTITEMCOUNT }${ product.ITEMUNIT.substring(1) }</h6></div>
+										<div class="col-12"> <h6> 개당금액 : <fmt:formatNumber value="${product.ITEMPRICE}" type="number" groupingUsed="true"/>원 </h6></div>
+										<div class="col-12 orderProductPrice"> <h6 style="font-weight: 600;"> 주문금액 : <fmt:formatNumber value="${ product.ITEMPRICE * product.CARTITEMCOUNT }" type="number" groupingUsed="true"/>원</h6> <input type="hidden" value="${ product.ITEMPRICE * product.CARTITEMCOUNT }"> </div>
+									</div>
+								</div>
+							</div>
+							<hr style="height: 1px; opacity: 50%" />
+						</c:forEach>
+						<div class="col-12 text-center totalProductPrice"> <h4 style="font-weight: 600;"></h4> </div>
+					</div>
+
 				</div>
 				<div class="col-12" id="order_member">
 					<div class="order_title">주문자 정보</div>
@@ -53,13 +77,13 @@
 					<div class="row">
 
 						<div class="col-3">받는분</div>
-						<div class="col-9">김동구리구리씨</div>
+						<div class="col-9">${ cart[0].MEMBERNAME }</div>
 						<br /> <br />
 						<div class="col-3">휴대폰</div>
-						<div class="col-9">010-0000-0000</div>
+						<div class="col-9">${ cart[0].MEMBERTEL }</div>
 						<br /> <br />
 						<div class="col-3">이메일</div>
-						<div class="col-9">hongildong@naver.com</div>
+						<div class="col-9">${ cart[0].MEMBEREMAIL }</div>
 						<br /> <br />
 					</div>
 				</div>
@@ -117,23 +141,23 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-4">
+			<div class="col-5">
 				<div class="container" id="order_pay">
 					<div class="col-12" id="order_discount">
 						<div class="order_title">할인&결제금액</div>
 						<hr />
 						<div class="row">
 							<div class="col-6">상품금액</div>
-							<div class="col-6 text-end">0원</div>
+							<div class="col-6 text-end priceProduct">0원</div>
 							<br /> <br />
 							<div class="col-6 ">할인금액</div>
 							<div class="col-6 text-end">0원</div>
 							<br /> <br />
 							<div class="col-6 ">배송비</div>
-							<div class="col-6 text-end">0원</div>
+							<div class="col-6 text-end priceDelivery">0원</div>
 							<br /> <br />
 							<div class="col-6 order_title">총결제금액</div>
-							<div class="col-6 text-end order_title">0원</div>
+							<div class="col-6 text-end order_title total">0원</div>
 						</div>
 					</div>
 					<div class="col-12">

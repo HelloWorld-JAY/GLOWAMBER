@@ -3,13 +3,16 @@ package com.java.glowamber.controller.cart;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.google.gson.JsonArray;
 import com.java.glowamber.model.dto.CartDTO;
 import com.java.glowamber.service.cart.CartService;
 
@@ -23,7 +26,6 @@ public class CartController {
 	@PostMapping("guestCartSelect")
 	@ResponseBody
 	public List<HashMap<String,Object>> guestCartSelect(CartDTO dto) {
-		System.out.println(service.selectCartID(dto).toString());
 		return service.selectCartID(dto);
 	}
 	// 카트 수량 변경 통신
@@ -38,4 +40,22 @@ public class CartController {
 	public Integer deleteCartProduct(CartDTO dto) {
 		return service.deleteCartProduct(dto);
 	}
+	//결제페이지로 이동 하기전 세션에 장바구니 선택한애들 추가
+	@PostMapping("sessionCartNum")
+	@ResponseBody
+	public Integer sessionCartNum(String cartNum,HttpSession session) {
+		System.out.println(cartNum);
+		String[] cartNumArr = cartNum.split(",");
+
+		session.setAttribute("cartNum", cartNumArr);
+		return 1;
+	}
+	//결제페이지로 이동
+	@GetMapping("payPage")
+	public String payPage(CartDTO dto,Model m,HttpSession session) {
+		dto.setCartNumArr((String[])session.getAttribute("cartNum"));
+		m.addAttribute("cart",service.selectCartID(dto)); 
+		return "products/Pay";
+	}
+	
 }

@@ -2,6 +2,7 @@ package com.java.glowamber.dao.product;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.java.glowamber.model.dto.CartDTO;
 import com.java.glowamber.model.dto.ItemDTO;
@@ -19,7 +20,9 @@ public interface ProductDAO {
 		// 장바구니 상품 있을시 갯수
 		public Integer updateCart(CartDTO dto);
 		// 대분류&소분류에 따른 상품불러오기
-		public List<ItemDTO> selectProductList(ItemDTO dto);
+		public List<ItemDTO> selectProductList(Map<String, Object> pageMap);
 		// 상품 카테고리 불러오기
 		public List<HashMap> selectCate(ItemDTO dto);
+		// 상품수 조회
+		public Integer selectProductCount(ItemDTO dto);
 }

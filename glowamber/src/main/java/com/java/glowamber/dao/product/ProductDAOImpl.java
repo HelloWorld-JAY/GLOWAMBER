@@ -2,6 +2,7 @@ package com.java.glowamber.dao.product;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,13 +45,18 @@ public class ProductDAOImpl implements ProductDAO{
 	}
 
 	@Override
-	public List<ItemDTO> selectProductList(ItemDTO dto) {
-		return mybatis.selectList("ProductDAO.SelectProductList",dto);
+	public List<ItemDTO> selectProductList(Map<String, Object> pageMap) {
+		return mybatis.selectList("ProductDAO.SelectProductList",pageMap);
 	}
 
 	@Override
 	public List<HashMap> selectCate(ItemDTO dto) {
 		return mybatis.selectList("ProductDAO.SelectCate",dto);
+	}
+	// 상품수 조회
+	@Override
+	public Integer selectProductCount(ItemDTO dto) {
+		return mybatis.selectOne("ProductDAO.SelectProductPage",dto);
 	}
 
 

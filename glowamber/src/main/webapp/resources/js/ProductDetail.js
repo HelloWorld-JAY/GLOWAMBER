@@ -1,5 +1,9 @@
 $(function(){
 
+	// 퀵매뉴 맨위로
+	$('.scroll_top').click(function(){
+		$('html').scrollTop(0);
+	});
 
 	//디테일 수량 변경 버튼 클릭시 추가 or 감소 -start
 	$('#product_counter>div').children().last().click(function(){

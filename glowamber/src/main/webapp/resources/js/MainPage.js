@@ -1,5 +1,9 @@
 $(function(){
 
+	// 퀵매뉴 맨위로
+	$('.scroll_top').click(function(){
+		$('html').scrollTop(0);
+	});
 	
 	//메인페이지로 넘어왔을때 로그인상태일때 확인후 게스트에서 장바구니 옮기기
 	if (sessionId) {

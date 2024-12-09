@@ -68,7 +68,7 @@
 						src="/glowamber/resources/imgs/glow_amber_logo.png"></a></span> <span
 					id='search_box' class="d-flex justify-content-between"> <input
 					id="search_text_box" name="search_text_box" type="text"
-					placeholder="검색어를 입력해주세요."> <a href="#"> <svg
+					placeholder="검색어를 입력해주세요."> <a class="text_search" style="cursor: pointer;"> <svg
 							xmlns="http://www.w3.org/2000/svg" width="32" height="32"
 							fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
   <path

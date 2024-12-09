@@ -43,4 +43,16 @@ $(function(){
 			sticky.css({position:'static'});
 		}
 	});//헤더 메인네비게이션 sticky 효과주기 -end
+	
+	
+	//검색입력시 해당 키워드받아서 상품목록페이지로 이동 (엔터 및 )
+	$('#search_text_box').on('keyup',function(key){
+		if(key.keyCode==13) {
+			location = "/glowamber/bigProductList?selectKeyword="+$('#search_text_box').val();
+		}
+	});
+	$('.text_search').on('click',function(){
+
+		location = "/glowamber/bigProductList?selectKeyword="+$('#search_text_box').val();
+	});
 });

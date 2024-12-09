@@ -59,7 +59,7 @@
 /* 결제 스티키 */
 #order_pay {
 	position: sticky;
-	top: 25px;
+	top: 80px;
 }
 /* 할인 */
 #order_discount {
@@ -105,4 +105,8 @@
 	border-radius: 3px;
 	letter-spacing: 10px;
 	text-align: center;
+}
+/* 주문상품탭 */
+.product_img img{
+	width: 100%
 }

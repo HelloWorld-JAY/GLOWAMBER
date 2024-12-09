@@ -10,4 +10,5 @@ public class CartDTO {
 	private Integer itemNum;
 	private Integer cartItemCount;
 	private String cartAddDate;
+	private String[] cartNumArr;
 }

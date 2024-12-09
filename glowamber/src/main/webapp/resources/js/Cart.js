@@ -69,7 +69,7 @@ $(function(){
 					for(let product of result) {
 						let formatted = new Intl.NumberFormat('ko-KR').format(product['ITEMPRICE']);
 						productCol.append('<div class="row SelectProduct" style="padding-top:20px; padding-bottom:20px; ">'+
-								'<div class="col-1 align-self-top text-end"><i class="bi bi-check-square-fill fs-5 check-box"></i></div>'+
+								'<div class="col-1 align-self-top text-end"><i class="bi bi-check-square-fill fs-5 check-box" value="'+product['CARTNUM']+'"></i></div>'+
 								'<div class="col-9 align-self-center"><div class="row" style="padding-top:5px;">'+
 								'<div class="col-4"><div class="col-12"><img class="cartImg" src="'+product["ITEMTHUMNAIL"]+'"></div></div>'+
 								'<div class="col-8"><div class="col-12 cart_letter">'+ product["ITEMNAME"]+'</div><div class="col-12 align-self-top cart_letter selectPrice" style="font-size:14px; margin-top:16%;" value="'+product['ITEMPRICE']+'">'+ formatted+'원</div><div class="col-12 align-self-center cart_letter product_counter" style=" margin-top: 5px;"><div><span class="minus" value="'+product["ITEMNUM"]+'"><i class="bi bi-dash fs-7"></i></span><span class="product_count" draggable="false" style="font-size:14px;">'+product["CARTITEMCOUNT"]+'</span><span class="plus" value="'+product["ITEMNUM"]+'"><i class="bi bi-plus fs-7"></i></span></div></div></div>'+
@@ -114,7 +114,7 @@ $(function(){
 					for(let product of result) {
 						let formatted = new Intl.NumberFormat('ko-KR').format(product['ITEMPRICE']);
 						productCol.append('<div class="row SelectProduct" style="padding-top:20px; padding-bottom:20px; ">'+
-								'<div class="col-1 align-self-top text-end"><i class="bi bi-check-square-fill fs-5 check-box"></i></div>'+
+								'<div class="col-1 align-self-top text-end"><i class="bi bi-check-square-fill fs-5 check-box" value="'+product['CARTNUM']+'"></i></div>'+
 								'<div class="col-9 align-self-center"><div class="row" style="padding-top:5px;">'+
 								'<div class="col-4"><div class="col-12"><img class="cartImg" src="'+product["ITEMTHUMNAIL"]+'"></div></div>'+
 								'<div class="col-8"><div class="col-12 cart_letter">'+ product["ITEMNAME"]+'</div><div class="col-12 align-self-top cart_letter selectPrice" style="font-size:14px; margin-top:16%;" value="'+product['ITEMPRICE']+'">'+ formatted+'원</div><div class="col-12 align-self-center cart_letter product_counter" style=" margin-top: 5px;"><div><span class="minus" value="'+product["ITEMNUM"]+'"><i class="bi bi-dash fs-7"></i></span><span class="product_count" draggable="false" style="font-size:14px;">'+product["CARTITEMCOUNT"]+'</span><span class="plus" value="'+product["ITEMNUM"]+'"><i class="bi bi-plus fs-7"></i></span></div></div></div>'+
@@ -157,7 +157,7 @@ $(function(){
 				data:{memberId:'',cartItemCount:(parseInt($(this).prev().text())+1),itemNum:$(this).attr('value'),guestId:guestId},
 				success:function(result){
 					$(this).prev().text(parseInt($(this).prev().text())+1);
-					$(this).parents('.SelectProduct').find('.productTotalPrice').val(parseInt($(this).parents('.SelectProduct').find('.productTotalPrice').val())-parseInt($(this).parent().parent().prev().attr('value')));
+					$(this).parents('.SelectProduct').find('.productTotalPrice').val(parseInt($(this).parents('.SelectProduct').find('.productTotalPrice').val())+parseInt($(this).parent().parent().prev().attr('value')));
 					totalPricePrint();
 
 				}.bind(this)
@@ -187,6 +187,43 @@ $(function(){
 			});
 		});// - 눌렀을때 숫자 변경 및 db ajax통신 -end
 	}else {
+		
+		// 카트에 담긴상품들.
+		
+		
+		//주문하기 눌렀을때 상품없으면 alert 띄우고 있으면 넘어가기
+		$('#pay_button').click(function(){
+			let cartNum = [];
+			// 체크되있는 애들만 값가져오기
+			$('#product_list').find('.check-box').each(function(){
+				if($(this).hasClass('bi-check-square-fill')) {
+					cartNum.push($(this).attr('value'));
+				}
+			});
+			let cartNumString = cartNum.join(',');
+			$.ajax({
+				type:'post',
+				url:'/glowamber/guestCartSelect',
+				data:{memberId: (sessionId ? sessionId:''),guestId:(guestId?guestId:'')},
+				dataType:'json',
+				success:function(result){
+					if(result.length == 0 ) {
+						alert('현재 담긴 상품이 없습니다.')
+					}else {
+						$.ajax({
+							type:'post',
+							url:'/glowamber/sessionCartNum',
+							data:{cartNum:cartNum.join(',')},
+							success:function(result){
+								location = '/glowamber/payPage?memberId='+sessionId+'&guestId=';
+							}
+						});
+					}
+				}
+				
+			});
+		});//주문하기 눌렀을때 상품없으면 alert 띄우고 있으면 넘어가기 -end
+		
 		//로그인중일때 장바구니 불러오기
 		loginCartLoad();
 		// + 눌렀을때 숫자 변경 및 db ajax통신
@@ -308,21 +345,21 @@ $(function(){
 		$('#product_list').find('.bi-check-square-fill').each(function(){
 			let itemNumber = $(this).closest('.SelectProduct').find('.plus').attr('value');
 			$.ajax({
-				 type:'post',
-				 url:'/glowamber/deleteCartProduct',
-				 data:{memberId:sessionId,itemNum:itemNumber,guestId:guestId},
-				 success:function(result){
-						if(result == 1) {
-							$(this).parents('.SelectProduct').remove();
-							totalPricePrint();
-							$('.selectCartCount').text($('.bi-check-square-fill').length);
-							$('.totalCartCount').text($('.check-box').length-1);
-						}else if(result == 20) {
-							$(this).parents('#product_list').empty();
-							location.reload();
-						}
-					}.bind(this)
-			 });
+				type:'post',
+				url:'/glowamber/deleteCartProduct',
+				data:{memberId:sessionId,itemNum:itemNumber,guestId:guestId},
+				success:function(result){
+					if(result == 1) {
+						$(this).parents('.SelectProduct').remove();
+						totalPricePrint();
+						$('.selectCartCount').text($('.bi-check-square-fill').length);
+						$('.totalCartCount').text($('.check-box').length-1);
+					}else if(result == 20) {
+						$(this).parents('#product_list').empty();
+						location.reload();
+					}
+				}.bind(this)
+			});
 		});
 	});// 선택삭제 버튼 클릭시 선택된 상품 전체 삭제 -end
 });

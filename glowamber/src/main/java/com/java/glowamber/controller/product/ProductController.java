@@ -1,6 +1,7 @@
 package com.java.glowamber.controller.product;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -73,23 +74,32 @@ public class ProductController {
 	}
 	//헤더 대분류 카테고리 눌러서 들어갔을때 리스트 띄우기
 	@GetMapping("bigProductList")
-	public String bigProductList(ItemDTO dto,Model m) {
+	public String bigProductList(ItemDTO dto,Integer pageNum,String arr,Model m) {
+		
+		if(pageNum == null) {
+			pageNum = 1;
+		}
+		
 		m.addAttribute("cate",service.selectCate(dto));
-		m.addAttribute("item",service.selectProductList(dto));
-		System.out.println(service.selectProductList(dto).toString());
+		m.addAttribute("item",service.selectProductList(dto,pageNum,arr));
+		m.addAttribute("nowBigCateNum",dto.getBigCateNum());
+		m.addAttribute("selectKeyword",dto.getSelectKeyword());
+		m.addAttribute("arr",arr);
 		return "products/ProductList";
 	}
 	//헤더 소분류 카테고리 눌러서 들어갔을때 리스트 띄우기
 	@GetMapping("smallProductList")
-	public String smallProductList(ItemDTO dto,Model m) {
+	public String smallProductList(ItemDTO dto,Integer pageNum,String arr,Model m) {
+		
+		if(pageNum == null) {
+			pageNum = 1;
+		}
+		
 		m.addAttribute("cate",service.selectCate(dto));
-		m.addAttribute("item",service.selectProductList(dto));
-		System.out.println(service.selectProductList(dto).toString());
+		m.addAttribute("item",service.selectProductList(dto,pageNum,arr));
+		m.addAttribute("nowBigCateNum",dto.getBigCateNum());
+		m.addAttribute("nowSmallCateNum",dto.getSmallCateNum());
+		m.addAttribute("arr",arr);
 		return "products/ProductList";
-	}
-	@PostMapping("smallProductList")
-	@ResponseBody
-	public List<ItemDTO> smallProductList(ItemDTO dto) {
-		return service.selectProductList(dto);
 	}
 }

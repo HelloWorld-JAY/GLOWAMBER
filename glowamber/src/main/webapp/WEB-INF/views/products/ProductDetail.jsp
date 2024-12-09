@@ -52,8 +52,8 @@
 			<li class="nav-item"><a class="nav-link"
 				href="/glowamber/products/Cart"><i class="bi bi-bag fs-2"></i> <br />장바구니</a></li>
 			<hr />
-			<li class="nav-item"><a class="nav-link" aria-current="page"
-				href="#"><i class="bi bi-arrow-up-square fs-2"></i><br />TOP </a></li>
+			<li class="nav-item"><a class="nav-link scroll_top" aria-current="page"
+				style="cursor: pointer;"><i class="bi bi-arrow-up-square fs-2"></i><br />TOP </a></li>
 		</ul>
 	</div>
 	<!-- 퀵메뉴 -->

@@ -7,22 +7,31 @@
 		parameterType="CartDTO">
 		SELECT c.cartitemcount cartitemcount,
 		c.memberid memberid,
-		c.guestid
-		guestid,
+		c.guestid guestid,
 		c.cartnum cartnum,
 		c.itemnum itemnum,
 		i.itemname itemname,
 		i.itemprice itemprice,
-		i.itemthumnail itemthumnail
+		i.itemthumnail itemthumnail,
+		i.itemunit itemunit,
+		m.membername membername,
+		m.membertel membertel,
+		m.memberemail memberemail
 		FROM CARTTABLE c
 		INNER JOIN ITEMTABLE i ON c.ITEMNUM =
-		i.ITEMNUM
+		i.ITEMNUM INNER JOIN MEMBERTABLE m ON c.MEMBERID = m.MEMBERID
 		<where>
 			<if test="memberId != ''">
-				AND memberid = #{memberId}
+				AND c.memberid = #{memberId}
 			</if>
 			<if test="guestId != ''">
-				AND guestid = #{guestId}
+				AND c.guestid = #{guestId}
+			</if>
+			<if test="cartNumArr != null">
+				AND c.cartnum in
+				<foreach item="num" collection="cartNumArr" open="(" close=")" separator=",">
+					#{num}
+				</foreach>
 			</if>
 		</where>
 	</select>
@@ -41,9 +50,9 @@
 
 	</update>
 	<delete id="deleteCartProduct" parameterType="CartDTO">
-	DELETE FROM CARTTABLE
-	WHERE itemnum =	#{itemNum}
-	<if test="memberId != ''">
+		DELETE FROM CARTTABLE
+		WHERE itemnum = #{itemNum}
+		<if test="memberId != ''">
 			AND memberid = #{memberId}
 		</if>
 		<if test="guestId != ''">
