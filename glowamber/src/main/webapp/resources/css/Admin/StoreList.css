@@ -8,7 +8,7 @@
 	border : 1px #EBEBEB solid;
 }
 
-.itemcontainer .justify-content-end{
+.itemcontainer .justify-content-start{
 	background : #FFFFFF;
 	border-bottom : 1px #EBEBEB solid;
 }
@@ -34,15 +34,15 @@ div{
 }
 
 /* 상품목록테이블 */
-#itemListHead{
+#StoreListHead{
 	padding-bottom : 0px;
 }
 
-#itemListHead>div{
+#StoreListHead>div{
 	padding-bottom : 0px;
 }
 
-#itemListHead table{
+#StoreListHead table{
 	width : 100%;
 	padding-bottom : 0px;
 	background : #FFFFFF;
@@ -50,15 +50,15 @@ div{
 	border-bottom : 0px;
 }
 
-#itemListHead table th{
+#StoreListHead table th{
 	height : 40px;
 }
 
-#itemListBody{
+#StoreListBody{
 	padding-top : 0px;
 }
 
-#itemListBody>div{
+#StoreListBody>div{
 	padding : 0px;
 	margin : 0px 12px 30px;
 	height : 100vh;
@@ -67,11 +67,11 @@ div{
 	overflow-y: auto;
 }
 
-#itemListBody table{
+#StoreListBody table{
 	width : 100%;
 	
 }
 
-#ItemTable td{
+#StoreTable td{
 	padding : 20px 0px;
 }

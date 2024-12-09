@@ -18,7 +18,7 @@
 	crossorigin="anonymous"></script> <!-- JQUERY script --> <script
 	src="https://code.jquery.com/jquery-3.7.1.min.js"></script> <!-- script -->
 <script type="text/javascript"
-	src='/glowamber/resources/js/Admin/MemberManage.js'></script>
+	src='/glowamber/resources/js/Admin/MemberList.js'></script>
 </head>
 <body>
 

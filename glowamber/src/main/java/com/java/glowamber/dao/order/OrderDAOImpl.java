@@ -24,4 +24,10 @@ public class OrderDAOImpl implements OrderDAO{
 		return mybatis.selectOne("order.selectOrderList",dto);
 	}
 
+	@Override
+	public void updateOrderStatus(OrderDetailDTO dto) {
+		mybatis.update("order.updateOrderStatus",dto);
+		
+	}
+
 }

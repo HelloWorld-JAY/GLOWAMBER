@@ -28,7 +28,7 @@
 	
 	<!-- 주문검색 -->
 	<div class='row justify-content-end'>
-		<div class='col-md-1 '>
+		<div class='col-1 '>
 			<select id='orderStatus'>
 				<option value='신규'>신규</option>
 				<option value='대기'>대기</option>
@@ -42,19 +42,19 @@
 	<!-- 주문상태변경 -->
 	<div class='row'>
 		<div class='col-1'>
-			<input type='button' value='대기' />
+			<input type='button' class='orderStatus' id='orderStatusWait' value='대기' />
 		</div>
 		<div class='col-1'>
-			<input type='button' value='배송중' />
+			<input type='button' class='orderStatus' id='orderStatusDelivery' value='배송중' />
 		</div>
 		<div class='col-1'>
-			<input type='button' value='완료' />
+			<input type='button' class='orderStatus' id='orderStatuscomplete' value='완료' />
 		</div>
 		<div class='col-1'>
-			<input type='button' value='환불' />
+			<input type='button' class='orderStatus' id='orderStatusRefund' value='환불' />
 		</div>
 		<div class='col-1'>
-			<input type='button' value='교환' />
+			<input type='button' class='orderStatus' id='orderStatusCancle' value='교환' />
 		</div>
 	</div>
 	<!-- 주문리스트 -->

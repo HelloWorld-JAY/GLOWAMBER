@@ -15,7 +15,7 @@
 	<!-- JQUERY script -->
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 	<!-- script -->
-	<!-- <script type="text/javascript" src='/glowamber/resources/js/Admin/ItemMain.js'></script> -->
+	<script type="text/javascript" src='/glowamber/resources/js/Admin/StoreList.js'></script>
 
 </head>
 <body>
@@ -24,52 +24,41 @@
 	<!-- 헤더 -->
 <div class='container itemcontainer text-center'>
 	<!-- 상품등록 -->
-	<div class='row justify-content-end'>
+	<div class='row justify-content-start'>
 		<div class='col-md-1 '>
-			<a href="ItemInsert"><input type='button' value='상품등록' /></a>
+			<b><span>재고관리</span></b>
 		</div>
 	</div>
 	<!-- 상품검색 -->
 	<div class='row'>
 		<div class='col-1'>
-			<select id='ItemSelectCate'>
-				<option value='itemName'>이름</option>
-				<option value='bigCateName'>대분류</option>
-				<option value='smallCateName'>소분류</option>
-				<option value='ItemSupplier'>공급처</option>
-				<option value='itemDate'>등록일</option>
-			</select>
-		</div>
-		<div class='col'>
-			<input type='text'/>
+			<input type='button' class='StoreStatus' value='전체' />
 		</div>
 		<div class='col-1'>
-			<input type='button' id='ItemSelectBtn' value='검색' />
+			<input type='button' class='StoreStatus' value='입고' />
+		</div>
+		<div class='col-1'>
+			<input type='button' class='StoreStatus' value='출고' />
 		</div>
 	</div>
 	<!-- 상품리스트 -->
-	<div class='row' id='itemListHead'>
+	<div class='row' id='StoreListHead'>
 		<div class='col'>
 			<table>
 				<tr>
-					<th>입/출</th>
-					<th>입고가</th>
-					<th>출고가</th>
-					<th>상품명</th>
-					
 					<th>날짜</th>
-					<th></th>
-					<th>판매가</th>
-					<th>공급처</th>
-					<th>등록일</th>
+					<th>구분</th>
+					<th>상품명</th>
+					<th>입/출고가</th>
+					<th>입/출고량</th>
 				</tr>
 			</table>
 		</div>
 		
 	</div>
-	<div class='row text-center' id='itemListBody'>
+	<div class='row text-center' id='StoreListBody'>
 		<div class='col'>
-			<table id='ItemTable'>
+			<table id='StoreTable'>
 			</table>
 		</div>
 	</div>

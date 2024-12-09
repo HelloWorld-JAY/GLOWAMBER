@@ -24,4 +24,10 @@ public class OrderServiceImpl implements OrderService{
 		return orderdao.selectOrderDetail(dto);
 	}
 
+	@Override
+	public void updateOrderStatus(OrderDetailDTO dto) {
+		orderdao.updateOrderStatus(dto);
+		
+	}
+
 }
