@@ -52,8 +52,12 @@ $(function(){
 					success:function(result){
 						if(result == 1) {
 							alert("장바구니에 상품을 담았습니다.");
+							$('#product_count').text('0');
+							$('#total_price').text('0원');
 						}else if(result == 10) {
 							alert("장바구니에 이미 해당상품이 있어서 수량을 추가하였습니다.");
+							$('#product_count').text('0');
+							$('#total_price').text('0원');
 						}
 					},
 					error: function(){
@@ -73,8 +77,12 @@ $(function(){
 					success:function(result){
 						if(result == 1) {
 							alert("장바구니에 상품을 담았습니다.");
+							$('#product_count').text('0');
+							$('#total_price').text('0원');
 						}else if(result == 10) {
 							alert("장바구니에 이미 해당상품이 있어서 수량을 추가하였습니다.");
+							$('#product_count').text('0');
+							$('#total_price').text('0원');
 						}
 					},
 					error: function(){

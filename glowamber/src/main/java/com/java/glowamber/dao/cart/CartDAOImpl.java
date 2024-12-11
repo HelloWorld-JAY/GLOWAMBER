@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.java.glowamber.model.dto.CartDTO;
+import com.java.glowamber.model.dto.OrderDTO;
 
 @Repository
 public class CartDAOImpl implements CartDAO {
@@ -28,6 +29,12 @@ public class CartDAOImpl implements CartDAO {
 	@Override
 	public Integer deleteCartProduct(CartDTO dto) {
 		return mybatis.delete("CartDAO.deleteCartProduct",dto);
+	}
+	@Override
+	public Integer insertOrder(OrderDTO dto) {
+		 mybatis.insert("CartDAO.InsertOrder",dto);
+		 System.out.println(dto.getOrderNum());
+		 return dto.getOrderNum();
 	}
 
 }

@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.java.glowamber.model.dto.CartDTO;
+import com.java.glowamber.model.dto.OrderDTO;
+import com.java.glowamber.model.dto.OrderDetailDTO;
 
 public interface CartService {
 	
@@ -13,5 +15,8 @@ public interface CartService {
 	public Integer updateCartCount(CartDTO dto);
 	// 카트 상품삭제
 	public Integer deleteCartProduct(CartDTO dto);
-	
+	// 주문테이블에 넣기
+	public Integer insertOrder(OrderDTO dto);
+	// 주문상세 테이블에 넣기
+	public Integer insertOrderDetail(OrderDetailDTO dto);
 }

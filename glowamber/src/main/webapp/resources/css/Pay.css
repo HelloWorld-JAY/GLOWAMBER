@@ -12,7 +12,9 @@
     font-weight: normal;
     font-style: normal;
 }
-
+body{
+	user-select: none; 
+}
 /* 바디 컨테이너 */
 #body_container {
 	margin-top: 30px;
@@ -103,10 +105,14 @@
 	padding-left: 14px;
 	background: white;
 	border-radius: 3px;
-	letter-spacing: 10px;
+	letter-spacing: 5px;
 	text-align: center;
 }
 /* 주문상품탭 */
 .product_img img{
-	width: 100%
+	width: 150px;
+}
+/* 결제 동의 */
+.bi{
+	cursor: pointer;
 }

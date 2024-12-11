@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.java.glowamber.dao.cart.CartDAO;
 import com.java.glowamber.model.dto.CartDTO;
+import com.java.glowamber.model.dto.OrderDTO;
+import com.java.glowamber.model.dto.OrderDetailDTO;
 
 @Service
 public class CartServiceImpl implements CartService {
@@ -45,5 +47,17 @@ public class CartServiceImpl implements CartService {
 		return 1;
 		}
 	}
+	// 주문테이블에 넣기
+	@Override
+	public Integer insertOrder(OrderDTO dto) {
+		return dao.insertOrder(dto);
+	}
+	// 주문상세 테이블에 넣기
+	@Override
+	public Integer insertOrderDetail(OrderDetailDTO dto) {
+
+		return null;
+	}
+
 
 }

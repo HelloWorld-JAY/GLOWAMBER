@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.java.glowamber.model.dto.CartDTO;
+import com.java.glowamber.model.dto.OrderDTO;
+import com.java.glowamber.model.dto.OrderDetailDTO;
 
 public interface CartDAO {
 
@@ -15,4 +17,6 @@ public interface CartDAO {
 	public Integer updateCartCount(CartDTO dto);
 	// 카트수량 0일때 삭제
 	public Integer deleteCartProduct(CartDTO dto);
+	// 주문테이블에 넣기
+	public Integer insertOrder(OrderDTO dto);
 }

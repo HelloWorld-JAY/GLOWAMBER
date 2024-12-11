@@ -13,9 +13,5 @@ public class OrderDetailDTO {
 	private Integer orderDetailPrice;
 	private String orderDetailStatus;
 	private Integer orderItemCount;            // 주문한상품갯수
-	
-	
-
-
-	
+	private Integer itemNum;
 }

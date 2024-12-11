@@ -14,9 +14,12 @@
 		i.itemprice itemprice,
 		i.itemthumnail itemthumnail,
 		i.itemunit itemunit,
+		m.membernum membernum,
 		m.membername membername,
 		m.membertel membertel,
-		m.memberemail memberemail
+		m.memberemail memberemail,
+		m.memberaddr memberaddr,
+		m.memberaddrdetail memberaddrdetail
 		FROM CARTTABLE c
 		INNER JOIN ITEMTABLE i ON c.ITEMNUM =
 		i.ITEMNUM INNER JOIN MEMBERTABLE m ON c.MEMBERID = m.MEMBERID
@@ -59,5 +62,13 @@
 			AND guestid = #{guestId}
 		</if>
 	</delete>
+
+
+	<!-- 주문테이블에 넣기 -->
+	<insert id="InsertOrder" parameterType="OrderDTO" keyProperty="orderNum" useGeneratedKeys="true">
+		INSERT INTO ORDERTABLE(ORDERNUM,MEMBERNUM,ORDERDATE,ORDERNAME,ORDERADDR,ORDERADDRDETAIL,ORDERREQUEST)
+		VALUES(SEQUENCE_ORDERNUM.NEXTVAL,#{memberNum},sysdate,#{orderName},#{orderAddr},#{orderAddrDetail},#{orderRequest})
+		RETURNING ORDERNUM INTO #{orderNum}
+	</insert>
 
 </mapper>

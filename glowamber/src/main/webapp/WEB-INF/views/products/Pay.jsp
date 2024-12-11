@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,6 +29,11 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- js파일연결 -->
 <script type="text/javascript" src="/glowamber/resources/js/Pay.js"></script>
+<!-- 주소 api -->
+<script
+	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<!-- 결제 api -->
+<script src="https://nsp.pay.naver.com/sdk/js/naverpay.min.js"></script>
 </head>
 <body>
 	<!-- 헤더 -->
@@ -50,24 +55,46 @@
 					<hr />
 					<div class="col-12">
 						<c:forEach var="product" items="${cart}">
-							<div class="row">
-								<div class="col-3 product_img">
+							<div class="row productRow">
+								<div class="col-3 product_img" value="${ product.ITEMNUM }">
 									<img alt="" src="${ product.ITEMTHUMNAIL }">
 								</div>
 								<div class="col-9">
 									<div class="row text-end">
 										<div class="col-12">
-											<h5 style="font-weight: 600;">${ product.ITEMNAME }</h5>
+											<h5 class="product_name" style="font-weight: 600;">${ product.ITEMNAME }</h5>
 										</div>
-										<div class="col-12" style="margin-top: 50px;"> <h6> 수량 : ${ product.CARTITEMCOUNT }${ product.ITEMUNIT.substring(1) }</h6></div>
-										<div class="col-12"> <h6> 개당금액 : <fmt:formatNumber value="${product.ITEMPRICE}" type="number" groupingUsed="true"/>원 </h6></div>
-										<div class="col-12 orderProductPrice"> <h6 style="font-weight: 600;"> 주문금액 : <fmt:formatNumber value="${ product.ITEMPRICE * product.CARTITEMCOUNT }" type="number" groupingUsed="true"/>원</h6> <input type="hidden" value="${ product.ITEMPRICE * product.CARTITEMCOUNT }"> </div>
+										<div class="col-12" style="margin-top: 15%;">
+											<h6 class="product_count" value="${ product.CARTITEMCOUNT }">수량
+												: ${ product.CARTITEMCOUNT }${ product.ITEMUNIT.substring(1) }</h6>
+										</div>
+										<div class="col-12">
+											<h6>
+												개당금액 :
+												<fmt:formatNumber value="${product.ITEMPRICE}" type="number"
+													groupingUsed="true" />
+												원
+											</h6>
+										</div>
+										<div class="col-12 orderProductPrice">
+											<h6 style="font-weight: 600;">
+												주문금액 :
+												<fmt:formatNumber
+													value="${ product.ITEMPRICE * product.CARTITEMCOUNT }"
+													type="number" groupingUsed="true" />
+												원
+											</h6>
+											<input class="product_price" type="hidden"
+												value="${ product.ITEMPRICE * product.CARTITEMCOUNT }">
+										</div>
 									</div>
 								</div>
 							</div>
 							<hr style="height: 1px; opacity: 50%" />
 						</c:forEach>
-						<div class="col-12 text-center totalProductPrice"> <h4 style="font-weight: 600;"></h4> </div>
+						<div class="col-12 text-center totalProductPrice">
+							<h4 style="font-weight: 600;"></h4>
+						</div>
 					</div>
 
 				</div>
@@ -77,7 +104,7 @@
 					<div class="row">
 
 						<div class="col-3">받는분</div>
-						<div class="col-9">${ cart[0].MEMBERNAME }</div>
+						<div class="col-9 order_name" value="${ cart[0].MEMBERNUM }">${ cart[0].MEMBERNAME }</div>
 						<br /> <br />
 						<div class="col-3">휴대폰</div>
 						<div class="col-9">${ cart[0].MEMBERTEL }</div>
@@ -92,28 +119,107 @@
 					<hr />
 					<div class="row">
 						<div class="col-3">배송지</div>
-						<div class="col-9">기본배송지</div>
+						<div class="col-9 deliveryNowName">기본배송지</div>
 						<br /> <br />
 						<div class="col-3"></div>
-						<div class="col-9">땡땡시 땅땅구 덩덩동 나머지주소</div>
+						<div class="col-9 deliveryNowAddr"><span>${ cart[0].MEMBERADDR }</span> <span>${ cart[0].MEMBERADDRDETAIL }</span></div>
 						<br /> <br />
 						<div class="col-3"></div>
 						<div class="col-9">
-							<button class="delivery_button">변경</button>
+							<button type="button" class="delivery_button deliveryChange"
+								data-bs-toggle="modal" data-bs-target="#deliveryChange">배송지변경</button>
+							<div class="modal fade" id="deliveryChange" tabindex="-1"
+								aria-labelledby="deliveryChangeLabel" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h1 class="modal-title fs-5" id="deliveryChangeLabel">배송지
+												변경</h1>
+											<button type="button" class="btn-close"
+												data-bs-dismiss="modal" aria-label="Close"></button>
+										</div>
+										<div class="modal-body">
+											<form>
+												<div class="mb-3">
+													<label for="recipient-name" class="col-form-label">배송지명:</label>
+													<input type="text" class="form-control" id="delivery-name">
+												</div>
+												<div class="mb-3">
+													<label for="recipient-name" class="col-form-label"
+														style="flex: 1;">주소:</label> <input type="text"
+														class="form-control d-inline-block" id="delivery-addr"
+														disabled="disabled" style="flex: 1;">
+												</div>
+												<div class="mb-3">
+
+													<label for="recipient-name" class="col-form-label"
+														style="flex: 1;">나머지주소:</label> <input type="text"
+														class="form-control d-inline-block"
+														id="delivery-addrDetail" style="flex: 1;">
+												</div>
+												<div class="mb-3 d-flex ">
+													<input class="delivery_button addrApi" type="button"
+														value="주소변경" style="flex: 1; height: 35px;"><br>
+												</div>
+											</form>
+										</div>
+										<div class="modal-footer d-flex justify-content-between">
+											<button type="button" data-bs-dismiss="modal"
+												class="delivery_button addr_complete"
+												style="flex: 1; height: 35px;">등록완료</button>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 						<br /> <br />
 					</div>
 					<hr style="opacity: 50%; height: 1px;" />
 					<div class="row">
 						<div class="col-3">배송 요청사항</div>
-						<div class="col-9">배송요청사항을 적어주심시오~~</div>
-						<br /> <br />
-						<div class="col-3"></div>
-						<div class="col-9">김동구리구리씨,010-0000-0000</div>
-						<br /> <br />
+						<div class="col-9 requestRider">안전한 배송 부탁드려요 ^^</div>
+						<br />
+						<br />
+						<div class="col-3">업체 요청사항</div>
+						<div class="col-9 requestCompany"></div>
+						<br />
+						<br />
 						<div class="col-3"></div>
 						<div class="col-9">
-							<button class="delivery_button">수정</button>
+							<button type="button" class="delivery_button requestChange"
+								data-bs-toggle="modal" data-bs-target="#requestChange">요청사항작성</button>
+							<div class="modal fade" id="requestChange" tabindex="-1"
+								aria-labelledby="requestChangeLabel" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h1 class="modal-title fs-5" id="requestChangeLabel">요청사항
+												작성</h1>
+											<button type="button" class="btn-close"
+												data-bs-dismiss="modal" aria-label="Close"></button>
+										</div>
+										<div class="modal-body">
+
+											<div class="mb-3">
+												<label for="recipient-name" class="col-form-label">배송기사님에게
+													요청사항을 적어주세요.</label> <input type="text" class="form-control"
+													id="request-rider">
+											</div>
+											<div class="mb-3">
+												<label for="recipient-name" class="col-form-label">업체에게
+													요청사항을 적어주세요.</label> <input type="text" class="form-control"
+													id="request-company">
+											</div>
+
+										</div>
+										<div class="modal-footer d-flex justify-content-between">
+											<button type="button" data-bs-dismiss="modal"
+												class="delivery_button request_complete"
+												style="flex: 1; height: 35px;">등록완료</button>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 						<br /> <br />
 					</div>
@@ -125,18 +231,18 @@
 					<div class="row ">
 						<div class="col-10">개인정보 및 결제동의</div>
 						<div class="col-2 text-end">
-							<a href="">보기</a>
+							<a>보기</a>
 						</div>
 						<br /> <br />
 						<div class="col-10">전자지급 결제대행 서비스 이용약관 동의</div>
 						<div class="col-2 text-end">
-							<a href="">보기</a>
+							<a>보기</a>
 						</div>
 						<br /> <br />
 						<div class="col-10 align-self-center order_title">위 내용을 확인
 							하였으며 결제에 동의합니다.</div>
 						<div class="col-2 text-end">
-							<i class="bi bi-app fs-3"></i>
+							<i class="bi bi-square fs-3"></i>
 						</div>
 					</div>
 				</div>
@@ -162,7 +268,7 @@
 					</div>
 					<div class="col-12">
 						<div class="col-12 text-center" id="order_button">
-							<button>결제하기</button>
+							<button id="naverPayBtn">결제하기</button>
 						</div>
 					</div>
 				</div>
