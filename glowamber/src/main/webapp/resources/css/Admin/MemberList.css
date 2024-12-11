@@ -34,15 +34,15 @@ div{
 }
 
 /* 상품목록테이블 */
-#itemListHead{
+#memberListHead{
 	padding-bottom : 0px;
 }
 
-#itemListHead>div{
+#memberListHead>div{
 	padding-bottom : 0px;
 }
 
-#itemListHead table{
+#memberListHead table{
 	width : 100%;
 	padding-bottom : 0px;
 	background : #FFFFFF;
@@ -50,28 +50,80 @@ div{
 	border-bottom : 0px;
 }
 
-#itemListHead table th{
+#memberListHead table th{
 	height : 40px;
 }
 
-#itemListBody{
+#memberListBody{
 	padding-top : 0px;
 }
 
-#itemListBody>div{
+#memberListBody>div{
 	padding : 0px;
 	margin : 0px 12px 30px;
-	height : 100vh;
+	height : 58vh;
 	border : 1px #EBEBEB solid;
 	background : #FFFFFF;
 	overflow-y: auto;
 }
 
-#itemListBody table{
+#memberListBody table{
 	width : 100%;
 	
 }
 
-#ItemTable td{
+#memberTable td{
 	padding : 20px 0px;
+}
+
+
+/*popup*/
+.popup_layer {
+				position:fixed;
+				top:0;
+				left:0;
+				z-index: 10000;
+				width: 100%; 
+				height: 100%; 
+				background-color: rgba(0, 0, 0, 0.4); 
+}
+/*팝업 박스*/
+.popup_box{ 
+			position: relative;
+			top:50%;
+			left:50%;
+			overflow: auto; 
+			width:450px;
+			transform:translate(-50%, -50%);
+			z-index:1002;
+			border : 1px #EBEBEB solid;
+			background : #F1F1F1;
+			box-sizing:border-box;
+			box-shadow: 2px 5px 10px 0px rgba(0,0,0,0.35);
+			-webkit-box-shadow: 2px 5px 10px 0px rgba(0,0,0,0.35);
+			-moz-box-shadow: 2px 5px 10px 0px rgba(0,0,0,0.35);
+			
+}
+/*컨텐츠 영역*/
+.popup_box input{
+	width : 70px;
+	margin : 0px 15px 5px;
+}
+.popup_box table{
+	width : 417px;
+	padding : 0px;
+	margin : 10px 15px 5px;
+	height : 58vh;
+	border : 1px #EBEBEB solid;
+	background : #FFFFFF;
+	overflow-y: auto;
+}
+
+.popup_box table td:nth-child(1){
+	width : 30%;
+	border-right : 1px #EBEBEB solid;
+}
+
+.popup_box table tr{
+	border-bottom : 1px #EBEBEB solid;
 }

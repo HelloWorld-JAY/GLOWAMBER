@@ -54,11 +54,23 @@
 				</tr>
 			</table>
 		</div>
-		
 	</div>
 	<div class='row text-center' id='StoreListBody'>
 		<div class='col'>
 			<table id='StoreTable'>
+			</table>
+		</div>
+	</div>
+	<div class='row text-center' id='StoreListFooter'>
+		<div class='col'>
+			<table>
+				<tr>
+					<th></th>
+					<th class='totalstoreprice'>전체 입고액</th>
+					<th class='totalstoreprice' id="totalstoreprice"></th>
+					<th class='totalsellprice'>전체 출고액</th>
+					<th class='totalsellprice' id="totalsellprice"></th>
+				</tr>
 			</table>
 		</div>
 	</div>

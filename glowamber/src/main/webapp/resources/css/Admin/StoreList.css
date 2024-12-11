@@ -54,14 +54,29 @@ div{
 	height : 40px;
 }
 
+#StoreListHead table th:nth-child(1){
+	width : 10%
+}
+
+#StoreListHead table th:nth-child(2){
+	width : 10%;
+}
+
+#StoreListHead table th:nth-child(4){
+	width : 11%;
+}
+
+#StoreListHead table th:nth-child(5){
+	width : 11%;
+}
 #StoreListBody{
 	padding-top : 0px;
 }
 
 #StoreListBody>div{
 	padding : 0px;
-	margin : 0px 12px 30px;
-	height : 100vh;
+	margin : 0px 12px;
+	height : 58vh;
 	border : 1px #EBEBEB solid;
 	background : #FFFFFF;
 	overflow-y: auto;
@@ -72,6 +87,59 @@ div{
 	
 }
 
+#StoreListBody table td:nth-child(1){
+	width : 10%
+}
+
+#StoreListBody table td:nth-child(2){
+	width : 10%;
+}
+
+#StoreListBody table td:nth-child(4){
+	width : 10%;
+}
+
+#StoreListBody table td:nth-child(5){
+	width : 10%;
+}
+
 #StoreTable td{
 	padding : 20px 0px;
+}
+
+#StoreListFooter{
+	padding-top : 0px;
+}
+
+#StoreListFooter>div{
+	padding-top : 0px;
+	
+}
+
+#StoreListFooter table{
+	width: 100%;
+	margin-top : 0px;
+	background : #FFFFFF;
+	border : 1px #EBEBEB solid;
+	border-bottom : 0px;
+}
+
+#StoreListFooter table th{
+	height : 40px;
+}
+
+#StoreListFooter table th:nth-child(2){
+	width : 10%
+}
+
+#StoreListFooter table th:nth-child(3){
+	width : 10%
+}
+
+#StoreListFooter table th:nth-child(4){
+	width : 10%;
+}
+
+#StoreListFooter table th:nth-child(5){
+	width : 10%;
 }

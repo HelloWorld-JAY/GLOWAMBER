@@ -26,104 +26,97 @@
 	<jsp:include page="AdminHeader.jsp" />
 	<!-- 헤더 -->
 	<div class='container itemcontainer text-center'>
-		<div class='row'>
-			<div id="MemberInfo" class='col'>
-				<div>
-					<table class='infoTable'>
-						<colgroup>
-							<col width='20%'>
-							<col width='*'>
-						</colgroup>
+		<div class='row popup_layer'>
+			<div  class='col '>
+				<div class='popup_box'>
+					<div>
+						<table class='infoTable text-center'>
+							<tr>
+								<td>이름</td>
+								<td id='username'></td>
+							</tr>
+							<tr>
+								<td>아이디</td>
+								<td id='userid'></td>
+							</tr>
+							<tr>
+								<td>전화번호</td>
+								<td id='usertel'></td>
+							</tr>
+							<tr>
+								<td>이메일</td>
+								<td id='useremail'></td>
+							</tr>
+							<tr>
+								<td>구매횟수</td>
+								<td id='userbuycount'></td>
+							</tr>
+							<tr>
+								<td>총액</td>
+								<td id='usertotalamount'></td>
+							</tr>
+							<tr>
+								<td>주소</td>
+								<td id='useraddr'></td>
+							</tr>
+							<tr>
+								<td>상세주소</td>
+								<td id='useraddrdetail'></td>
+							</tr>
+						</table>
+					</div>
+					<div class='text-end'>
+						<input type='button' id='popupCheck' value='확인' /> 
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 회원검색 -->
+		<div>
+			<div class='row'>
+				<div class='col-1'>
+					<select id='memberSelectCate'>
+						<option value='memberName'>이름</option>
+						<option value='memberId'>아이디</option>
+						<option value='memberTel'>전화번호</option>
+						<!-- <option value=''>구매횟수</option>
+					<option value=''>구매총액</option> -->
+						<option value='memberJoinDate'>가입일</option>
+					</select>
+				</div>
+				<div class='col'>
+					<input type='text' />
+				</div>
+				<div class='col-1'>
+					<input type='button' id='memberSelectBtn' value='검색' />
+				</div>
+			</div>
+			<!-- 회원리스트 -->
+			<div class='row' id='memberListHead'>
+				<div class='col'>
+					<table>
 						<tr>
-							<td>이름</td>
-							<td id='username'></td>
-						</tr>
-						<tr>
-							<td>아이디</td>
-							<td id='userid'></td>
-						</tr>
-						<tr>
-							<td>전화번호</td>
-							<td id='usertel'></td>
-						</tr>
-						<tr>
-							<td>이메일</td>
-							<td id='useremail'></td>
-						</tr>
-						<tr>
-							<td>구매횟수</td>
-							<td id='userbuycount'></td>
-						</tr>
-						<tr>
-							<td>총액</td>
-							<td id='usertotalamount'></td>
-						</tr>
-						<tr>
-							<td>주소</td>
-							<td id='useraddr'></td>
-						</tr>
-						<tr>
-							<td>상세주소</td>
-							<td id='useraddrdetail'></td>
+							<th>이름</th>
+							<th>아이디</th>
+							<th>전화번호</th>
+							<th>이메일</th>
+							<th>가입일</th>
+							<!-- <th>접속일</th> -->
+							<th>구매횟수</th>
+							<th>구매총액</th>
+							<!-- <th>회원등급</th> -->
+							<th>탈퇴여부</th>
 						</tr>
 					</table>
 				</div>
-				<div class='text-end'>
-					<input type='button' name='' id='' value='확인' /> <input
-						type='button' name='' id='' value='취소' />
+	
+			</div>
+			<div class='row text-center' id='memberListBody'>
+				<div class='col'>
+					<table id='memberTable'>
+	
+					</table>
 				</div>
-			</div>
-		</div>
-		<!-- 상품등록 -->
-		<div class='row justify-content-end'>
-			<div class='col-md-1 '>
-				<a href="ItemInsert"><input type='button' value='상품등록' /></a>
-			</div>
-		</div>
-		<!-- 상품검색 -->
-		<div class='row'>
-			<div class='col-1'>
-				<select id='memberSelectCate'>
-					<option value='memberName'>이름</option>
-					<option value='memberId'>아이디</option>
-					<option value='memberTel'>전화번호</option>
-					<!-- <option value=''>구매횟수</option>
-				<option value=''>구매총액</option> -->
-					<option value='memberJoinDate'>가입일</option>
-				</select>
-			</div>
-			<div class='col'>
-				<input type='text' />
-			</div>
-			<div class='col-1'>
-				<input type='button' id='memberSelectBtn' value='검색' />
-			</div>
-		</div>
-		<!-- 상품리스트 -->
-		<div class='row' id='itemListHead'>
-			<div class='col'>
-				<table>
-					<tr>
-						<th>이름</th>
-						<th>아이디</th>
-						<th>전화번호</th>
-						<th>이메일</th>
-						<th>가입일</th>
-						<!-- <th>접속일</th> -->
-						<th>구매횟수</th>
-						<th>구매총액</th>
-						<!-- <th>회원등급</th> -->
-						<th>탈퇴여부</th>
-					</tr>
-				</table>
-			</div>
-
-		</div>
-		<div class='row text-center' id='itemListBody'>
-			<div class='col'>
-				<table id='memberTable'>
-
-				</table>
 			</div>
 		</div>
 	</div>

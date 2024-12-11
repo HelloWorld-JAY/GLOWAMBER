@@ -3,17 +3,29 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="StoreDAO">
 	<select id="selectStoreList" resultType="storeDTO" parameterType="storeDTO">
-		SELECT '입고' AS storestatus, i.ITEMNAME itemname, s.STOREPRICE storeprice, s.STORECOUNT storecount,s.STOREDATE storedate
-		FROM   STORETABLE s INNER JOIN ITEMTABLE i 
-									 ON s.ITEMNUM = i.ITEMNUM
-		UNION 
-		SELECT '출고' AS storestatus, i.ITEMNAME itemname, o.ORDERDETAILPRICE storeprice,o.ORDERDETAILCOUNT storecount,o.ORDERDETAILSALEDATE storedate 
-		FROM 	ORDERDETAILTABLE o INNER JOIN STORETABLE s 
-										ON o.STORENUM =s.STORENUM 
-								   INNER JOIN ITEMTABLE i 
-								   		ON s.ITEMNUM =i.ITEMNUM 
+		SELECT *
+		FROM	(
+					SELECT '입고' AS storestatus
+						   , i.ITEMNAME itemname
+						   , s.STOREPRICE storeprice
+						   , s.STORECOUNT storecount
+						   ,s.STOREDATE storedate
+					FROM   STORETABLE s INNER JOIN ITEMTABLE i 
+												ON s.ITEMNUM = i.ITEMNUM
+					UNION 
+					SELECT '출고' AS storestatus
+						   , i.ITEMNAME itemname
+						   , o.ORDERDETAILPRICE storeprice
+						   ,o.ORDERDETAILCOUNT storecount
+						   ,o.ORDERDETAILSALEDATE storedate 
+					FROM 	ORDERDETAILTABLE o INNER JOIN STORETABLE s 
+													   ON o.STORENUM =s.STORENUM 
+											   INNER JOIN ITEMTABLE i 
+											   		   ON s.ITEMNUM =i.ITEMNUM 
+					WHERE ORDERDETAILSALEDATE IS NOT NULL 
+					
+				) Store
 		<where>
-			ORDERDETAILSALEDATE IS NOT NULL 
 			<if test="storeStatus != null">
 				AND storestatus = #{storeStatus}
 			</if>

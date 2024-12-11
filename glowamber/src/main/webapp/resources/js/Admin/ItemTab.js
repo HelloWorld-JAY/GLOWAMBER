@@ -13,6 +13,49 @@ $(function(){
 	/* 카테고리 화면 숨기기*/
 	$('#category').hide()
 	
+	$('.cateInsert').hide()
+	$('.cateUpdate').hide()
+	$('#InsertCateType').parent().parent().next().hide()
+	$('#UpdateCateType').parent().parent().next().hide()
+	
+	/* 카테고리 등록버튼 누를때  */
+	$('#cateInsertBtn').click(function(){
+		$('.cateUpdate').hide()
+		$('.cateInsert').show()
+		$('#InsertCateType').parent().parent().next().hide()
+		
+		/* 초기화 */
+		$('#InsertCateType').val("")
+		$('#SelectBigCate').val("")
+		$('#InsertCateName').val("")
+	})
+	/* 카테고리 수정버튼 누를때 */
+	$('#cateUpdateBtn').click(function(){
+		$('.cateInsert').hide()
+		$('.cateUpdate').show()
+		$('#UpdateCateType').parent().parent().next().hide()
+		
+		/* 초기화 */
+		$('#UpdateCateType').val("")
+		$('#UpdateBigCateName').val("")
+		$('#UpdateCateName').val("")
+		$('#CateNum').val("")
+	})
+	
+	$('#CateUpdateCancle').click(function(){
+		$('.cateUpdate').hide()
+	})
+	
+	$('#CateInsertCancle').click(function(){
+		$('.cateInsert').hide()
+	})
+	$('#InsertCateType').change(function(){
+		if($(this).val()=='small'){
+			$(this).parent().parent().next().show()
+		}else{
+			$(this).parent().parent().next().hide()
+		}
+	})
 	/* 스마트에디터 출력 */
 	smartEditor()
 	
@@ -24,8 +67,6 @@ $(function(){
 	$('#itemUpdateBtn').click(function(){
 		oEditors.getById['itemdetail'].exec("UPDATE_CONTENTS_FIELD",[])
 	})
-	
-	
 	
 	/* 입고버튼 클릭시 해당상품 재고입고 */
 	$('#inventoryStoreBtn').click(function(){
@@ -67,41 +108,22 @@ $(function(){
 				type : 'post'
 				,data : bigcateparam
 				,url  : '/glowamber/bigcateinsert'
-				,success : selectBigCate()
+				,success : selectBigCate
 			})
 			
 		}
 		
 		/* 소분류 등록 */
 		else{
-			let smallcateparam = { 
-							  	bigCateNum : $('#SelectBigCate').val()
-							  	,smallCateName : $('#InsertCateName').val()
+			let SelectSmallCateParam = { 
+								  	bigCateNum : $('#SelectBigCate').val()
+								  	,smallCateName : $('#InsertCateName').val()
 			}
 			$.ajax({
 				type :'post'
-				,data : smallcateparam
+				,data : SelectSmallCateParam
 				,url  :'/glowamber/smallcateinsert'
-				,success : function(){
-					$('#SmallCateList').empty()
-					$.ajax({
-						type : 'post'
-						,data: smallcateparam
-						,dataType : 'json'
-						,url  : '/glowamber/selectsmallcate'
-						,success : function (result){
-										$('#SmallCateList').empty();
-											for( smallcate of result ){
-											$('#SmallCateList').append(
-															$('<tr/>').append([
-																			$('<td/>').append([$('<input type="hidden" />').val(smallcate['smallCateNum'])
-																							 ,$('<input type="hidden" />').val(smallcate['bigCateNum'])
-																									  					 ,smallcate['smallCateName']])
-																			,$('<td/>').append($('<input type="button" class="delete" />').val('x'))]))
-											}
-									}
-					})
-				}
+				,success :  SelectSmallCate(SelectSmallCateParam)
 			})
 		}	
 	})
@@ -118,85 +140,54 @@ $(function(){
 				type  : 'post'
 				,data :	UpdateBigCateParam
 				,url  : '/glowamber/bigcateupdate'
-				,success : selectBigCate()
+				,success : selectBigCate
 			})
 		}
 		
 		/* 소분류 수정 */
 		else{
-			let UpdateSmallCateParam = {
-										SmallCateNum  :$('#CateNum').val()
-										,bigCateNum   :$('#BigCateNum').val()
-										,SmallCateName :$('#UpdateCateName').val() 
+			let SelectSmallCateParam = {
+										SmallCateNum  : $('#CateNum').val()
+										,bigCateNum   : $('#BigCateNum').val()
+										,SmallCateName : $('#UpdateCateName').val() 
 									  }
+			
 			$.ajax({
 				type  : 'post'
-				,data :	UpdateSmallCateParam
+				,data :	SelectSmallCateParam
 				,url  : '/glowamber/smallcateupdate'
-				,success : function(){
-					$.ajax({
-						type  : 'post'
-						,data :	UpdateSmallCateParam
-						,dataType : 'json'
-						,url  : '/glowamber/selectsmallcate'
-						,success :function (result){
-										$('#SmallCateList').empty();
-											for( smallcate of result ){
-											$('#SmallCateList').append(
-															$('<tr/>').append([
-																			$('<td/>').append([$('<input type="hidden" />').val(smallcate['smallCateNum'])
-																							 ,$('<input type="hidden" />').val(smallcate['bigCateNum'])
-																									  					 ,smallcate['smallCateName']])
-																			,$('<td/>').append($('<input type="button" class="delete" />').val('x'))]))
-											}
-									}
-					})
-				}
+				,success : SelectSmallCate(SelectSmallCateParam)
 			})
 		}
 	})
 	
 	/* 카테고리 삭제	*/
 	/* 대분류 카테고리 삭제 */
-	$('#BigCateList').on('click','.delete',function(){
+	$('#BigCateListBody').on('click','.delete',function(e){
 		$.ajax({
 				type : 'post'
 				,data : {bigCateNum : $(this).parents('tr').find('input').val()}
 				,url  : '/glowamber/bigcatedelete'
-				,success : selectBigCate()
+				,success : selectBigCate
 			})
+		e.stopPropagation()
 	})
 	
 	/* 소분류 카테고리 삭제 */
-	$('#SmallCateList').on('click','.delete',function(){
-			let deleteparam={
+	$('#SmallCateListBody').on('click','.delete',function(e){
+		
+			let SelectSmallCateParam={
 				SmallCateNum : $(this).parents('tr').find('input:eq(0)').val()
 				,bigCateNum : $(this).parents('tr').find('input:eq(1)').val()
 			}
+			
 			$.ajax({
 				type : 'post'
-				,data : deleteparam
+				,data : SelectSmallCateParam
 				,url  : '/glowamber/Smallcatedelete'
-				,success : function(){
-					$.ajax({
-						type  : 'post'
-						,data :	deleteparam
-						,dataType : 'json'
-						,url  : '/glowamber/selectsmallcate'
-						,success : function (result){
-										$('#SmallCateList').empty();
-											for( smallcate of result ){
-											$('#SmallCateList').append(
-															$('<tr/>').append([
-																			$('<td/>').append([$('<input type="hidden" />').val(smallcate['smallCateNum'])
-																							 ,$('<input type="hidden" />').val(smallcate['bigCateNum'])
-																									  					 ,smallcate['smallCateName']])
-																			,$('<td/>').append($('<input type="button" class="delete" />').val('x'))]))
-											}
-									}
-					})
-				}
+				,success : SelectSmallCate(SelectSmallCateParam)
 			})
+			e.stopPropagation()
 	})
 	
 	/* 카테고리 출력 */
@@ -207,10 +198,10 @@ $(function(){
 						,dataType : 'json'
 						,url  : '/glowamber/selectbigcate'
 						,success : function(result){
-							$('#BigCateList').empty()
+							$('#BigCateListBody').empty()
 							$('#SelectBigCate').empty()
 							for( bigcate of result ){
-								$('#BigCateList').append(
+								$('#BigCateListBody').append(
 												$('<tr/>').append([
 																  $('<td/>').append([$('<input type="hidden" />').val(bigcate['bigCateNum'])
 																  					 ,bigcate['bigCateName']])
@@ -221,50 +212,60 @@ $(function(){
 					})
 				}
 				
-	/* 대분류 리스트 클릭시 */
-	$('#BigCateList').on('click','td',function(){
-	
-		/* 해당 소분류 출력 */
-		let smallcatelist = $('#SmallCateList')
-		smallcatelist.empty()
-			$.ajax({
+	/* 소분류 출력 */
+	function SelectSmallCate(SelectSmallCateParam){
+		$.ajax({
 				type : 'post'
-				,data:{bigCateNum:$(this).find('input').val()}
+				,data: SelectSmallCateParam
 				,dataType : 'json'
 				,url  : '/glowamber/selectsmallcate'
 				,success : function (result){
-								$('#SmallCateList').empty();
-									for( smallcate of result ){
-									$('#SmallCateList').append(
+								$('#SmallCateListBody').empty();
+								for( smallcate of result ){
+									$('#SmallCateListBody').append(
 													$('<tr/>').append([
 																	$('<td/>').append([$('<input type="hidden" />').val(smallcate['smallCateNum'])
 																					 ,$('<input type="hidden" />').val(smallcate['bigCateNum'])
 																							  					 ,smallcate['smallCateName']])
 																	,$('<td/>').append($('<input type="button" class="delete" />').val('x'))]))
-									}
 							}
-				
-			})
-		
+				}
+		})
+	}
+	
+	/* 대분류 리스트 클릭시 */
+	$('#BigCateListBody').on('click','tr',function(){
+		/* 해당 대분류의 소분류 출력 */
+		SelectSmallCateParam = { bigCateNum : $(this).children().children('input').val() }
+		SelectSmallCate(SelectSmallCateParam)
+			
 		/* 대분류 번호, 이름 수정 폼에 출력 */
 		$('#CateNum').val($(this).find('input').val())
 		$('#UpdateCateType').val('대분류')
 		$('#BigCateNum').val($(this).find('input').val())
 		$('#UpdateBigCateName').val($(this).text())
 		$('#UpdateCateName').val($(this).text())
+		$('#bigCateNum').val($(this).find('input').val())
 	})
 	
 	/* 소분류 리스트 클릭시 */
-	$('#SmallCateList').on('click','td',function(){
+	$('#SmallCateListBody').on('click','td',function(){
 		$('#CateNum').val($(this).find('input').val())
 		$('#UpdateCateType').val('소분류')
 		$('#UpdateCateName').val($(this).text())
 		$('#smallCateNum').val($(this).children().first().val())
+		
+		if($('#UpdateCateType').val()=='소분류'){
+			$('#UpdateCateType').parent().parent().next().show()
+		}else{
+			$('#UpdateCateType').parent().parent().next().hide()
+	}
 	})
 	
 	/* 카테고리 화면 띄우기 */
 	$('#categoryUp').click(function(){
 		$('#category').show()
+		selectBigCate()
 	})
 	
 	$('#categoryhide').click(function(){

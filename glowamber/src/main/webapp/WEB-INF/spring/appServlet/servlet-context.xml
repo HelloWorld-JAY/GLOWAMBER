@@ -22,7 +22,9 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.java.glowamber" />
-	
+	<!-- 파일업로드 하려면 MultipartResolver를 등록해야 함 -->
+	<beans:bean id="multipartResolver"  
+	class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 	
 	
 </beans:beans>

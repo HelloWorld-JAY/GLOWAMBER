@@ -3,14 +3,22 @@ $(function(){
 	
 	/* 리스트 검색 */
 	$('.StoreStatus').click(function(){
-		if($(this).val() == '입고'){
+		StoreListParam = {storeStatus : $(this).val()}
 		
+		if($(this).val()=='전체'){
+			SelectStoreList()
+			$('.totalstoreprice').show()
+			$('.totalsellprice').show()
 		}
-		if($(this).val() == '출고'){
-		
+		if($(this).val()=='입고'){
+			SelectStoreList(StoreListParam)
+			$('.totalstoreprice').show()
+			$('.totalsellprice').hide()
 		}
-		if($(this).val() == '전체'){
-		
+		if($(this).val()=='출고'){
+			SelectStoreList(StoreListParam)
+			$('.totalsellprice').show()
+			$('.totalstoreprice').hide()
 		}
 	})
 	
@@ -23,6 +31,10 @@ $(function(){
 			,url : '/glowamber/selectStoreList'
 			,success : function(result){
 				$('#StoreTable').empty()
+				
+				let totalstoreprice = 0
+				let totalsellprice = 0
+				
 				for(StoreList of result){
 					$('#StoreTable').append(
 											  $('<tr/>').append([
@@ -34,7 +46,15 @@ $(function(){
 											  					 
 											  					])
 											)
+					if(StoreList['storeStatus'] == "입고" ) {
+						totalstoreprice += StoreList['storePrice']
+					}else {
+						totalsellprice += StoreList['storePrice']
+					}
 				}
+				$('#totalstoreprice').text(totalstoreprice + "원")
+				
+				$('#totalsellprice').text(totalsellprice + "원")
 			}
 		})
 	}
