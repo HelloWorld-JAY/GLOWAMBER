@@ -21,7 +21,7 @@
 <!-- 제이쿼리 -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
+	
 <script type="text/javascript">
 	
 </script>
@@ -58,7 +58,12 @@
 						<a href="/glowamber/auth/naver/login">
 						<img height="50" src="/glowamber/resources/imgs/loginbtn/btnG_naver.png"/></a>
 					</div>
-					<div class="col-4">카카오</div>
+					<div class="col-4">
+					<a class="p-2" href="https://kauth.kakao.com/oauth/authorize?client_id=15fb9c3a60a3c244855ab9c513ece3ee&redirect_uri=
+http://localhost:8080/glowamber/mainpage/MainPage&response_type=code">
+					<img src="/glowamber/resources/imgs/sociallogin/kakao_login_large_narrow.png" style="height:60px">					
+					
+					</div>
 					<div class="col-4">구글</div>
 				</div>
 			</div>
