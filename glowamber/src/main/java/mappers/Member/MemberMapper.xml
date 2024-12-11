@@ -53,4 +53,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			FROM	membertable
 			WHERE   memberid = #{memberId}
 		</select>
+		
+		<!-- 정보 찾기 -->
+	<select id="findKakao" parameterType="java.util.HashMap" resultType="memberDTO">
+		select * from MEMBERTABLE where MEMBEREMAIL=#{email, jdbcType=VARCHAR}
+	</select>
+
+	<!-- 정보 저장 -->
+	<insert id="kakaoInsert" parameterType="java.util.HashMap">
+		insert into MEMBERTABLE(MEMBERNUM ,MEMBERID, MEMBERPASS, MEMBERNAME,MEMBERTEL, MEMBEREMAIL, MEMBERJOINDATE, MEMBERAUTH)
+			values(MEMBERNUM_SEQ.nextval,'0','0','0','0',#{email, jdbcType=VARCHAR},sysdate,'0')
+	</insert>
+		
+		
 </mapper> 

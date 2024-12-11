@@ -23,7 +23,7 @@ public class SocialLoginDAOImpl implements SocialLoginDAO {
 		// 정보 확인
 	@Override
 		public MemberDTO findkakao(HashMap<String, Object> userInfo) {
-			System.out.println("RN:"+userInfo.get("nickname"));
+			
 			System.out.println("RE:"+userInfo.get("email"));
 			return mybatis.selectOne("member.findKakao", userInfo);
 		}

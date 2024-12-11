@@ -55,14 +55,20 @@
 			<div class="container text-center">
 				<div class="row">
 					<div class="col-4">
-						<a href="/glowamber/auth/naver/login">
-						<img height="50" src="/glowamber/resources/imgs/loginbtn/btnG_naver.png"/></a>
+						
 					</div>
 					<div class="col-4">
-					<a class="p-2" href="https://kauth.kakao.com/oauth/authorize?client_id=15fb9c3a60a3c244855ab9c513ece3ee&redirect_uri=
-http://localhost:8080/glowamber/mainpage/MainPage&response_type=code">
+					<!-- <a class="p-2" href="https://kauth.kakao.com/oauth/authorize?client_id=15fb9c3a60a3c244855ab9c513ece3ee&redirect_uri=
+http://localhost:8080/glowamber/mainpage/MainPage/response_type=code">
 					<img src="/glowamber/resources/imgs/sociallogin/kakao_login_large_narrow.png" style="height:60px">					
+					</a> -->
+					<a class="p-2" href="https://kauth.kakao.com/oauth/authorize?client_id=15fb9c3a60a3c244855ab9c513ece3ee&redirect_uri=http://localhost:8080/glowamber/member/kakaoLogin&response_type=code">
+					<img src="/glowamber/resources/imgs/sociallogin/kakao_login_large_wide.png" style="height:60px">					
+					</a>
 					
+					<a class="p-2" href="https://kauth.kakao.com/oauth/authorize?client_id=15fb9c3a60a3c244855ab9c513ece3ee&redirect_uri=http://localhost:8080/glowamber/member/kakaoLogin&response_type=code">
+					ㅋㅋㅋㅋㅋㅋㅋ					
+					</a>
 					</div>
 					<div class="col-4">구글</div>
 				</div>
