@@ -18,7 +18,13 @@ public class DashBoardController {
 	
 	@PostMapping("getChartData")
 	@ResponseBody
-	public List<StoreDTO> getChartData(){
-		return dashboardservice.getChartData();
+	public List<StoreDTO> getChartData(StoreDTO dto){
+		return dashboardservice.getChartData(dto);
+	}
+	
+	@PostMapping("getSaleChartData")
+	@ResponseBody
+	public List<StoreDTO> getSaleChartData(StoreDTO dto){
+		return dashboardservice.getSaleChartData(dto);
 	}
 }

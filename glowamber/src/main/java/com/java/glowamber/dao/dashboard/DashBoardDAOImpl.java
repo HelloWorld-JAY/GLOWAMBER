@@ -15,9 +15,14 @@ public class DashBoardDAOImpl implements DashBoardDAO{
 	private SqlSessionTemplate mybatis;
 
 	@Override
-	public List<StoreDTO> getChartData() {
-		List<StoreDTO> list = mybatis.selectList("StoreDAO.selectStoreList");
-		System.out.println(list.toString());
+	public List<StoreDTO> getChartData(StoreDTO dto) {
+		List<StoreDTO> list = mybatis.selectList("StoreDAO.selectStoreList",dto);
+		return list;
+	}
+
+	@Override
+	public List<StoreDTO> getSaleChartData(StoreDTO dto) {
+		List<StoreDTO> list = mybatis.selectList("StoreDAO.selectSalesList",dto);
 		return list;
 	}
 }

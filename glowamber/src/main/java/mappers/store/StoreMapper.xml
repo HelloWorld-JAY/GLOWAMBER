@@ -10,7 +10,6 @@
 						   , s.STOREPRICE storeprice
 						   , s.STORECOUNT storecount
 						   , s.STOREDATE storedate
-						   , s.salecount salecount
 						   , i.ITEMNUM itemnum
 					FROM   STORETABLE s INNER JOIN ITEMTABLE i 
 												ON s.ITEMNUM = i.ITEMNUM
@@ -20,7 +19,6 @@
 						   , o.ORDERDETAILPRICE storeprice
 						   , o.ORDERDETAILCOUNT storecount
 						   , o.ORDERDETAILSALEDATE storedate 
-						   , s.salecount salecount
 						   , i.ITEMNUM itemnum
 					FROM 	ORDERDETAILTABLE o INNER JOIN STORETABLE s 
 													   ON o.STORENUM =s.STORENUM 
@@ -36,7 +34,34 @@
 			<if test="itemNum != null">
 				AND Store.itemnum = #{itemNum}
 			</if>
+			<if test="year != null">
+				AND TO_CHAR(Store.storedate,'yyyy') = #{year}
+			</if>
+			<if test="month != null">
+				AND TO_CHAR(Store.storedate,'mm') = #{month}
+			</if>
 		</where>
 		ORDER BY Store.storeDate ASC 
+	</select>
+	<select id="selectSalesList" resultType="storeDTO" parameterType="storeDTO">
+		SELECT '출고' AS storestatus
+						   , i.ITEMNAME itemname
+						   , o.ORDERDETAILPRICE storeprice
+						   , o.ORDERDETAILCOUNT storecount
+						   , o.ORDERDETAILSALEDATE storedate 
+						   , i.ITEMNUM itemnum
+		FROM 	ORDERDETAILTABLE o INNER JOIN STORETABLE s 
+										   ON o.STORENUM =s.STORENUM 
+								   INNER JOIN ITEMTABLE i 
+								   		   ON s.ITEMNUM =i.ITEMNUM 
+		<where>
+			ORDERDETAILSALEDATE IS NOT NULL 
+			<if test="year != null">
+				AND TO_CHAR(o.ORDERDETAILSALEDATE,'yyyy') = #{year}
+			</if>
+			<if test="month != null">
+				AND TO_CHAR(o.ORDERDETAILSALEDATE,'mm') = #{month}
+			</if>
+		</where>
 	</select>
 </mapper>

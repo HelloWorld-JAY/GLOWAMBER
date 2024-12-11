@@ -15,7 +15,12 @@ public class DashBoardServiceImpl implements DashBoardService {
 	private DashBoardDAO dashboarddao;
 
 	@Override
-	public List<StoreDTO> getChartData() {
-		return dashboarddao.getChartData();
+	public List<StoreDTO> getChartData(StoreDTO dto) {
+		return dashboarddao.getChartData(dto);
+	}
+
+	@Override
+	public List<StoreDTO> getSaleChartData(StoreDTO dto) {
+		return dashboarddao.getSaleChartData(dto);
 	}
 }

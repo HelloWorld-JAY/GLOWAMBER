@@ -13,6 +13,7 @@ public class StoreDTO {
 	private String storeExpirDate;	// 유통기한
 	private Integer saleCount;  	// 현재/입출고량
 	private Integer storeNum;	
-	
+	private String year;
+	private String month;
 
 }
