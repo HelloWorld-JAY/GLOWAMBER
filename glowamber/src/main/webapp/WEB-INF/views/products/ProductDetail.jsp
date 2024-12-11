@@ -171,13 +171,13 @@
 			</div>
 			<div class="row text-center product_img " id="scroll1" style="padding-top:100px">
 				<div class="col-12">
-					<img style="width: 100%;" alt="상품설명" src="${itemDTO.itemDetail}">
+					${itemDTO.itemDetail}
 				</div>
 			</div>
 
 			<div class="row text-center detail_img" id="scroll2" style="padding-top:100px">
 				<div class="col-12">
-					<img style="width: 100%;" alt="상세설명" src="${itemDTO.itemDetail}">
+					${itemDTO.itemDetail}
 				</div>
 			</div>
 

@@ -13,7 +13,6 @@ $(function(){
 		"mode" : "development", // development or production
 		"clientId": "HN3GGCMDdTgGUfl0kFCo", // clientId
 		"chainId": "clBWajc0akF3cVh", // chainId
-		"openType": "popup",
 	});
 	let totalPayAmount = 0;
 	let taxScopeAmount = 0;
@@ -38,9 +37,16 @@ $(function(){
 				"totalPayAmount": totalPayAmount,
 				"taxScopeAmount": taxScopeAmount,
 				"taxExScopeAmount": "0",
-				"returnUrl": "https://developers.pay.naver.com/user/sand-box/payment"
-
+				"returnUrl": "http://192.168.0.184:8080/glowamber/mainpage/MainPage"
 			});
+			 // 팝업이 닫혔을 때 처리
+            var pollTimer = setInterval(function() {
+                if (oPay.closed) {
+                    clearInterval(pollTimer); // 타이머 정리
+                    alert('주문이 완료되어서 처음으로 돌아갑니다.');
+                    window.location.href = "mainpage/MainPage"; // 페이지 이동
+                }
+            }, 1000); // 1초마다 팝업 상태 확인
 			// 에이젝스 통신 데이터베이스에 넣기
 			// order에 넣기
 			let orderNum = 0;
@@ -50,7 +56,7 @@ $(function(){
 					orderAddr:$('.deliveryNowAddr').find('span').first().text(),
 					orderAddrDetail:$('.deliveryNowAddr').find('span').eq(1).text(),
 					orderRequest:"배송요청사항:"+$('.requestRider').text()+','+"업체요청사항:"+$('.requestCompany').text(),
-					}
+			}
 			$.ajax({
 				type:'post',
 				url:'/glowamber/order',
@@ -58,30 +64,27 @@ $(function(){
 				dataType:'json',
 				success:function(result){
 					orderNum = result;
+					// orderDetail에 넣기
+					$('.productRow').each(function(){
+						let orderDetailAjaxData = {
+								orderNum:orderNum,
+								itemNum:$(this).find('.product_img').attr('value'),
+								orderDetailPrice:($(this).find('.product_price').val()/$(this).find('.product_count').attr('value')),
+								orderDetailCount:$(this).find('.product_count').attr('value'),
+								memberId:$(this).attr('value')
+						}
+						$.ajax({
+							type:'post',
+							url:'/glowamber/orderDetailAdd',
+							data:orderDetailAjaxData,
+							dataType:'json',
+							success:function(result){
+
+							}
+						});
+					});
 				}
 			});
-			// orderDetail에 넣기
-			let itemNum = [];
-			$('.productRow').each(function(){
-				let orderDetailAjaxData = {
-						orderNum:orderNum,
-						itemNum:$(this).find('.product_img').attr('value'),
-						orderDetailStatus:"결제완료",
-						orderDetailPrice:($(this).find('product_price').val()/$(this).find('product_count').attr('value')),
-						orderDetailCount:$(this).find('product_count').attr('value')
-				}
-				$.ajax({
-					type:'post',
-					url:'/glowamber/orderDetail',
-					data:orderDetailAjaxData,
-					dataType:'json',
-					success:function(result){
-						alert('주문이 정상처리되었습니다. 처음으로 돌아갑니다.')
-						location = "mainpage/MainPage"
-					}
-				});
-			});
-			
 		}
 	});// 결제 api -end
 
@@ -109,6 +112,7 @@ $(function(){
 			}
 		}).open();
 	}	// 주소 api -end
+
 	//주소변경후 등록완료 버튼 누를시
 	$('.addr_complete').click(function(){
 		$('.deliveryNowName').text($('#delivery-name').val());

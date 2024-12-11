@@ -19,4 +19,6 @@ public interface CartDAO {
 	public Integer deleteCartProduct(CartDTO dto);
 	// 주문테이블에 넣기
 	public Integer insertOrder(OrderDTO dto);
+	// 주문상세 테이블에 넣기
+	public Integer insertOrderDetail(OrderDetailDTO dto);
 }

@@ -106,12 +106,14 @@ $(function(){
 			data:{guestId:guestId,memberId:''},
 			url:'../guestCartSelect',
 			success:function(result){
+				console.log(result)
 				if(result && result.length > 0) {
 					$('.cart-item').remove();
 					let productList = $('#product_list');
 					let productCol = $('<div class="col-12"></div>');
 
 					for(let product of result) {
+						
 						let formatted = new Intl.NumberFormat('ko-KR').format(product['ITEMPRICE']);
 						productCol.append('<div class="row SelectProduct" style="padding-top:20px; padding-bottom:20px; ">'+
 								'<div class="col-1 align-self-top text-end"><i class="bi bi-check-square-fill fs-5 check-box" value="'+product['CARTNUM']+'"></i></div>'+

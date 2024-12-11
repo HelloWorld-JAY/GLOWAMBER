@@ -8,10 +8,13 @@ public class OrderDetailDTO {
 	private Integer orderNum;
 	private String memberName;
 	private String orderDate;
+	private Integer storeNum;
 	private String itemName;
 	private Integer orderDetailCount;		   // 상품수량
 	private Integer orderDetailPrice;
 	private String orderDetailStatus;
 	private Integer orderItemCount;            // 주문한상품갯수
 	private Integer itemNum;
+	private Integer rowNum;
+	private String memberId;
 }

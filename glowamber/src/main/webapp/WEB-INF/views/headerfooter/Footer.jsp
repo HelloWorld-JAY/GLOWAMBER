@@ -26,6 +26,7 @@
 
 </body>
 <footer>
+<br/><br/><br/><br/>
 <div class="container-fluid"><hr /></div>
 
 	<div class="container footer">

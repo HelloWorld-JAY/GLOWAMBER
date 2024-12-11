@@ -56,7 +56,7 @@ public class CartServiceImpl implements CartService {
 	@Override
 	public Integer insertOrderDetail(OrderDetailDTO dto) {
 
-		return null;
+		return dao.insertOrderDetail(dto);
 	}
 
 

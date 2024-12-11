@@ -52,8 +52,9 @@
 			<li class="nav-item"><a class="nav-link"
 				href="/glowamber/products/Cart"><i class="bi bi-bag fs-2"></i> <br />장바구니</a></li>
 			<hr />
-			<li class="nav-item"><a class="nav-link scroll_top" aria-current="page"
-				style="cursor: pointer;"><i class="bi bi-arrow-up-square fs-2"></i><br />TOP </a></li>
+			<li class="nav-item"><a class="nav-link scroll_top"
+				aria-current="page" style="cursor: pointer;"><i
+					class="bi bi-arrow-up-square fs-2"></i><br />TOP </a></li>
 		</ul>
 	</div>
 	<!-- 퀵메뉴 -->
@@ -61,60 +62,82 @@
 	<!-- 메인 바디 컨테이너 -->
 	<div class="container text-center" id="body_container">
 		<c:choose>
-		<c:when test="${selectKeyword == null}">
-		<h2>${ cate[0].BIGCATENAME }</h2>
-		<!-- 카테고리 컨테이너 -->
-		<div class="container text-center" id="small_cate">
-			<div class="row">
-				<c:forEach var="list" items="${ cate }">
-					<div class="col-3">
-						<span class="smallcate" value="${ list.SMALLCATENUM }"><a href="smallProductList?bigCateNum=${list.BIGCATENUM}&smallCateNum=${list.SMALLCATENUM}">${ list.SMALLCATENAME }</a></span>
+			<c:when test="${selectKeyword == null && best == null && newList == null}">
+				<h2>${ cate[0].BIGCATENAME }</h2>
+				<!-- 카테고리 컨테이너 -->
+				<div class="container text-center" id="small_cate">
+					<div class="row">
+						<c:forEach var="list" items="${ cate }">
+							<div class="col-3">
+								<span class="smallcate" value="${ list.SMALLCATENUM }"><a
+									href="smallProductList?bigCateNum=${list.BIGCATENUM}&smallCateNum=${list.SMALLCATENUM}">${ list.SMALLCATENAME }</a></span>
+							</div>
+						</c:forEach>
 					</div>
-				</c:forEach>
-			</div>
-		</div><!-- 카테고리 컨테이너 -->
-		</c:when>
-		<c:otherwise>
-		<div class = "container" id="keyword"><h2>'<span>${selectKeyword}</span>'의 검색 결과 입니다.</h2></div>
-		</c:otherwise>
+				</div>
+				<!-- 카테고리 컨테이너 -->
+			</c:when>
+			<c:when test="${best != null}">
+				<div class="container" id="keyword">
+					<h2 style="font-weight: 600; font-size: 40px;">베스트 TOP100</h2>
+				</div>
+			</c:when>
+			<c:when test="${newList != null}">
+				<div class="container" id="keyword">
+					<h2 style="font-weight: 600; font-size: 40px;">신상품</h2>
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div class="container" id="keyword">
+					<h2>
+						'<span>${selectKeyword}</span>'의 검색 결과 입니다.
+					</h2>
+				</div>
+			</c:otherwise>
 		</c:choose>
-		
-		
+
+
 		<!-- 상품 정렬 -->
 		<div id="product_array">
 			<hr />
-			<c:if test="${selectKeyword == null}">
-			<ul>
-				<c:choose>
-					<c:when test="${ nowSmallCateNum != null }">
-	                	<li><a href="smallProductList?bigCateNum=${nowBigCateNum}&smallCateNum=${nowSmallCateNum}&arr=date">상품등록순</a></li>
-	            	</c:when>
-	                <c:otherwise>
-	                    <li><a href="bigProductList?bigCateNum=${nowBigCateNum}&arr=date">상품등록순</a></li>
-	            	</c:otherwise>
-	            </c:choose>
-				<li>ㅣ</li>
-				<c:choose>
-					<c:when test="${ nowSmallCateNum != null }">
-	                	<li><a href="smallProductList?bigCateNum=${nowBigCateNum}&smallCateNum=${nowSmallCateNum}&arr=korean">가나다순</a></li>
-	            	</c:when>
-	                <c:otherwise>
-	                    <li><a href="bigProductList?bigCateNum=${nowBigCateNum}&arr=korean">가나다순</a></li>
-	            	</c:otherwise>
-	            </c:choose>
-				<li>ㅣ</li>
-				<c:choose>
-					<c:when test="${ nowSmallCateNum != null }">
-	                	<li><a href="smallProductList?bigCateNum=${nowBigCateNum}&smallCateNum=${nowSmallCateNum}&arr=price">가격순</a></li>
-	            	</c:when>
-	                <c:otherwise>
-	                    <li><a href="bigProductList?bigCateNum=${nowBigCateNum}&arr=price">가격순</a></li>
-	            	</c:otherwise>
-	            </c:choose>
-			</ul>
+			<c:if test="${selectKeyword == null && best == null && newList == null}">
+				<ul>
+					<c:choose>
+						<c:when test="${ nowSmallCateNum != null }">
+							<li><a
+								href="smallProductList?bigCateNum=${nowBigCateNum}&smallCateNum=${nowSmallCateNum}&arr=date">상품등록순</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a
+								href="bigProductList?bigCateNum=${nowBigCateNum}&arr=date">상품등록순</a></li>
+						</c:otherwise>
+					</c:choose>
+					<li>ㅣ</li>
+					<c:choose>
+						<c:when test="${ nowSmallCateNum != null }">
+							<li><a
+								href="smallProductList?bigCateNum=${nowBigCateNum}&smallCateNum=${nowSmallCateNum}&arr=korean">가나다순</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a
+								href="bigProductList?bigCateNum=${nowBigCateNum}&arr=korean">가나다순</a></li>
+						</c:otherwise>
+					</c:choose>
+					<li>ㅣ</li>
+					<c:choose>
+						<c:when test="${ nowSmallCateNum != null }">
+							<li><a
+								href="smallProductList?bigCateNum=${nowBigCateNum}&smallCateNum=${nowSmallCateNum}&arr=price">가격순</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a
+								href="bigProductList?bigCateNum=${nowBigCateNum}&arr=price">가격순</a></li>
+						</c:otherwise>
+					</c:choose>
+				</ul>
 			</c:if>
 		</div>
-		
+
 		<!-- 상품 리스트 시작 -->
 		<div class="container">
 			<div class="row" id="product_container">
@@ -151,9 +174,7 @@
 														<div class="row">
 															<div class="col-12 text-end"
 																style="font-size: 20px; text-align: left;">${ product.itemName }</div>
-															<br />
-															<br />
-															<br />
+															<br /> <br /> <br />
 															<div class="col-12 align-self-end text-end"
 																style="text-align: left; font-size: 16px;">
 																<span>상품금액:</span> <span class="product_price"
@@ -209,64 +230,108 @@
 		<!-- 상품 목록번호 -->
 		<hr />
 		<div id="page_number" class="text-center">
-	    <!-- 이전 페이지 -->
-	    <c:if test="${ item.pageMaker.prevPage > 0 }">
-	        <c:choose>
-	         <c:when test="${ selectKeyword != null }">
-	                  <span class="page_direction"><a href="bigProductList?pageNum=${ item.pageMaker.prevPage }&selectKeyword=${ selectKeyword }"><i class="bi bi-chevron-left"></i></a></span>
-	                 </c:when>
-	            <c:when test="${ nowSmallCateNum != null }">
-	                <!-- 소분류가 있을 경우 -->
-	                <span class="page_direction"><a href="smallProductList?pageNum=${ item.pageMaker.prevPage }&bigCateNum=${nowBigCateNum}&smallCateNum=${nowSmallCateNum}&arr=${arr}"><i class="bi bi-chevron-left"></i></a></span>
-	            </c:when>
-	            <c:otherwise>
-	                <!-- 소분류가 없을 경우 -->
-	                <span class="page_direction"><a href="bigProductList?pageNum=${ item.pageMaker.prevPage }&bigCateNum=${nowBigCateNum}&arr=${arr}"><i class="bi bi-chevron-left"></i></a></span>
-	            </c:otherwise>
-	        </c:choose>
-	    </c:if>
-	
-	    <!-- 페이지 번호 -->
-	    <c:forEach var="i" begin="${ item.pageMaker.startPage }" end="${ item.pageMaker.endPage }">
-	        <c:choose>
-	            <c:when test="${i == item.pageMaker.pageNum }">
-	                <!-- 현재 페이지 표시 -->
-	                <span>${i}</span>
-	            </c:when>
-	            <c:otherwise>
-	                <!-- 다른 페이지 링크 -->
-	                <c:choose>
-	                 <c:when test="${ selectKeyword != null }">
-	                 <span><a href="bigProductList?pageNum=${ i }&selectKeyword=${ selectKeyword }">${ i }</a></span>
-	                 </c:when>
-	                    <c:when test="${ nowSmallCateNum != null }">
-	                        <span><a href="smallProductList?pageNum=${ i }&bigCateNum=${nowBigCateNum}&smallCateNum=${nowSmallCateNum}&arr=${arr}">${ i }</a></span>
-	                    </c:when>
-	                    <c:otherwise>
-	                        <span><a href="bigProductList?pageNum=${ i }&bigCateNum=${nowBigCateNum}&arr=${arr}">${ i }</a></span>
-	                    </c:otherwise>
-	                </c:choose>
-	            </c:otherwise>
-	        </c:choose>
-	    </c:forEach>
-	
-	    <!-- 다음 페이지 -->
-	    <c:if test="${ item.pageMaker.nextPage <= item.pageMaker.totalPage }">
-	        <c:choose>
-	        <c:when test="${ selectKeyword != null }">
-	                  <span class="page_direction"><a href="bigProductList?pageNum=${ item.pageMaker.prevPage }&selectKeyword=${ selectKeyword }"><i class="bi bi-chevron-right"></i></a></span>
-	                 </c:when>
-	            <c:when test="${ nowSmallCateNum != null }">
-	                <!-- 소분류가 있을 경우 -->
-	                <span class="page_direction"><a href="smallProductList?pageNum=${ item.pageMaker.nextPage }&bigCateNum=${nowBigCateNum}&smallCateNum=${nowSmallCateNum}&arr=${arr}"><i class="bi bi-chevron-right"></i></a></span>
-	            </c:when>
-	            <c:otherwise>
-	                <!-- 소분류가 없을 경우 -->
-	                <span class="page_direction"><a href="bigProductList?pageNum=${ item.pageMaker.nextPage }&bigCateNum=${nowBigCateNum}&arr=${arr}"><i class="bi bi-chevron-right"></i></a></span>
-	            </c:otherwise>
-	        </c:choose>
-	    </c:if>
-	</div>
+			<!-- 이전 페이지 -->
+			<c:if test="${ item.pageMaker.prevPage > 0 }">
+				<c:choose>
+					<c:when test="${ selectKeyword != null }">
+						<span class="page_direction"><a
+							href="bigProductList?pageNum=${ item.pageMaker.prevPage }&selectKeyword=${ selectKeyword }"><i
+								class="bi bi-chevron-left"></i></a></span>
+					</c:when>
+					<c:when test="${ best != null }">
+						<span class="page_direction"><a
+							href="bestList?pageNum=${ item.pageMaker.prevPage }"><i
+								class="bi bi-chevron-left"></i></a></span>
+					</c:when>
+					<c:when test="${ newList != null }">
+						<span class="page_direction"><a
+							href="newList?pageNum=${ item.pageMaker.prevPage }"><i
+								class="bi bi-chevron-left"></i></a></span>
+					</c:when>
+					<c:when test="${ nowSmallCateNum != null }">
+						<!-- 소분류가 있을 경우 -->
+						<span class="page_direction"><a
+							href="smallProductList?pageNum=${ item.pageMaker.prevPage }&bigCateNum=${nowBigCateNum}&smallCateNum=${nowSmallCateNum}&arr=${arr}"><i
+								class="bi bi-chevron-left"></i></a></span>
+					</c:when>
+					<c:otherwise>
+						<!-- 소분류가 없을 경우 -->
+						<span class="page_direction"><a
+							href="bigProductList?pageNum=${ item.pageMaker.prevPage }&bigCateNum=${nowBigCateNum}&arr=${arr}"><i
+								class="bi bi-chevron-left"></i></a></span>
+					</c:otherwise>
+				</c:choose>
+			</c:if>
+
+			<!-- 페이지 번호 -->
+			<c:forEach var="i" begin="${ item.pageMaker.startPage }"
+				end="${ item.pageMaker.endPage }">
+				<c:choose>
+					<c:when test="${i == item.pageMaker.pageNum }">
+						<!-- 현재 페이지 표시 -->
+						<span>${i}</span>
+					</c:when>
+					<c:otherwise>
+						<!-- 다른 페이지 링크 -->
+						<c:choose>
+							<c:when test="${ selectKeyword != null }">
+								<span><a
+									href="bigProductList?pageNum=${ i }&selectKeyword=${ selectKeyword }">${ i }</a></span>
+							</c:when>
+							<c:when test="${ best != null }">
+								<span><a
+									href="bestList?pageNum=${ i }">${ i }</a></span>
+							</c:when>
+							<c:when test="${ newList != null }">
+								<span><a
+									href="newList?pageNum=${ i }">${ i }</a></span>
+							</c:when>
+							<c:when test="${ nowSmallCateNum != null }">
+								<span><a
+									href="smallProductList?pageNum=${ i }&bigCateNum=${nowBigCateNum}&smallCateNum=${nowSmallCateNum}&arr=${arr}">${ i }</a></span>
+							</c:when>
+							<c:otherwise>
+								<span><a
+									href="bigProductList?pageNum=${ i }&bigCateNum=${nowBigCateNum}&arr=${arr}">${ i }</a></span>
+							</c:otherwise>
+						</c:choose>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+
+			<!-- 다음 페이지 -->
+			<c:if test="${ item.pageMaker.nextPage <= item.pageMaker.totalPage }">
+				<c:choose>
+					<c:when test="${ selectKeyword != null }">
+						<span class="page_direction"><a
+							href="bigProductList?pageNum=${ item.pageMaker.prevPage }&selectKeyword=${ selectKeyword }"><i
+								class="bi bi-chevron-right"></i></a></span>
+					</c:when>
+					<c:when test="${ best != null }">
+						<span class="page_direction"><a
+							href="bestList?pageNum=${ item.pageMaker.prevPage }"><i
+								class="bi bi-chevron-right"></i></a></span>
+					</c:when>
+					<c:when test="${ newList != null }">
+						<span class="page_direction"><a
+							href="newList?pageNum=${ item.pageMaker.prevPage }"><i
+								class="bi bi-chevron-right"></i></a></span>
+					</c:when>
+					<c:when test="${ nowSmallCateNum != null }">
+						<!-- 소분류가 있을 경우 -->
+						<span class="page_direction"><a
+							href="smallProductList?pageNum=${ item.pageMaker.nextPage }&bigCateNum=${nowBigCateNum}&smallCateNum=${nowSmallCateNum}&arr=${arr}"><i
+								class="bi bi-chevron-right"></i></a></span>
+					</c:when>
+					<c:otherwise>
+						<!-- 소분류가 없을 경우 -->
+						<span class="page_direction"><a
+							href="bigProductList?pageNum=${ item.pageMaker.nextPage }&bigCateNum=${nowBigCateNum}&arr=${arr}"><i
+								class="bi bi-chevron-right"></i></a></span>
+					</c:otherwise>
+				</c:choose>
+			</c:if>
+		</div>
 	</div>
 	<!-- 풋터 -->
 	<jsp:include page="../headerfooter/Footer.jsp" />

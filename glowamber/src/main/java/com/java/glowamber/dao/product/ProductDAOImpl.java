@@ -58,6 +58,38 @@ public class ProductDAOImpl implements ProductDAO{
 	public Integer selectProductCount(ItemDTO dto) {
 		return mybatis.selectOne("ProductDAO.SelectProductPage",dto);
 	}
+	//베스트 상품수 조회
+	@Override
+	public Integer selectBestCount() {
+		return mybatis.selectOne("ProductDAO.BestProductCount");
+	}
+	// 베스트 상품 출력
+	@Override
+	public List<ItemDTO> selectBestList(Map<String, Object> pageMap) {
+		System.out.println(mybatis.selectList("ProductDAO.SelectBestList",pageMap).toString());
+		return mybatis.selectList("ProductDAO.SelectBestList",pageMap);
+	}
+	//베스트 상품 에이젝스용
+	@Override
+	public List<ItemDTO> selectBestList() {
+		return mybatis.selectList("ProductDAO.SelectBestList");
+	}
+	//신상품 상품수 조회
+	@Override
+	public Integer selectNewCount() {
+		return mybatis.selectOne("ProductDAO.NewProductCount");
+	}
+	// 신상품 상품 출력
+	@Override
+	public List<ItemDTO> selectNewList(Map<String, Object> pageMap) {
+		System.out.println(mybatis.selectList("ProductDAO.SelectNewList",pageMap).toString());
+		return mybatis.selectList("ProductDAO.SelectNewList",pageMap);
+	}
+	//신상품 상품 에이젝스용
+	@Override
+	public List<ItemDTO> selectNewList() {
+		return mybatis.selectList("ProductDAO.SelectNewList");
+	}
 
 
 }

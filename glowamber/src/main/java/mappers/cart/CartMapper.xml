@@ -7,32 +7,40 @@
 		parameterType="CartDTO">
 		SELECT c.cartitemcount cartitemcount,
 		c.memberid memberid,
-		c.guestid guestid,
+		c.guestid
+		guestid,
 		c.cartnum cartnum,
 		c.itemnum itemnum,
 		i.itemname itemname,
 		i.itemprice itemprice,
 		i.itemthumnail itemthumnail,
-		i.itemunit itemunit,
+		i.itemunit itemunit
+		<if test="memberId != null and memberId != ''"> ,
 		m.membernum membernum,
 		m.membername membername,
 		m.membertel membertel,
 		m.memberemail memberemail,
 		m.memberaddr memberaddr,
-		m.memberaddrdetail memberaddrdetail
+		m.memberaddrdetail
+		memberaddrdetail
+		</if>
 		FROM CARTTABLE c
 		INNER JOIN ITEMTABLE i ON c.ITEMNUM =
-		i.ITEMNUM INNER JOIN MEMBERTABLE m ON c.MEMBERID = m.MEMBERID
+		i.ITEMNUM 
+		<if test="memberId != null and memberId != ''">
+		INNER JOIN MEMBERTABLE m ON c.MEMBERID = m.MEMBERID
+		</if>
 		<where>
-			<if test="memberId != ''">
+			<if test="memberId != null and memberId != ''">
 				AND c.memberid = #{memberId}
 			</if>
-			<if test="guestId != ''">
+			<if test="guestId != null and guestId != ''">
 				AND c.guestid = #{guestId}
 			</if>
 			<if test="cartNumArr != null">
-				AND c.cartnum in
-				<foreach item="num" collection="cartNumArr" open="(" close=")" separator=",">
+				AND c.cartnum IN
+				<foreach item="num" collection="cartNumArr" open="("
+					close=")" separator=",">
 					#{num}
 				</foreach>
 			</if>
@@ -65,10 +73,55 @@
 
 
 	<!-- 주문테이블에 넣기 -->
-	<insert id="InsertOrder" parameterType="OrderDTO" keyProperty="orderNum" useGeneratedKeys="true">
-		INSERT INTO ORDERTABLE(ORDERNUM,MEMBERNUM,ORDERDATE,ORDERNAME,ORDERADDR,ORDERADDRDETAIL,ORDERREQUEST)
-		VALUES(SEQUENCE_ORDERNUM.NEXTVAL,#{memberNum},sysdate,#{orderName},#{orderAddr},#{orderAddrDetail},#{orderRequest})
-		RETURNING ORDERNUM INTO #{orderNum}
+	<select id="CreateOrderNum" resultType="int">
+		SELECT
+		SEQUENCE_ORDERNUM.NEXTVAL FROM DUAL
+	</select>
+	<insert id="InsertOrder" parameterType="OrderDTO">
+		INSERT INTO
+		ORDERTABLE(ORDERNUM,MEMBERNUM,ORDERDATE,ORDERNAME,ORDERADDR,ORDERADDRDETAIL,ORDERREQUEST)
+		VALUES(#{orderNum},#{memberNum},sysdate,#{orderName},#{orderAddr},#{orderAddrDetail},#{orderRequest})
 	</insert>
 
+	<!-- 주문상세테이블에 넣기 -->
+	<insert id="InsertOrderDetail" parameterType="OrderDetailDTO">
+		INSERT INTO
+		ORDERDETAILTABLE(ORDERDETAILNUM,ORDERNUM,STORENUM,ORDERDETAILPRICE,ORDERDETAILCOUNT,ITEMNUM)
+		VALUES(SEQUENCE_ORDERDETAILNUM.NEXTVAL,#{orderNum},#{storeNum},#{orderDetailPrice},#{orderDetailCount},#{itemNum})
+	</insert>
+	<!-- 입고중 날짜별로 출력 -->
+	<select id="SelectStoreRowNum" resultType="StoreDTO"
+		parameterType="OrderDetailDTO">
+		SELECT STORENUM,SALECOUNT
+		FROM(
+		SELECT STORENUM, SALECOUNT,
+		ROW_NUMBER() OVER (ORDER BY STOREEXPIRDATE ASC) AS row_num
+		FROM STORETABLE
+		WHERE ITEMNUM = #{itemNum}
+		ORDER BY STOREEXPIRDATE ASC
+		)
+		WHERE row_num = #{rowNum}
+	</select>
+	<!-- 입고테이블 카운터 빼기 -->
+	<update id="UpdateSaleCount" parameterType="OrderDetailDTO">
+		UPDATE STORETABLE
+		SET
+		SALECOUNT = SALECOUNT - #{orderDetailCount}
+		WHERE STORENUM = (
+		SELECT STORENUM
+		FROM(
+		SELECT STORENUM, SALECOUNT,
+		ROW_NUMBER() OVER (ORDER BY STOREEXPIRDATE ASC) AS row_num
+		FROM STORETABLE
+		WHERE ITEMNUM = #{itemNum}
+		ORDER BY STOREEXPIRDATE ASC
+		)
+		WHERE row_num = #{rowNum}
+		)
+	</update>
+	<!-- 카트에서 주문 완료된 상품 제거 -->
+	<delete id="DeleteCart" parameterType="OrderDetailDTO">
+		DELETE FROM CARTTABLE
+		WHERE memberid = #{memberId} AND itemnum = #{itemNum}
+	</delete>
 </mapper>

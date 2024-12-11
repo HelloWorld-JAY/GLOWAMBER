@@ -23,4 +23,12 @@ public interface ProductService {
 	public Map<String,Object> selectProductList(ItemDTO dto, Integer pageNum,String arr);
 	// 상품 카테고리 불러오기
 	public List<HashMap> selectCate(ItemDTO dto);
+	// 베스트상품 top100개 불러오기 페이지출력용
+	public Map<String,Object> bestProductList(Integer pageNum);
+	// 베스트상품 top100개 불러오기 에이젝스용
+	public List<ItemDTO> bestProductList();
+	// 신상품 불러오기 페이지출력용
+	public Map<String,Object>newProductList(Integer pageNum);
+	// 신상품 top100개 불러오기 에이젝스용
+	public List<ItemDTO> newProductList();
 }

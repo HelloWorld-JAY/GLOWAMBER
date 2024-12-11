@@ -30,8 +30,8 @@
 	src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
 <!-- 세션값 설정후 js 파일에 보내기 -->
 <script>
-    let sessionId = "<%= session.getAttribute("id") != null ? session.getAttribute("id") : "" %>";
-</script>	
+    let sessionId = "<%=session.getAttribute("id") != null ? session.getAttribute("id") : ""%>";
+</script>
 <!-- js파일연결 -->
 <script type="text/javascript" src="/glowamber/resources/js/MainPage.js"></script>
 </head>
@@ -51,8 +51,9 @@
 			<li class="nav-item"><a class="nav-link"
 				href="/glowamber/products/Cart"><i class="bi bi-bag fs-2"></i> <br />장바구니</a></li>
 			<hr />
-			<li class="nav-item"><a class="nav-link scroll_top" aria-current="page"
-				style="cursor: pointer;"><i class="bi bi-arrow-up-square fs-2"></i><br />TOP </a></li>
+			<li class="nav-item"><a class="nav-link scroll_top"
+				aria-current="page" style="cursor: pointer;"><i
+					class="bi bi-arrow-up-square fs-2"></i><br />TOP </a></li>
 		</ul>
 	</div>
 	<!-- 퀵메뉴 -->
@@ -103,13 +104,11 @@
 
 		<div class="container mt-4">
 			<h2>
-				<a href="#"> 추천상품(내용은 추후 수정) </a>
+				<a href="#"> 베스트 TOP100 </a>
 			</h2>
-			<div id="productCarousel" class="carousel slide d-flex align-items-center"
-				>
-				<div class="carousel-inner" id="product_carousel">
-					 
-				</div>
+			<div id="productCarousel"
+				class="carousel slide d-flex align-items-center">
+				<div class="carousel-inner" id="product_carousel"></div>
 
 				<button class="carousel-control-prev" type="button"
 					data-bs-target="#productCarousel" data-bs-slide="prev">
@@ -122,13 +121,35 @@
 					<span class="visually-hidden">Next</span>
 				</button>
 			</div>
-		</div>
+			</div>
+			<br />
+			<br />
+			<br />
+			<br />
+			<div class="container mt-4">
+				<h2>
+					<a href="#"> 신상품 </a>
+				</h2>
+				<div id="new_productCarousel"class="carousel slide d-flex align-items-center">
+					<div class="carousel-inner" id="new_product_carousel"></div>
+				
+				<button class="carousel-control-prev" type="button"
+					data-bs-target="#new_productCarousel" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button class="carousel-control-next" type="button"
+					data-bs-target="#new_productCarousel" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
+				</div>
+			</div>
 	</div>
 
 
-	<!-- 메인 상품 -->
-	<!-- 메인페이지 바디 내용 -->
-
+			<!-- 메인 상품 -->
+			<!-- 메인페이지 바디 내용 -->
 </body>
 <footer>
 	<!-- 풋터 -->

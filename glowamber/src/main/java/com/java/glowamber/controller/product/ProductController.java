@@ -23,13 +23,6 @@ public class ProductController {
 	@Autowired
 	private ProductService service;
 
-	// 걍 상품정보 전부 가져오기 추후 삭제 or 변경필요
-	@PostMapping("/productAll")
-	@ResponseBody()
-	public List<ItemDTO> selectAllProducts() {
-
-		return service.selectProducts();
-	}
 	//상품상세페이지 상품정보 불러오기
 	@GetMapping("selectProductDetail")
 	public String selectProductDetail(ItemDTO dto,Model m) {
@@ -54,7 +47,6 @@ public class ProductController {
 	@PostMapping("memberCartAdd")
 	@ResponseBody
 	public Integer memberCartAdd(CartDTO dto) {
-		System.out.println(dto.toString());
 		CartDTO cart = service.selectCart(dto);
 		if(cart != null) {
 			service.updateCart(dto);
@@ -67,19 +59,18 @@ public class ProductController {
 	@PostMapping("memberCartAddGuestDelete")
 	@ResponseBody
 	public void memberCartAddGuestDelete(CartDTO dto) {
-		System.out.println(dto.toString());
 		if(dto.getGuestId() != null) {
-		service.updateCart(dto);
+			service.updateCart(dto);
 		}
 	}
 	//헤더 대분류 카테고리 눌러서 들어갔을때 리스트 띄우기
 	@GetMapping("bigProductList")
 	public String bigProductList(ItemDTO dto,Integer pageNum,String arr,Model m) {
-		
+
 		if(pageNum == null) {
 			pageNum = 1;
 		}
-		
+
 		m.addAttribute("cate",service.selectCate(dto));
 		m.addAttribute("item",service.selectProductList(dto,pageNum,arr));
 		m.addAttribute("nowBigCateNum",dto.getBigCateNum());
@@ -90,11 +81,11 @@ public class ProductController {
 	//헤더 소분류 카테고리 눌러서 들어갔을때 리스트 띄우기
 	@GetMapping("smallProductList")
 	public String smallProductList(ItemDTO dto,Integer pageNum,String arr,Model m) {
-		
+
 		if(pageNum == null) {
 			pageNum = 1;
 		}
-		
+
 		m.addAttribute("cate",service.selectCate(dto));
 		m.addAttribute("item",service.selectProductList(dto,pageNum,arr));
 		m.addAttribute("nowBigCateNum",dto.getBigCateNum());
@@ -102,4 +93,37 @@ public class ProductController {
 		m.addAttribute("arr",arr);
 		return "products/ProductList";
 	}
+	//베스트 상품 눌렀을때 베스트 가장많이 팔린 상품 
+	@GetMapping("bestList")
+	public String bestProductList(Model m,Integer pageNum) {
+		if(pageNum == null) {
+			pageNum = 1;
+		}
+		m.addAttribute("item",service.bestProductList(pageNum));
+		m.addAttribute("best","best");	
+		return "products/ProductList";
+	}
+	//베스트 상품 메인화면 출력하기
+	@PostMapping("bestListAjax")
+	@ResponseBody
+	public List<ItemDTO> bestListAjax() {
+		return service.bestProductList();
+	}
+	//신상품눌렀을때 
+		@GetMapping("newList")
+		public String newProductList(Model m,Integer pageNum) {
+			if(pageNum == null) {
+				pageNum = 1;
+			}
+			m.addAttribute("item",service.newProductList(pageNum));
+			m.addAttribute("newList","newList");	
+			return "products/ProductList";
+		}
+		//신상품 상품 메인화면 출력하기
+		@PostMapping("newListAjax")
+		@ResponseBody
+		public List<ItemDTO> newListAjax() {
+			return service.newProductList();
+		}
+
 }

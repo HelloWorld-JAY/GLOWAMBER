@@ -48,7 +48,6 @@ public class CartController {
 	@PostMapping("sessionCartNum")
 	@ResponseBody
 	public Integer sessionCartNum(String cartNum,HttpSession session) {
-		System.out.println(cartNum);
 		String[] cartNumArr = cartNum.split(",");
 
 		session.setAttribute("cartNum", cartNumArr);
@@ -66,14 +65,12 @@ public class CartController {
 	@PostMapping("order")
 	@ResponseBody
 	public Integer order(OrderDTO dto) {
-		System.out.println(dto.toString());
 		return service.insertOrder(dto);
 	}
 	//결제완료후 주문상세 테이블에 넘기기
-	@PostMapping("orderDetail")
+	@PostMapping("orderDetailAdd")
 	@ResponseBody
 	public void orderDetail(OrderDetailDTO dto) {
-		System.out.println(dto.toString());
 		service.insertOrderDetail(dto);
 	}
 }

@@ -55,7 +55,7 @@
 					<hr />
 					<div class="col-12">
 						<c:forEach var="product" items="${cart}">
-							<div class="row productRow">
+							<div class="row productRow" value="${ param.memberId }">
 								<div class="col-3 product_img" value="${ product.ITEMNUM }">
 									<img alt="" src="${ product.ITEMTHUMNAIL }">
 								</div>
