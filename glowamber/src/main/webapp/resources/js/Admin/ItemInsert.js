@@ -163,7 +163,7 @@ $(function(){
 	
 	/* 카테고리 삭제	*/
 	/* 대분류 카테고리 삭제 */
-	$('#BigCateListBody').on('click','.delete',function(e){
+	$('#BigCateListBody').on('click','.deletecate',function(e){
 		$.ajax({
 				type : 'post'
 				,data : {bigCateNum : $(this).parents('tr').find('input').val()}
@@ -174,7 +174,7 @@ $(function(){
 	})
 	
 	/* 소분류 카테고리 삭제 */
-	$('#SmallCateListBody').on('click','.delete',function(e){
+	$('#SmallCateListBody').on('click','.deletecate',function(e){
 		
 			let SelectSmallCateParam={
 				SmallCateNum : $(this).parents('tr').find('input:eq(0)').val()
@@ -205,7 +205,7 @@ $(function(){
 												$('<tr/>').append([
 																  $('<td/>').append([$('<input type="hidden" />').val(bigcate['bigCateNum'])
 																  					 ,bigcate['bigCateName']])
-																  ,$('<td/>').append($('<input type="button" class="delete" />').val('x'))]))
+																  ,$('<td/>').append($('<input type="button" class="deletecate" />').val('x'))]))
 								$('#SelectBigCate').append($('<option>').val(bigcate['bigCateNum']).text(bigcate['bigCateName']))
 							}
 						}
@@ -227,7 +227,7 @@ $(function(){
 																	$('<td/>').append([$('<input type="hidden" />').val(smallcate['smallCateNum'])
 																					 ,$('<input type="hidden" />').val(smallcate['bigCateNum'])
 																							  					 ,smallcate['smallCateName']])
-																	,$('<td/>').append($('<input type="button" class="delete" />').val('x'))]))
+																	,$('<td/>').append($('<input type="button" class="deletecate" />').val('x'))]))
 							}
 				}
 		})
@@ -272,4 +272,5 @@ $(function(){
 		$('#category').hide()
 	})
 	
+
 })

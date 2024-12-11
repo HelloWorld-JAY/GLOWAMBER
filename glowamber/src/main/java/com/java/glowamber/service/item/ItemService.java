@@ -11,4 +11,5 @@ public interface ItemService {
 	public ItemDTO SelectItemOne(ItemDTO dto);
 	public void itemStore(StoreDTO dto) ;
 	public void itemUpdate(ItemDTO dto);
+	public List<StoreDTO> SelectStoreCount(StoreDTO dto);
 }

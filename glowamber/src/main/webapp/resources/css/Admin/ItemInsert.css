@@ -15,6 +15,11 @@ input[type="button"]:hover, input[type="submit"]:hover {
 }
 
 /* 상품 정보 섹션 */
+#Thumnail{
+	width : 400px;
+	height : 400px;
+}
+
 form {
     margin-top: 20px;
     font-size : 20px;
@@ -25,6 +30,7 @@ form {
 }
 
 form textarea {
+	width : 100%;
     resize: none;
 }
 
@@ -44,7 +50,23 @@ form input[type='button'], form input[type='submit']{
     border-radius: 3px;
     cursor: pointer;
 }
-
+/* 재고관리 섹션 */
+#storeInsert{
+	margin-top: 20px;
+    font-size : 20px;
+    background: #FFFFFF;
+    padding: 20px;
+    border: 1px solid #EBEBEB;
+    border-radius: 5px;
+}
+#storeInsert input[type='text'], #storeInsert input[type='date'] {
+	width : 100%;
+    color : black;
+    border: 1px solid #EBEBEB;
+    padding: 8px 12px;
+    border-radius: 3px;
+    cursor: pointer;
+}
 /* 테이블 스타일 */
 .CateListHead{
 	padding-bottom : 0px;
@@ -115,6 +137,5 @@ table th {
 			box-sizing:border-box;
 			box-shadow: 2px 5px 10px 0px rgba(0,0,0,0.35);
 			-webkit-box-shadow: 2px 5px 10px 0px rgba(0,0,0,0.35);
-			-moz-box-shadow: 2px 5px 10px 0px rgba(0,0,0,0.35);
-			
+			-moz-box-shadow: 2px 5px 10px 0px rgba(0,0,0,0.35);	
 }

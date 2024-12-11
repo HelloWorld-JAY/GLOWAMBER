@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="order">
 	<select id="selectOrderList" parameterType="OrderDetailDTO" resultType="OrderDetailDTO">
-		SELECT * 
+		SELECT  *
 		FROM 	ORDERDETAILTABLE o INNER JOIN ORDERTABLE o2
 										   ON o.ORDERNUM = o2.ORDERNUM 
 									INNER JOIN MEMBERTABLE m 
@@ -13,7 +13,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 									INNER JOIN STORETABLE s 
 										    ON o.STORENUM =s.STORENUM 
 									INNER JOIN ITEMTABLE i 
-											ON i.ITEMNUM = s.ITEMNUM 
-		ORDER BY o2.ordernum
+											ON i.ITEMNUM =s.ITEMNUM 
+									INNER JOIN (SELECT  o2.ordernum, COUNT(*) orderitemcount
+												FROM 	ORDERDETAILTABLE o INNER JOIN ORDERTABLE o2
+																				   ON o.ORDERNUM = o2.ORDERNUM 
+												<where> 
+													<if test='orderDetailStatus != null'>
+														AND o.orderdetailstatus = #{orderDetailStatus}
+													</if>
+												</where>
+												GROUP BY o2.ordernum) sub1
+											ON o.ORDERNUM = sub1.ordernum
+		<where>
+			<if test='orderDetailNum != null'>
+				AND o.orderdetailnum = ${orderDetailNum}
+			</if>
+			<if test='orderDetailStatus != null'>
+				AND o.orderdetailstatus = #{orderDetailStatus}
+			</if>
+		</where>
+		ORDER BY o.ordernum
 	</select>
+	<update id="updateOrderStatus" parameterType="OrderDetailDTO">
+		UPDATE 	ORDERDETAILTABLE
+		SET		orderdetailstatus = #{orderDetailStatus}
+				,orderdetailsaledate = (CASE WHEN #{orderDetailStatus}='완료' THEN SYSDATE
+										   ELSE orderdetailsaledate END)
+		WHERE 	orderdetailnum = #{orderDetailNum}
+	</update>
 </mapper>

@@ -41,4 +41,8 @@ public class ItemDAOImpl implements ItemDAO{
 		mybatis.update("ItemDAO.itemUpdate",dto);
 	}
 
+	@Override
+	public List<StoreDTO> SelectStoreCount(StoreDTO dto) {
+		return mybatis.selectList("StoreDAO.selectStoreList",dto);
+	}
 }

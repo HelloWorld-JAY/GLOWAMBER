@@ -3,8 +3,8 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ItemDAO">
 	<insert id='ItemInsert' parameterType="ItemDTO">
-		INSERT INTO itemtable(itemnum, smallcatenum, itemname, itemthumnail, itemdetail, itemunit, itemorigin, itemvolume, itemallergyinfo, itemcost, itemprice, itemdate,   itemsupplier )
-		VALUES (sequence_itemnum.nextval , #{smallCateNum}, #{itemName}, #{itemThumnail} , #{itemDetail}, #{itemUnit}, #{itemOrigin}, #{itemVolume}, #{itemAllErgyinfo}, #{itemCost}, #{itemPrice}, sysdate, #{ itemSupplier})
+		INSERT INTO itemtable(itemnum, bigcatenum ,smallcatenum, itemname, itemthumnail, itemdetail, itemunit, itemorigin, itemvolume, itemallergyinfo, itemcost, itemprice, itemdate,   itemsupplier )
+		VALUES (sequence_itemnum.nextval , #{bigCateNum}, #{smallCateNum}, #{itemName}, #{itemThumnail} , #{itemDetail}, #{itemUnit}, #{itemOrigin}, #{itemVolume}, #{itemAllErgyinfo}, #{itemCost}, #{itemPrice}, sysdate, #{ itemSupplier})
 	</insert>
 	
 	<select id="SelectItem" resultType="ItemDTO" parameterType="ItemDTO">
@@ -63,5 +63,4 @@
 			  
 		WHERE itemnum = #{itemNum}
 	</update>
-	
 </mapper>

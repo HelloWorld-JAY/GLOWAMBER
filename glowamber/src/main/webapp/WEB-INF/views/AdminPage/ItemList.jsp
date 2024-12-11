@@ -16,7 +16,7 @@
 	<!-- JQUERY script -->
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 	<!-- script -->
-	<script type="text/javascript" src='/glowamber/resources/js/Admin/ItemMain.js'></script>
+	<script type="text/javascript" src='/glowamber/resources/js/Admin/ItemList.js'></script>
 </head>
 
 <body>

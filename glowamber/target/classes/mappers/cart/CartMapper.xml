@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CartDAO">
+
+	<select id="SelectCartID" resultType="HashMap"
+		parameterType="CartDTO">
+		SELECT c.cartitemcount cartitemcount,
+		c.memberid memberid,
+		c.guestid guestid,
+		c.cartnum cartnum,
+		c.itemnum itemnum,
+		i.itemname itemname,
+		i.itemprice itemprice,
+		i.itemthumnail itemthumnail,
+		i.itemunit itemunit,
+		m.membernum membernum,
+		m.membername membername,
+		m.membertel membertel,
+		m.memberemail memberemail,
+		m.memberaddr memberaddr,
+		m.memberaddrdetail memberaddrdetail
+		FROM CARTTABLE c
+		INNER JOIN ITEMTABLE i ON c.ITEMNUM =
+		i.ITEMNUM INNER JOIN MEMBERTABLE m ON c.MEMBERID = m.MEMBERID
+		<where>
+			<if test="memberId != ''">
+				AND c.memberid = #{memberId}
+			</if>
+			<if test="guestId != ''">
+				AND c.guestid = #{guestId}
+			</if>
+			<if test="cartNumArr != null">
+				AND c.cartnum in
+				<foreach item="num" collection="cartNumArr" open="(" close=")" separator=",">
+					#{num}
+				</foreach>
+			</if>
+		</where>
+	</select>
+
+	<update id="CartUpdateCount" parameterType="CartDTO">
+		UPDATE CARTTABLE
+		SET cartitemcount = #{cartItemCount}
+		where itemnum =
+		#{itemNum}
+		<if test="memberId != ''">
+			AND memberid = #{memberId}
+		</if>
+		<if test="guestId != ''">
+			AND guestid = #{guestId}
+		</if>
+
+	</update>
+	<delete id="deleteCartProduct" parameterType="CartDTO">
+		DELETE FROM CARTTABLE
+		WHERE itemnum = #{itemNum}
+		<if test="memberId != ''">
+			AND memberid = #{memberId}
+		</if>
+		<if test="guestId != ''">
+			AND guestid = #{guestId}
+		</if>
+	</delete>
+
+
+	<!-- 주문테이블에 넣기 -->
+	<insert id="InsertOrder" parameterType="OrderDTO" keyProperty="orderNum" useGeneratedKeys="true">
+		INSERT INTO ORDERTABLE(ORDERNUM,MEMBERNUM,ORDERDATE,ORDERNAME,ORDERADDR,ORDERADDRDETAIL,ORDERREQUEST)
+		VALUES(SEQUENCE_ORDERNUM.NEXTVAL,#{memberNum},sysdate,#{orderName},#{orderAddr},#{orderAddrDetail},#{orderRequest})
+		RETURNING ORDERNUM INTO #{orderNum}
+	</insert>
+
+</mapper>

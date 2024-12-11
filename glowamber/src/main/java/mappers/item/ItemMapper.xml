@@ -63,5 +63,4 @@
 			  
 		WHERE itemnum = #{itemNum}
 	</update>
-	
 </mapper>

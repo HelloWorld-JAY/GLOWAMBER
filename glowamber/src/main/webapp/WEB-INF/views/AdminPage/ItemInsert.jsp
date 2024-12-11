@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix='c' uri="http://java.sun.com/jsp/jstl/core"%>
+<% String path = request.getSession().getServletContext().getRealPath("/"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +27,7 @@
 <!-- jquery js -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
  <!-- user js -->
-<script type="text/javascript" src='/glowamber/resources/js/Admin/ItemTab.js'></script>
+<script type="text/javascript" src='/glowamber/resources/js/Admin/ItemInsert.js'></script>
 </head>
 <body>
 	<!-- 관리자 페이지 헤더 -->
@@ -143,7 +144,7 @@
 		</div>
 		<div class='row'>
 			<!-- 상품 정보 입력 -->
-			<form action='/glowamber/iteminsert' name='iteminsert' method="get">
+			<form action='/glowamber/iteminsert' name='iteminsert' method="post" enctype="multipart/form-data">
 			
 			<div>
 				<div class='text-end'>
@@ -156,8 +157,8 @@
 							<span>이미지</span>
 						</div>
 						<div>
-						
-							<input type='text' name='text'  id='itemThumnail' />
+							<input type='hidden' name='path' value='<%=path %>' />
+							<input type='file' name='file'  id='itemThumnail' />
 						</div>
 					</div>
 					<div>

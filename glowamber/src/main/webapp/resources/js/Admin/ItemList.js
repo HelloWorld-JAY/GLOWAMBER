@@ -2,7 +2,7 @@ $(function(){
 	SelectAllItem()
 	
 	/* 상품 전체 목록 출력 */
-	function SelectAllItem (ItemSelect){
+	function SelectAllItem(ItemSelect){
 		$.ajax({
 			type : 'post'
 			, data : ItemSelect
@@ -22,12 +22,14 @@ $(function(){
 																,$('<td/>').text(ItemList['itemPrice'])
 																,$('<td/>').text(ItemList['itemSupplier'])
 																,$('<td/>').text(ItemList['itemDate'])	
+					
 															 ])
 										  )
 				}
 			} 
 		})
 	}
+	
 	
 	/* 상품 검색 버튼 클릭시 */
 	$('#ItemSelectBtn').click(function(){
@@ -39,7 +41,7 @@ $(function(){
 	})
 	
 	/* 상품목록의 상품 클릭시 */
-	$('#ItemTable').on('click','tr',function(){
+	$('#ItemTable').on('click','tr',function(e){
 		 location="/glowamber/itemUpdate?itemNum="+$(this).children(':eq(0)').text()
 	})
 })

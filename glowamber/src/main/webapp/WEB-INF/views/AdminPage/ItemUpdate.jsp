@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix='c' uri="http://java.sun.com/jsp/jstl/core"%>
+<% String path = request.getSession().getServletContext().getRealPath("/"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +13,8 @@
 	rel="stylesheet"
 	integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
 	crossorigin="anonymous">
-
+<!-- css -->
+	<link href="/glowamber/resources/css/Admin/ItemInsert.css" rel="stylesheet">
 <!-- 부트스트랩 script -->
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -25,7 +27,7 @@
 <!-- jquery js -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
  <!-- user js -->
-<script type="text/javascript" src='/glowamber/resources/js/Admin/ItemTab.js'></script>
+<script type="text/javascript" src='/glowamber/resources/js/Admin/ItemInsert.js'></script>
 </head>
 <body>
 	<!-- 관리자 페이지 헤더 -->
@@ -33,120 +35,117 @@
 	
 	
 	<div class='container'>
-		<div class='col' id='category'>
-			<div class='text-end'>
-				<input type='button' id='categoryhide' value='x' />
-			</div>
-			<div class='row text-center'>
-				<div class='col'>
-					<span>카테고리</span>
-					
-				</div>
-				<div class='col text-end'>
-					<input type='button' value='등록' />
-					<input type='button' value='수정' />
-				</div>
-			</div>
-			<div class='row' id='cate'>
-				<!-- 대분류 카테고리 리스트 -->
-				<div class='col listTable'>
-					<div>
-						<table class='cate text-center' id='BigCateList'>
-							<colgroup>
-					            <col width="30%" />
-					            <col width="*"  />
-			      			</colgroup>
-							<tr>
-								<th>대분류</th>				
-							</tr>
-						</table>
+		<div class='popup_layer' id='category'>
+			<div class='col popup_box'>
+				<div class='row'>
+					<div class='col text-center'>
+						<h4>카테고리</h4>
+					</div>
+					<div class='col-1 text-end'>
+						<input type='button' id='categoryhide' value='x' />
+					</div>
+					<div class='text-end'>
+						<input type='button' id='cateInsertBtn' value='등록' />
+						<input type='button' id='cateUpdateBtn' value='수정' />
 					</div>
 				</div>
-				<!-- 소분류 카테고리 리스트 -->
-				<div class='col listTable'>
-					<div>
-
-						<table class='cate text-center' id='SmallCateList'>
-							<colgroup>
-					            <col width="30%" />
-					            <col width="*"  />
-			      			</colgroup>
-							<tr>
-								<th>소분류</th>						
-							</tr>
-						</table>
+				<div class='row' id='catelist'>
+					<!-- 대분류 카테고리 리스트 -->
+					<div class='col listTable'>
+						<div>
+							<table class='text-center CateListHead' id='BigCateListHead'>
+								<tr>
+									<th>대분류</th>				
+								</tr>
+							</table>
+						</div>
+						<div id='bigcatelist'>
+							<table class='text-center CateListBody' id='BigCateListBody'>
+							</table>
+						</div>
+					</div>
+					<!-- 소분류 카테고리 리스트 -->
+					<div class='col listTable'>
+						<div>
+							<table class='text-center CateListHead' id='SmallCateListHead'>
+								<tr>
+									<th>소분류</th>						
+								</tr>
+							</table>
+						</div>
+						<div id='smallcatelist'>
+							<table class='text-center CateListBody' id='SmallCateListBody'>
+							</table>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class='row text-start'>
-					<div class='col'>
+				<div class='row text-start'>
 					<!-- 카테고리 입력 테이블 -->
-						<table id='cateInsert'>
-							<tr>
-								<td>분류</td>
-								<td>
-									<select id='InsertCateType'>
-										<option value='big'>대분류</option>
-										<option value='small'>소분류</option>
-									</select>
-								</td>
-							</tr>
-							<tr>
-								<td>대분류</td>
-								<td>
-									<select id='SelectBigCate'>
-										<option value=1>대분류</option>
-									</select>
-								</td>
-							</tr>
-							<tr>
-								<td>카테고리 명</td>
-								<td><input type='text' id='InsertCateName' /></td>
-							</tr>
-						</table>
-					</div>
-					<div class='col'>
-					<!-- 카테고리 수정 테이블 -->
-						<table id='cateUpdate'>
-							<tr>
-								<td>번호</td>
-								<td><input type='text' id='CateNum' readonly/></td>
-							</tr>
-							<tr>
-								<td>분류</td>
-								<td>
-									<input type='text' id='UpdateCateType' readonly>
-								</td>
-							</tr>
-							<tr>
-								<td>대분류 명</td>
-								<td>
-									<input type='hidden' id='BigCateNum' >
-									<input type='text' id='UpdateBigCateName' readonly>
-								</td>
-							</tr>
-							<tr>
-								<td>카테고리 명</td>
-								<td><input type='text' id='UpdateCateName' /></td>
-							</tr>
-						</table>
-					</div>
-				</div>		
-				<div class='row text-center'>
-					<div class='col'>
-						<input type='button' id='CateInsertBtn' value='등록' /> 
-						<input type='button' id='CateInsertCancle' value='취소' />  
-					</div>
-					<div class='col'>
-						<input type='button' id='CateUpdateBtn' value='수정' /> 
-						<input type='button' id='CateUpdateCancle' value='취소' />  
-					</div>
-				</div>
+						<div>
+							<table class='cateInsert'>
+								<tr>
+									<td>분류</td>
+									<td>
+										<select id='InsertCateType'>
+											<option value='big'>대분류</option>
+											<option value='small'>소분류</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>대분류</td>
+									<td>
+										<select id='SelectBigCate'>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>카테고리 명</td>
+									<td><input type='text' id='InsertCateName' /></td>
+								</tr>
+							</table>
+							<div class='col cateInsert text-end'>
+								<input type='button' id='CateInsertBtn' value='등록' /> 
+								<input type='button' id='CateInsertCancle' value='취소' />  
+							</div>
+						</div>
+						<!-- 카테고리 수정 테이블 -->
+						<div>
+							<table class='cateUpdate'>
+								<tr>
+									<td>번호</td>
+									<td><input type='text' id='CateNum' readonly/></td>
+								</tr>
+								<tr>
+									<td>분류</td>
+									<td>
+										<input type='text' id='UpdateCateType' readonly>
+									</td>
+								</tr>
+								<tr>
+									<td>대분류 명</td>
+									<td>
+										<input type='hidden' id='BigCateNum' >
+										<input type='text' id='UpdateBigCateName' readonly>
+									</td>
+								</tr>
+								<tr>
+									<td>카테고리 명</td>
+									<td><input type='text' id='UpdateCateName' /></td>
+								</tr>
+							</table>
+							<div class='col cateUpdate text-end'>
+								<input type='button' id='CateUpdateBtn' value='수정' /> 
+								<input type='button' id='CateUpdateCancle' value='취소' />  
+							</div>
+						</div>
+					</div>		
+			</div>
 		</div>
 		
 		<div class='row'>	
 			<!-- 상품 정보 입력 -->
-		<form action='/glowamber/itemupdate' name='itemupdate' method="post">
+		<form action='/glowamber/itemupdate' name='iteminsert' method="post" enctype="multipart/form-data">
 			
 			<div>
 				<input type='submit' id='itemUpdateBtn' value='저장'>
@@ -158,7 +157,11 @@
 							<span>이미지</span>
 						</div>
 						<div>
-							<input type='text' name='itemThumnail'  id='itemThumnail' value='${item.itemDetail}' />
+							<img src='${item.itemThumnail}' id='Thumnail' />
+						</div>
+						<div>
+							<input type='hidden' name='path' value='<%=path %>' />
+							<input type='file' name='file'  id='itemThumnail' />
 						</div>
 					</div>
 					<div>
@@ -248,19 +251,18 @@
 								<span>상품설명</span>
 							</div>
 							<div id='smarteditor'>
-								<textarea rows="20" cols="10" name='itemDetail' id="itemdetail" placeholder="내용을 입력해 주세요"
-								style="width:500px">${item.itemDetail}</textarea>
+								<textarea rows="20" cols="10" name='itemDetail' id="itemdetail" placeholder="내용을 입력해 주세요">${item.itemDetail}</textarea>
 							</div>
 						</div>
 					</div>
 				</div>
 			</form>
 			<!-- 재고입력 -->
-			<div>
+			<div id='storeInsert'>
 				<div>
 					<div>
 						<span>재고</span>
-						<input type='text'>
+						<input type='text' value="${storecount}" readonly>
 					</div>
 					<div>
 						<span>입고수량</span>
@@ -274,10 +276,7 @@
 						<span>입고가</span>
 						<input type='text' id='storePrice' />
 					</div>
-					<!-- <div>
-						<table id='inventory'></table>
-					</div> -->
-					<div>
+					<div class='text-end'>
 						<input type='button' id='inventoryStoreBtn' value='입고'>
 						<input type='button' id='inventoryStoreCancle' value='취소' /> 
 					</div>

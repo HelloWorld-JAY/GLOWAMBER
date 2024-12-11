@@ -36,7 +36,7 @@
 		</div>
 		<div id='nav' class="container main_nav">
 			<ul class="nav nav-pills nav-fill main_nav_ui">
-				<li class="nav-item">대시보드</li>
+				<li class="nav-item"><a href="/glowamber/AdminPage/DashBoard">대시보드</a></li>
 				<li class="nav-item"><a href='/glowamber/AdminPage/ItemList'>상품관리</a></li>
 				<li class="nav-item"><a href='/glowamber/AdminPage/StoreList'>재고관리</a></li>
 				<li class="nav-item"><a href='/glowamber/AdminPage/OrderList'>주문관리</a></li>

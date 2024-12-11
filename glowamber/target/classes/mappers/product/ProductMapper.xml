@@ -34,49 +34,59 @@
 		FROM CARTTABLE
 		WHERE itemnum = #{itemNum}
 		<if test="guestId != ''">
-		 AND guestid = #{guestId}
+			AND guestid = #{guestId}
 		</if>
 		<if test="memberId != ''">
-		 AND memberid = #{memberId}
+			AND memberid = #{memberId}
 		</if>
 	</select>
 
 	<update id="UpdateCart" parameterType="CartDTO">
 		<if test="!guestId.equals('') and !memberId.equals('')">
-		BEGIN
-		UPDATE CARTTABLE c
-		SET c.CARTITEMCOUNT = c.CARTITEMCOUNT + (
-		SELECT CARTITEMCOUNT FROM CARTTABLE
-		WHERE guestid = #{guestId}
-		AND itemnum = c.itemnum
-		)
-		WHERE c.memberid = #{memberId}
-		AND EXISTS(
+			BEGIN
+			UPDATE CARTTABLE c
+			SET c.CARTITEMCOUNT =
+			c.CARTITEMCOUNT + (
+			SELECT CARTITEMCOUNT FROM CARTTABLE
+			WHERE guestid =
+			#{guestId}
+			AND itemnum = c.itemnum
+			)
+			WHERE c.memberid = #{memberId}
+			AND
+			EXISTS(
 			SELECT 1 FROM CARTTABLE c2
 			WHERE c2.guestid = #{guestId}
-			AND c2.itemnum = c.itemnum
-		);
-		DELETE FROM CARTTABLE
-		WHERE guestid =	#{guestId};
-		END;
+			AND
+			c2.itemnum = c.itemnum
+			);
+			DELETE FROM CARTTABLE
+			WHERE guestid =
+			#{guestId};
+			END;
 		</if>
 		<if test="!guestId.equals('') and memberId.equals('')">
-		UPDATE CARTTABLE
-		SET CARTITEMCOUNT = CARTITEMCOUNT + #{cartItemCount}
-		WHERE guestid =	#{guestId} AND itemnum = #{itemNum}
+			UPDATE CARTTABLE
+			SET CARTITEMCOUNT = CARTITEMCOUNT +
+			#{cartItemCount}
+			WHERE guestid = #{guestId} AND itemnum = #{itemNum}
 		</if>
 		<if test="guestId.equals('') and !memberId.equals('')">
-		UPDATE CARTTABLE
-		SET CARTITEMCOUNT = CARTITEMCOUNT + #{cartItemCount}
-		WHERE memberid = #{memberId} AND itemnum = #{itemNum}
+			UPDATE CARTTABLE
+			SET CARTITEMCOUNT = CARTITEMCOUNT +
+			#{cartItemCount}
+			WHERE memberid = #{memberId} AND itemnum = #{itemNum}
 		</if>
 	</update>
-
-	<select id="SelectProductList" parameterType="ItemDTO"
-		resultType="ItemDTO">
-		SELECT *
+	<!-- 상품목록 페이징 처리 -->
+	<select id="SelectProductPage" parameterType="ItemDTO"
+		resultType="int">
+		SELECT COUNT(*)
 		FROM ITEMTABLE
 		<where>
+			<if test="selectKeyword != null and selectKeyword != ''">
+				itemname LIKE '%' || #{selectKeyword} || '%'
+			</if>
 			<if test="bigCateNum != null">
 				AND bigcatenum = #{bigCateNum}
 			</if>
@@ -84,7 +94,42 @@
 				AND smallcatenum = #{smallCateNum}
 			</if>
 		</where>
-		ORDER BY smallcatenum DESC
+	</select>
+
+	<!-- 상품목록 출력 -->
+	<select id="SelectProductList" parameterType="HashMap"
+		resultType="ItemDTO">
+		SELECT * FROM (
+		SELECT ROWNUM RN, ITEM.* FROM(
+		SELECT *
+		FROM ITEMTABLE
+		<where>
+			<if test="selectKeyword != null and selectKeyword != ''">
+				itemname LIKE '%' || #{selectKeyword} || '%'
+			</if>
+			<if test="bigCateNum != null">
+				AND bigcatenum = #{bigCateNum}
+			</if>
+			<if test="smallCateNum != null">
+				AND smallcatenum = #{smallCateNum}
+			</if>
+		</where>
+		<choose>
+			<when test="arr == 'date'">
+				ORDER BY itemdate DESC
+			</when>
+			<when test="arr == 'korean'">
+				order by itemname ASC
+			</when>
+			<when test="arr == 'price'">
+				ORDER BY itemprice DESC
+			</when>
+			<otherwise>
+				ORDER BY itemdate DESC
+			</otherwise>
+		</choose>
+		)ITEM
+		)WHERE RN BETWEEN #{startRow} AND #{endRow}
 	</select>
 
 	<select id="SelectCate" parameterType="ItemDTO"
@@ -111,5 +156,19 @@
 			</if>
 		</where>
 		ORDER BY smallcatenum asc
+	</select>
+
+	<select id="PageProductCount">
+		SELECT COUNT(*)
+		FROM ITEMTABLE
+		<where>
+			<if test="bigCateNum != null">
+				AND bigcatenum = #{bigCateNum}
+			</if>
+			<if test="smallCateNum != null">
+				AND smallcatenum = #{smallCateNum}
+			</if>
+		</where>
+
 	</select>
 </mapper>

@@ -40,4 +40,9 @@ public class ItemServiceImpl implements ItemService{
 		itemdao.itemUpdate(dto);
 	}
 
+	@Override
+	public List<StoreDTO> SelectStoreCount(StoreDTO dto) {
+		return itemdao.SelectStoreCount(dto);
+	}
+
 }
