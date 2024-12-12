@@ -1,5 +1,8 @@
 /* 스마트에디터 설정 */
 let oEditors=[];
+
+let oEditors2=[];
+
 	smartEditor= function (){
 		nhn.husky.EZCreator.createInIFrame({
 			oAppRef : oEditors
@@ -9,6 +12,14 @@ let oEditors=[];
 		})
 	}
 	
+	smartEditor2= function (){
+		nhn.husky.EZCreator.createInIFrame({
+			oAppRef : oEditors2
+			, elPlaceHolder : "itemdetailsub"
+			, sSkinURI : "/glowamber/resources/smarteditor/SmartEditor2Skin.html"
+			, fCreator : "createSEditor2"
+		})
+	}
 $(function(){
 	/* 카테고리 화면 숨기기*/
 	$('#category').hide()
@@ -57,8 +68,8 @@ $(function(){
 		}
 	})
 	/* 스마트에디터 출력 */
-	smartEditor()
-	
+	smartEditor();
+	smartEditor2();
 	/* 카테고리 출력 */
 	selectBigCate()
 	

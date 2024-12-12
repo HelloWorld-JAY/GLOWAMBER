@@ -20,6 +20,7 @@ public class ItemDTO {
 	private String	itemSupplier;
 	private	String	itemThumnail;
 	private String	itemDetail;
+	private String  itemDetailSub;
 	private String  bigCateName;
 	private String  smallCateName;
 	private String	selectKeyword; // 사용자 검색 키워드(상품명만 가능)

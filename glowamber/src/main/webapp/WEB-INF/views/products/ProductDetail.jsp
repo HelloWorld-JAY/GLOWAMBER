@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<% String path = request.getSession().getServletContext().getRealPath("/"); %>
 <!DOCTYPE html>
 <html>
 <head>

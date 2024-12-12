@@ -32,6 +32,7 @@ form {
 form textarea {
 	width : 100%;
     resize: none;
+    border: 1px solid #EBEBEB;
 }
 
 form input[type='text'], form input[type='file'] {
@@ -107,7 +108,7 @@ table th {
 	max-height : 300px;
 	overflow-y: auto;
 }
-#smarteditor textarea{
+.smarteditor textarea{
 	width : 99%;
 }
 .delete{

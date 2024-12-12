@@ -45,7 +45,7 @@ public class ItemController {
 			
 			path = dto.getPath();
 			realPath = path + "resources" + File.separator + "itemThumnail" + File.separator;
-			
+
 			File f = new File(realPath + realFileName);
 			
 			if (!f.exists()){

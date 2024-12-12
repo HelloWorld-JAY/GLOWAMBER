@@ -246,12 +246,20 @@
 								</c:choose>			
 							</div>	
 						</div>
-						<div>
+						<div class='smarteditor'>
 							<div>
 								<span>상품설명</span>
 							</div>
-							<div id='smarteditor'>
+							<div>
 								<textarea rows="20" cols="10" name='itemDetail' id="itemdetail" placeholder="내용을 입력해 주세요">${item.itemDetail}</textarea>
+							</div>
+						</div>
+						<div class='smarteditor'>
+							<div>
+								<span>상품상세</span>
+							</div>
+							<div >
+								<textarea rows="20" cols="10" name='itemDetailsub' id="itemdetailsub" placeholder="내용을 입력해 주세요">${item.itemDetailSub}</textarea>
 							</div>
 						</div>
 					</div>
