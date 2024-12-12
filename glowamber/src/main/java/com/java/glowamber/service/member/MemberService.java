@@ -13,4 +13,6 @@ public interface MemberService {
 	public List<MemberDTO> selectMemberList(MemberDTO dto);
 	
 	public MemberDTO selectMemberInfo(MemberDTO dto);
+	
+	public void updateMemberauth(MemberDTO dto);
 }

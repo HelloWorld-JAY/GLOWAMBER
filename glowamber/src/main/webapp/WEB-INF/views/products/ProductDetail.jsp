@@ -169,7 +169,7 @@
 
 			<div class="row text-center detail_img" id="scroll2" style="padding-top:100px">
 				<div class="col-12">
-					${itemDTO.itemDetailSub}
+					${itemDTO.itemDetail}
 				</div>
 			</div>
 		</div>

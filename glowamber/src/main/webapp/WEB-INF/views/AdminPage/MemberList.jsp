@@ -32,7 +32,8 @@
 					<div>
 						<table class='infoTable text-center'>
 							<tr>
-								<td>이름</td>
+								
+								<td>이름<input type='hidden' id='usernum' /></td>
 								<td id='username'></td>
 							</tr>
 							<tr>
@@ -49,11 +50,11 @@
 							</tr>
 							<tr>
 								<td>구매횟수</td>
-								<td id='userbuycount'></td>
+								<td id='usertotalPurchase'></td>
 							</tr>
 							<tr>
 								<td>총액</td>
-								<td id='usertotalamount'></td>
+								<td id='usertotalPrice'></td>
 							</tr>
 							<tr>
 								<td>주소</td>
@@ -62,6 +63,10 @@
 							<tr>
 								<td>상세주소</td>
 								<td id='useraddrdetail'></td>
+							</tr>
+							<tr>
+								<td>권한설정</td>
+								<td>관리자<input type='checkbox' id='memberAuth'></td>
 							</tr>
 						</table>
 					</div>

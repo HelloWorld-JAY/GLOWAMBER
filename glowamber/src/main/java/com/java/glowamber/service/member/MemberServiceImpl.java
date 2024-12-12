@@ -36,5 +36,11 @@ public class MemberServiceImpl implements MemberService {
 	public MemberDTO selectMemberInfo(MemberDTO dto) {
 		return memberDAO.selectMemberInfo(dto);
 	}
+
+	@Override
+	public void updateMemberauth(MemberDTO dto) {
+		memberDAO.updateMemberauth(dto);
+		
+	}
 	
 }

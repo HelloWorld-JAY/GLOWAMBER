@@ -16,4 +16,6 @@ public class MemberDTO {
 	private String  memberAuth;    //관리자 권한
 	private String  memberAddr;    //회원 주소
     private String	memberAddrDetail; //회원 상세 주소
+    private String totalCount; // 총 구매횟수
+    private int totalPrice; // 총 구매액
 }

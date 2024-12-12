@@ -9,12 +9,13 @@ $(function(){
 			,dataType : 'json'
 			,url : '/glowamber/member/selectMemberList'
 			,success : function(result){
-				//alert('ok')
 				$('#memberTable').empty()
 				for(member of result){
 					$('#memberTable').append(
 											 $('<tr/>').append([
-											 				     $('<td/>').text(member['memberName'])
+											 				     $('<td/>').text(member['memberName']).append(
+											 				     					$("<input type='hidden' id='memberNum' />").val(member['memberNum'])
+											 				     				 )
 											 				     ,$('<td/>').text(member['memberId'])
 											 				     ,$('<td/>').text(member['memberTel'])
 										 				     ,$('<td/>').text(member['memberEmail'])
@@ -39,21 +40,30 @@ $(function(){
 	
 	/* 회원상세정보 출력 */
 	$('#memberTable').on('click','tr',function(){
+		let num =$(this).find('#memberNum').val()
+		console.log(num)
 		$('.popup_layer').show()
 		$.ajax({
 			type:'post'
-			,data : { memberId : $(this).children(':eq(1)').text() }
+			,data : { memberNum : num }
 			,dataType : 'json'
 			,url : '/glowamber/member/selectMember'
-			,success : function(result){
+			,success : function(result){	
+				$('#usernum').val(result['memberNum'])
 				$('#username').text(result['memberName'])
 				$('#userid').text(result['memberId'])
 				$('#usertel').text(result['memberTel'])
 				$('#useremail').text(result['memberEmail'])
-				$('#userbuycount').text(result[''])
-				$('#usertotalamount').text(result[''])
-				$('#useraddr').text(result['emailAddr'])
-				$('#useraddrdetail').text(result[''])
+				$('#usertotalPrice').text(result['totalPrice'])
+				$('#usertotalPurchase').text(result['totalCount'])
+				$('#useraddr').text(result['memberAddr'])
+				$('#useraddrdetail').text(result['memberAddrDetail'])
+				
+				if(result['memberAuth']=='1'){
+					$('#memberAuth').prop('checked',true)
+				}else{
+					$('#memberAuth').prop('checked',false)
+				}
 			}
 		})
 	})
@@ -61,6 +71,24 @@ $(function(){
 	/* 팝업창 확인버튼 누를시 */
 	$('#popupCheck').click(function(){
 		$('.popup_layer').hide()
+		let auth = 0;
+		if($('#memberAuth').is('checked',true)){
+			auth = 1;
+		}
+		$.ajax({
+			type:'post'
+			,data : { 
+				memberNum : $('#usernum').val()
+				,memberAuth : auth	
+			 }
+			,dataType : 'json'
+			,url : '/glowamber/member/updateMember'
+			,success : function(){
+				console.log('ok')
+			}
+			
+		})
+		
 	})
 	
 	

@@ -79,14 +79,20 @@ public class MemberController {
 		return memberService.selectMemberList(dto);
 	}
 	
-	@PostMapping("selectMember") 
+	@PostMapping("selectMember")
 	@ResponseBody
 	public MemberDTO selectMemberInfo(MemberDTO dto) {
-		return memberService.selectMemberInfo(dto);
+		MemberDTO result = memberService.selectMemberInfo(dto);
+		return result;
 	}
 
-	
-	
+	/* 회원 권한 수정 */
+	@PostMapping("updateMember") 
+	@ResponseBody
+	public void updateMemberauth(MemberDTO dto) {
+
+		memberService.updateMemberauth(dto);
+	}
 	
 	
 	

@@ -48,11 +48,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</select>
 		<!-- 회원정보 출력 -->
 		<select id="selectMemberInfo" resultType="memberDTO" parameterType="memberDTO">
-			SELECT	*
-			FROM	membertable
-			WHERE   memberid = #{memberId}
+			SELECT 
+			    m.MEMBERNUM AS MEMBERNUM,
+			    m.MEMBERNAME AS MEMBERNAME,
+			    m.MEMBERID AS MEMBERID,
+			    m.MEMBEREMAIL AS MEMBEREMAIL,
+			    m.MEMBERTEL AS MEMBERTEL,
+			    m.MEMBERADDR AS MEMBERADDR,
+			    m.MEMBERADDRDETAIL AS MEMBERADDRDETAIL,
+			    m.MEMBERAUTH as MEMBERAUTH,
+			    COUNT(o.ordernum) AS TOTALCOUNT,
+			    NVL(SUM(od.orderdetailprice * od.orderdetailcount), 0) AS TOTALPRICE
+			FROM 
+			    MEMBERTABLE m
+			LEFT JOIN 
+			    ORDERTABLE o ON m.MEMBERNUM = o.MEMBERNUM
+			LEFT JOIN 
+			    ORDERDETAILTABLE od ON o.ORDERNUM = od.ORDERNUM
+			WHERE m.MEMBERNUM = #{memberNum}
+			GROUP BY 
+			    m.MEMBERNUM, m.MEMBERNAME, m.MEMBERID, m.MEMBEREMAIL, m.MEMBERTEL, m.MEMBERADDR, m.MEMBERADDRDETAIL, m.MEMBERAUTH
 		</select>
 		
+		<!-- 회원권한 수정 -->
+	<update id="updateMemberauth" parameterType="memberDTO">
+		UPDATE	MEMBERTABLE
+		SET		MEMBERAUTH = #{memberAuth}
+		WHERE 	MEMBERNUM = #{memberNum}
+	</update>
+		
+		<!-- 카카오 로그인 -->
 		<!-- 정보 찾기 -->
 	<select id="findKakao" parameterType="java.util.HashMap" resultType="memberDTO">
 		select * from MEMBERTABLE where MEMBEREMAIL=#{email, jdbcType=VARCHAR}
@@ -63,6 +88,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into MEMBERTABLE(MEMBERNUM ,MEMBERID, MEMBERPASS, MEMBERNAME,MEMBERTEL, MEMBEREMAIL, MEMBERJOINDATE, MEMBERAUTH)
 			values(MEMBERNUM_SEQ.nextval,#{email, jdbcType=VARCHAR},#{pass, jdbcType=VARCHAR},'0','0',#{email, jdbcType=VARCHAR},sysdate,'0')
 	</insert>
-		
-		
+	
 </mapper> 

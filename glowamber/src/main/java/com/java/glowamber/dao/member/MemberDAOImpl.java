@@ -45,5 +45,11 @@ public class MemberDAOImpl implements MemberDAO {
 	public MemberDTO selectMemberInfo(MemberDTO dto) {
 		return mybatis.selectOne("member.selectMemberInfo",dto);
 	}
+
+	@Override
+	public void updateMemberauth(MemberDTO dto) {
+		mybatis.update("member.updateMemberauth",dto);
+		
+	}
 	
 }
