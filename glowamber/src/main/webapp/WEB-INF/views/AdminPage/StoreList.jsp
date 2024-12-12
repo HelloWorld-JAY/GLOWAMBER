@@ -40,6 +40,7 @@
 		<div class='col-1'>
 			<input type='button' class='StoreStatus' value='출고' />
 		</div>
+		
 	</div>
 	<!-- 상품리스트 -->
 	<div class='row' id='StoreListHead'>

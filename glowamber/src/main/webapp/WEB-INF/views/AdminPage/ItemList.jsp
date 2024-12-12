@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<% String path = request.getSession().getServletContext().getRealPath("/"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +24,7 @@
 	<!-- 헤더 -->
 	<jsp:include page="AdminHeader.jsp" />
 	<!-- 헤더 -->
-	
+	<input type='hidden' value='<%=path %>' id='path'/>
 	<div class='container itemcontainer text-center'>
 		<!-- 상품등록 -->
 		<div class='row justify-content-end'>

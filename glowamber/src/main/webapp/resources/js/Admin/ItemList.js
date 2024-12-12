@@ -42,6 +42,30 @@ $(function(){
 	
 	/* 상품목록의 상품 클릭시 */
 	$('#ItemTable').on('click','tr',function(e){
-		 location="/glowamber/itemUpdate?itemNum="+$(this).children(':eq(0)').text()
+		 const itemNum = $(this).children(':eq(0)').text();
+    const path = $('#path').val();
+
+    // 폼 생성
+    const form = $('<form>', {
+        action: '/glowamber/itemUpdate',
+        method: 'POST'
+    });
+
+    // 데이터 추가
+    form.append($('<input>', {
+        type: 'hidden',
+        name: 'itemNum',
+        value: itemNum
+    }));
+
+    form.append($('<input>', {
+        type: 'hidden',
+        name: 'path',
+        value: path
+    }));
+
+    // 폼을 DOM에 추가하고 제출
+    $('body').append(form);
+    form.submit();
 	})
 })

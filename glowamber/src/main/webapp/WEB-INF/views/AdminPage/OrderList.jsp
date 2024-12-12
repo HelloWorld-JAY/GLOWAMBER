@@ -27,12 +27,8 @@
 	<div class='container itemcontainer text-center'>
 	
 	<!-- 주문검색 -->
+	
 	<div class='row justify-content-end'>
-		<div class='col justify-content-center'>
-			<div class='col-2 '>
-				<input type='date' id='orderdate' >
-			</div>
-		</div>
 		<div class='col-1'>
 			<select id='orderStatus'>
 				<option value='신규'>신규</option>
@@ -44,6 +40,12 @@
 			</select>
 		</div>
 	</div>
+	<div class='row justify-content-center'>
+		<div class='col-2 '>
+			<input type='date' id='orderdate' >
+		</div>
+	</div>
+	
 	<!-- 주문상태변경 -->
 	<div class='row'>
 		<div class='col-1'>

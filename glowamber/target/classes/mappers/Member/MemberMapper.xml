@@ -7,11 +7,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 회원가입 -->
 	<insert id="memberInsert" parameterType="memberDTO">
 
-		INSERT INTO MEMBERTABLE(MEMBERNUM ,MEMBERID, MEMBERPASS, MEMBERNAME,
-		MEMBERTEL, MEMBEREMAIL, MEMBERJOINDATE, MEMBERAUTH)
+		INSERT INTO MEMBERTABLE(MEMBERNUM ,MEMBERID, MEMBERPASS, MEMBERNAME,MEMBERTEL, MEMBEREMAIL, MEMBERADDR, MEMBERADDRDETAIL, MEMBERJOINDATE, MEMBERAUTH)
 		VALUES
-		(MEMBERNUM_SEQ.nextval,#{memberId},#{memberPass},#{memberName},#{memberTel},CONCAT(#{memberEmail},
-		#{emailAddr}),sysdate,'0' )
+		(MEMBERNUM_SEQ.nextval,#{memberId},#{memberPass},#{memberName},#{memberTel},CONCAT(#{memberEmail},#{emailAddr}),
+		#{memberAddr},#{memberAddrDetail}  ,sysdate,'0' )
 	</insert>
 	<!-- 회원가입 유효성 검사 -->
 
@@ -62,7 +61,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 정보 저장 -->
 	<insert id="kakaoInsert" parameterType="java.util.HashMap">
 		insert into MEMBERTABLE(MEMBERNUM ,MEMBERID, MEMBERPASS, MEMBERNAME,MEMBERTEL, MEMBEREMAIL, MEMBERJOINDATE, MEMBERAUTH)
-			values(MEMBERNUM_SEQ.nextval,'0','0','0','0',#{email, jdbcType=VARCHAR},sysdate,'0')
+			values(MEMBERNUM_SEQ.nextval,#{email, jdbcType=VARCHAR},#{pass, jdbcType=VARCHAR},'0','0',#{email, jdbcType=VARCHAR},sysdate,'0')
 	</insert>
 		
 		

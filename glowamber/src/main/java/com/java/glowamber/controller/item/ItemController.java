@@ -31,6 +31,7 @@ public class ItemController {
 	/* 상품등록 */
 	@RequestMapping("iteminsert")
 	public String iteminsert(ItemDTO dto) {
+		System.out.println(dto.toString());
 		String FileName ="";
 		String realFileName = "";
 		String path ="";
@@ -75,13 +76,14 @@ public class ItemController {
 	
 	/* 상품수정페이지로 이동 */
 	
-	@GetMapping("itemUpdate") 
+	@PostMapping("itemUpdate") 
 	public String updatePage(ItemDTO dto, Model m) {
+		/* 재고수량 띄우기 */
 		int storecount = 0;
 		StoreDTO dto2 = new StoreDTO();
 		dto2.setItemNum(dto.getItemNum());
 		
-		ItemDTO result = itemservice.SelectItemOne(dto);
+		
 		List<StoreDTO> result2 = itemservice.SelectStoreCount(dto2);
 		
 		for(StoreDTO sDto : result2) {
@@ -92,6 +94,7 @@ public class ItemController {
 			}
 		}
 		
+		ItemDTO result = itemservice.SelectItemOne(dto);
 		m.addAttribute("item", result);
 		m.addAttribute("storecount",storecount);
 		return "/AdminPage/ItemUpdate";
@@ -107,7 +110,37 @@ public class ItemController {
 	/* 상품 수정 */
 	@PostMapping("itemupdate")
 	public String itemUpdate(ItemDTO dto) {
-		
+		/* 이미지파일 업로드 */
+		String FileName ="";
+		String realFileName = "";
+		String path ="";
+		String realPath = "";
+
+		MultipartFile file = dto.getFile();
+		if(!file.isEmpty()) {
+			FileName = file.getOriginalFilename();
+			
+			UUID uuid = UUID.randomUUID();
+			realFileName = uuid.toString() + "_" + FileName;
+			
+			path = dto.getPath();
+			realPath = path + "resources" + File.separator + "itemThumnail" + File.separator;
+
+			File f = new File(realPath + realFileName);
+			
+			if (!f.exists()){
+	   			f.mkdirs();		
+	   		}
+			
+			try {
+				file.transferTo(f);
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		dto.setItemThumnail("/glowamber/resources/itemThumnail/"+realFileName);
 		itemservice.itemUpdate(dto);
 		return "redirect:/AdminPage/ItemList";
 	}

@@ -76,7 +76,8 @@ $(function(){
 	/*************************************** 상품정보페이지 ********************************/
 	/* 저장버튼 누르면 수정한 상품정보 저장 */
 	$('#itemUpdateBtn').click(function(){
-		oEditors.getById['itemdetail'].exec("UPDATE_CONTENTS_FIELD",[])
+		oEditors.getById['itemdetail'].exec("UPDATE_CONTENTS_FIELD",[]);
+		oEditors2.getById['itemdetailsub'].exec("UPDATE_CONTENTS_FIELD",[]);
 	})
 	
 	/* 입고버튼 클릭시 해당상품 재고입고 */
@@ -105,6 +106,7 @@ $(function(){
 	/* 저장버튼 클릭시 상품 정보 입력 */
 	$('#itemInsertBtn').click(function(){
 		oEditors.getById['itemdetail'].exec("UPDATE_CONTENTS_FIELD",[])
+		oEditors2.getById['itemdetailsub'].exec("UPDATE_CONTENTS_FIELD",[]);
 	})
 	
 	
