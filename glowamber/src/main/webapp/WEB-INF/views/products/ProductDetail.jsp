@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<% String path = request.getSession().getServletContext().getRealPath("/"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,14 +46,12 @@
 	<!-- 퀵메뉴 -->
 	<div id="quick_menu">
 		<ul class="nav flex-column">
-			<li class="nav-item"><a class="nav-link" aria-current="page"
-				href="#"><i class="bi bi-clock-history fs-2"></i> <br />최근 본 상품</a></li>
-			<hr />
 			<li class="nav-item"><a class="nav-link"
 				href="/glowamber/products/Cart"><i class="bi bi-bag fs-2"></i> <br />장바구니</a></li>
 			<hr />
-			<li class="nav-item"><a class="nav-link scroll_top" aria-current="page"
-				style="cursor: pointer;"><i class="bi bi-arrow-up-square fs-2"></i><br />TOP </a></li>
+			<li class="nav-item"><a class="nav-link scroll_top"
+				aria-current="page" style="cursor: pointer;"><i
+					class="bi bi-arrow-up-square fs-2"></i><br />TOP </a></li>
 		</ul>
 	</div>
 	<!-- 퀵메뉴 -->
@@ -157,17 +154,11 @@
 		</div>
 		<div class="container" id="detail_container">
 			<div class="row text-center" id="detail_box">
-				<div class="col-3 detail_button scroll_move">
+				<div class="col-6 detail_button scroll_move">
 					<a href="#scroll1">상품설명</a>
 				</div>
-				<div class="col-3 detail_button scroll_move">
+				<div class="col-6 detail_button scroll_move">
 					<a href="#scroll2">상세정보</a>
-				</div>
-				<div class="col-3 detail_button scroll_move">
-					<a href="#scroll3">리뷰</a>
-				</div>
-				<div class="col-3 detail_button scroll_move">
-					<a href="#scroll4">문의</a>
 				</div>
 			</div>
 			<div class="row text-center product_img " id="scroll1" style="padding-top:100px">
@@ -179,62 +170,6 @@
 			<div class="row text-center detail_img" id="scroll2" style="padding-top:100px">
 				<div class="col-12">
 					${itemDTO.itemDetail}
-				</div>
-			</div>
-
-			<div class="container" id="scroll3" style="padding-top:100px">
-				<div class="container" id="reply_container">
-					<div class="row">
-						<div class="col-12">
-							<h1 style="font-weight: 600;">상품후기</h1>
-						</div>
-						<div class="col-12 text-end">
-							<a href="">추천순</a> <span>l</span> <a href="">최근등록순</a>
-						</div>
-					</div>
-					<hr />
-					<div class="row">
-						<div class="col-3 text-center">사용자명</div>
-						<div class="col-9">댓글 내용입니다요잉 추후에 for문으로 여럿출력예쩡</div>
-					</div>
-					<hr />
-					<div class="col-12 text-center" id="reply_page_button">
-						<a href=""><i class="bi bi-chevron-left fs-3"></i></a> <a href=""><i
-							class="bi bi-chevron-right fs-3"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="container" id="scroll4" style="padding-top:100px">
-				<div class="container" id="board_container">
-					<div class="row">
-						<div class="col-12">
-							<h1 style="font-weight: 600;">1:1문의</h1>
-						</div>
-						<div class="col-12 text-end">
-							<button id="q_button">문의하기</button>
-
-						</div>
-					</div>
-					<hr />
-					<div class="row">
-						<div class="col-6 text-center borad_header">제목</div>
-						<div class="col-2 text-center borad_header">작성자</div>
-						<div class="col-2 text-center borad_header">작성일</div>
-						<div class="col-2 text-center borad_header">답변상태</div>
-					</div>
-					<hr />
-					<div class="row">
-						<div class="col-6 text-center borad_content">이곳에 제목이 작성될것임다</div>
-						<div class="col-2 text-center borad_content">홍길동이요</div>
-						<div class="col-2 text-center borad_content">오늘이요</div>
-						<div class="col-2 text-center borad_content">답변대기</div>
-
-					</div>
-					<hr />
-					<div class="col-12 text-center" id="reply_page_button">
-						<a href=""><i class="bi bi-chevron-left fs-3"></i></a> <a href=""><i
-							class="bi bi-chevron-right fs-3"></i></a>
-					</div>
 				</div>
 			</div>
 		</div>

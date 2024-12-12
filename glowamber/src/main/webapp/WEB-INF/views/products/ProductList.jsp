@@ -46,9 +46,6 @@
 	<!-- 퀵메뉴 -->
 	<div id="quick_menu">
 		<ul class="nav flex-column">
-			<li class="nav-item"><a class="nav-link" aria-current="page"
-				href="#"><i class="bi bi-clock-history fs-2"></i> <br />최근 본 상품</a></li>
-			<hr />
 			<li class="nav-item"><a class="nav-link"
 				href="/glowamber/products/Cart"><i class="bi bi-bag fs-2"></i> <br />장바구니</a></li>
 			<hr />

@@ -36,7 +36,7 @@
 					<li class="nav-item nav-division">ㅣ</li>
 					<%} %>
 					<%if(session.getAttribute("id")!= null && session.getAttribute("admin").equals("1")){ %>
-					<li class="nav-item nav-letter"><a href="/glowamber/AdminPage/DashBoard">관리자페이지</a></li>
+					<li class="nav-item nav-letter"><a href="/glowamber/AdminPage/AdminMain">관리자페이지</a></li>
 					<li class="nav-item nav-division">ㅣ</li>
 					<%} %>
 					
@@ -47,8 +47,7 @@
 					<%if(session.getAttribute("id")== null){%>
 					<li class="nav-item nav-letter"><a href="/glowamber/member/Login">로그인</a></li>
 					<%} %>
-					<li class="nav-item nav-division">ㅣ</li>
-					<li class="nav-item nav-letter"><a href="/glowamber/products/Cart">장바구니</a></li>
+					
 				</ul>
 			</div>
 			<div
@@ -84,7 +83,7 @@
 					</ul></li>
 				<li class="nav-item"><a href="/glowamber/bestList">베스트</a></li>
 				<li class="nav-item"><a href="/glowamber/newList">신상품</a></li>
-				<li class="nav-item"><a href="#">이벤트</a></li>
+				<li class="nav-item"><a href="/glowamber/products/Cart">장바구니</a></li>
 			</ul>
 		</div>
 	</div>

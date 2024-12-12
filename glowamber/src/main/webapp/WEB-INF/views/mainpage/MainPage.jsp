@@ -45,9 +45,6 @@
 	<!-- 퀵메뉴 -->
 	<div id="quick_menu">
 		<ul class="nav flex-column">
-			<li class="nav-item"><a class="nav-link" aria-current="page"
-				href="#"><i class="bi bi-clock-history fs-2"></i> <br />최근 본 상품</a></li>
-			<hr />
 			<li class="nav-item"><a class="nav-link"
 				href="/glowamber/products/Cart"><i class="bi bi-bag fs-2"></i> <br />장바구니</a></li>
 			<hr />
@@ -71,6 +68,8 @@
 					data-bs-slide-to="1" aria-label="Slide 2"></button>
 				<button type="button" data-bs-target="#carouselExampleIndicators"
 					data-bs-slide-to="2" aria-label="Slide 3"></button>
+					<button type="button" data-bs-target="#carouselExampleIndicators"
+					data-bs-slide-to="3" aria-label="Slide 4"></button>
 			</div>
 			<div class="carousel-inner">
 				<div class="carousel-item active">
@@ -83,6 +82,10 @@
 				</div>
 				<div class="carousel-item">
 					<img src="/glowamber/resources/imgs/testimgs/test3.jpg"
+						class="d-block w-100" alt="...">
+				</div>
+				<div class="carousel-item">
+					<img src="/glowamber/resources/imgs/testimgs/901f2b28-5aac-44a6-ac7f-ef0cfc85d054.jpg"
 						class="d-block w-100" alt="...">
 				</div>
 			</div>
@@ -122,6 +125,10 @@
 				</button>
 			</div>
 			</div>
+			<br />
+			<br />
+			<br />
+			<br />
 			<br />
 			<br />
 			<br />

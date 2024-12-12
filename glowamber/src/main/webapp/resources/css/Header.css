@@ -129,7 +129,7 @@ a {
 /* 로고이미지 사이즈조절 */
 #logo_img {
 	position: relative;
-	top: -5%;
+	top: 0%;
 	width: 100%;
 }
 /* 헤더 메인 네비게이션*/

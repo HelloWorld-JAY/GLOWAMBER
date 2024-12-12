@@ -26,7 +26,7 @@
 
 </body>
 <footer>
-<br/><br/><br/><br/>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 <div class="container-fluid"><hr /></div>
 
 	<div class="container footer">
@@ -36,9 +36,6 @@
 				<div>고객센터</div>
 				<div>
 					<span>1234-5678</span> <span>월~금 오전 8시 ~ 오후 6시</span>
-				</div>
-				<div>
-					<span><a href="#">1:1 문의</a></span><span>365일 순차적으로 답변해드리겠습니다.</span>
 				</div>
 			</div>
 			<div class="container footer_right">
