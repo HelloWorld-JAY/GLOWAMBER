@@ -23,7 +23,17 @@
 	<header>
 		<div class="container-xxl header_background">
 			<div class="container text-end" id="admin_login">
-				관리자1234
+				<ul class="nav justify-content-end" id="header_nav">
+				<li class="nav-item nav-letter"><a href="/glowamber/mainpage/MainPage">메인페이지</a></li>
+					<%if(session.getAttribute("id")!= null){%>
+										<li class="nav-item nav-division">ㅣ</li>
+					<li class="nav-item nav-letter"><a href="/glowamber/member/logout">로그아웃</a></li>
+					<%} %>
+
+					
+
+					
+				</ul>
 			</div>
 			<div class="container header_logo_search d-flex justify-content-center text-center">
 				<span id='admin_font'> 
