@@ -233,5 +233,69 @@ $(function(){
 				alert("최소구매 수량은 1개입니다.");
 			}// 최소수량체크 else -end
 		}); // 장바구니 담기 버튼 클릭시 쿠키에 저장 -end
+		// 장바구니 담기 버튼 클릭시 쿠키에 저장
+				$('#new_product_carousel').on('click','.btn_add',function(){
+
+					let itemNum = $(this).attr('value');
+					let itemcount =$(this).parent().prev().find('.product_count').text();
+					// 최소수량체크
+					if(itemcount != 0) {
+						let guestId = Cookies.get('guestId');
+						// 세션에 로그인 됬는지 확인
+						if(!sessionId) {
+							// 로그인 안되있고 쿠키에 비회원 고유아이디가 없을시 생성
+							if(!guestId) {
+								guestId = 'guset-' + Math.random().toString(36).substr(2,9);
+								Cookies.set('guestId',guestId,{expires:30 ,path:'/'});
+							}
+						} //세션 로그인 확인 및 비회원시 쿠키 고유값생성 -end
+
+						// 아이디 있고 게스트아이디 없음 아이디만 카트에 추가
+						if(sessionId && !guestId) {
+							// 에이젝스 통신으로 db에 쿠키의 고유 아이디 담아서 장바구니 전송
+							$.ajax({
+								type:'post',
+								data:{guestId:"",itemNum:itemNum,cartItemCount:itemcount,memberId:sessionId},
+								dataType:'json',
+								url:'/glowamber/memberCartAdd',
+								success:function(result){
+									if(result == 1) {
+										alert("장바구니에 상품을 담았습니다.");
+									}else if(result == 10) {
+										alert("장바구니에 이미 해당상품이 있어서 수량을 추가하였습니다.");
+									}
+								},
+								error: function(){
+									alert("장바구니에 상품을 담는데 오류가 발생하였습니다.");
+								}
+							});// 에이젝스 통신으로 db에 쿠키의 고유 아이디 담아서 장바구니 전송 -end
+						}// 아이디 있고 게스트아이디 없고 -end
+
+						// 아이디는 없고 게스트아이디만 있어서 비회원으로 카트에 담기
+						else if(!sessionId && guestId) {
+							// 에이젝스 통신으로 db에 쿠키의 고유 아이디 담아서 장바구니 전송
+							$.ajax({
+								type:'post',
+								data:{guestId:guestId,itemNum:itemNum,cartItemCount:itemcount,memberId:""},
+								dataType:'json',
+								url:'/glowamber/nonMemberCartAdd',
+								success:function(result){
+									if(result == 1) {
+										alert("장바구니에 상품을 담았습니다.");
+									}else if(result == 10) {
+										alert("장바구니에 이미 해당상품이 있어서 수량을 추가하였습니다.");
+									}
+								},
+								error: function(){
+									alert("장바구니에 상품을 담는데 오류가 발생하였습니다.");
+								}
+							});// 에이젝스 통신으로 db에 쿠키의 고유 아이디 담아서 장바구니 전송 -end
+						}// 아이디 없고 게스트아이디 있고 -end
+
+					}// 최소수량체크 if -end
+					else {
+						alert("최소구매 수량은 1개입니다.");
+					}// 최소수량체크 else -end
+				}); // 장바구니 담기 버튼 클릭시 쿠키에 저장 -end
 
 });
