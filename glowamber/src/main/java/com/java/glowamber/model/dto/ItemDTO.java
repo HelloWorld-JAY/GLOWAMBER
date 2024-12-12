@@ -26,4 +26,7 @@ public class ItemDTO {
 	private String	selectKeyword; // 사용자 검색 키워드(상품명만 가능)
 	private MultipartFile file;
 	private String path;
+	private String realFileName;
+	private String afteritemThumnail;
+	private String afterFilename;
 }

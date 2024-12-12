@@ -147,9 +147,10 @@
 			<!-- 상품 정보 입력 -->
 		<form action='/glowamber/itemupdate' name='iteminsert' method="post" enctype="multipart/form-data">
 			
-			<div>
+			<div class='text-end'>
 				<input type='submit' id='itemUpdateBtn' value='저장'>
 				<a href='AdminPage/ItemList'><input type='button' id='itemUpdateCancle' value='취소' /></a>
+				<hr/>
 			</div>
 			<div class='col'>
 					<div>
@@ -158,10 +159,12 @@
 						</div>
 						<div>
 							<img src='${item.itemThumnail}' id='Thumnail' />
+							<input type='hidden' value='${item.itemThumnail}' name='afteritemThumnail' id='afteritemThumnail' />
+							<input type='hidden' value='${item.realFileName}' name='afterFilename' id='afterFilename' />
 						</div>
 						<div>
 							<input type='hidden' name='path' value='<%=path %>' />
-							<input type='file' name='file'  id='itemThumnail' />
+							<input type='file' name='file'  id='itemThumnail'  />
 						</div>
 					</div>
 					<div>

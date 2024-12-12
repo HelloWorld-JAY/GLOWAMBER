@@ -31,7 +31,7 @@ public class ItemController {
 	/* 상품등록 */
 	@RequestMapping("iteminsert")
 	public String iteminsert(ItemDTO dto) {
-		System.out.println(dto.toString());
+		
 		String FileName ="";
 		String realFileName = "";
 		String path ="";
@@ -61,6 +61,7 @@ public class ItemController {
 				e.printStackTrace();
 			}
 		}
+		dto.setRealFileName(FileName);
 		dto.setItemThumnail("/glowamber/resources/itemThumnail/"+realFileName);
 		itemservice.iteminsert(dto);
 		return "redirect:/AdminPage/ItemList";
@@ -78,11 +79,11 @@ public class ItemController {
 	
 	@PostMapping("itemUpdate") 
 	public String updatePage(ItemDTO dto, Model m) {
+		ItemDTO result = itemservice.SelectItemOne(dto);
 		/* 재고수량 띄우기 */
 		int storecount = 0;
 		StoreDTO dto2 = new StoreDTO();
 		dto2.setItemNum(dto.getItemNum());
-		
 		
 		List<StoreDTO> result2 = itemservice.SelectStoreCount(dto2);
 		
@@ -94,7 +95,6 @@ public class ItemController {
 			}
 		}
 		
-		ItemDTO result = itemservice.SelectItemOne(dto);
 		m.addAttribute("item", result);
 		m.addAttribute("storecount",storecount);
 		return "/AdminPage/ItemUpdate";
@@ -117,6 +117,10 @@ public class ItemController {
 		String realPath = "";
 
 		MultipartFile file = dto.getFile();
+		if(file.isEmpty()) {
+			dto.setRealFileName(dto.getAfterFilename());
+			dto.setItemThumnail(dto.getAfteritemThumnail());
+		}
 		if(!file.isEmpty()) {
 			FileName = file.getOriginalFilename();
 			
@@ -127,6 +131,9 @@ public class ItemController {
 			realPath = path + "resources" + File.separator + "itemThumnail" + File.separator;
 
 			File f = new File(realPath + realFileName);
+			
+			dto.setRealFileName(FileName);
+			dto.setItemThumnail("/glowamber/resources/itemThumnail/"+realFileName);
 			
 			if (!f.exists()){
 	   			f.mkdirs();		
@@ -140,7 +147,7 @@ public class ItemController {
 				e.printStackTrace();
 			}
 		}
-		dto.setItemThumnail("/glowamber/resources/itemThumnail/"+realFileName);
+		
 		itemservice.itemUpdate(dto);
 		return "redirect:/AdminPage/ItemList";
 	}
