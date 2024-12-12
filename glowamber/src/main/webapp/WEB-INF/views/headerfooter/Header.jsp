@@ -36,7 +36,7 @@
 					<li class="nav-item nav-division">ㅣ</li>
 					<%} %>
 					<%if(session.getAttribute("id")!= null && session.getAttribute("admin").equals("1")){ %>
-					<li class="nav-item nav-letter"><a href="/glowamber/AdminPage/AdminMain">관리자페이지</a></li>
+					<li class="nav-item nav-letter"><a href="/glowamber/AdminPage/DashBoard">관리자페이지</a></li>
 					<li class="nav-item nav-division">ㅣ</li>
 					<%} %>
 					

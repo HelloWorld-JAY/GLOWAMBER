@@ -64,9 +64,20 @@
 										<div class="col-12">
 											<h5 class="product_name" style="font-weight: 600;">${ product.ITEMNAME }</h5>
 										</div>
+
 										<div class="col-12" style="margin-top: 15%;">
-											<h6 class="product_count" value="${ product.CARTITEMCOUNT }">수량
-												: ${ product.CARTITEMCOUNT }${ product.ITEMUNIT.substring(1) }</h6>
+											<h6 class="product_count" value="${ product.CARTITEMCOUNT }">
+												수량 : ${ product.CARTITEMCOUNT }
+												<c:choose>
+													 <c:when
+														test="${not empty product.ITEMUNIT && (product.ITEMUNIT.substring(0, 1) >= '0' && product.ITEMUNIT.substring(0, 1) <= '9')}">
+														<c:out value="${product.ITEMUNIT.substring(1)}" />
+													</c:when>
+													<c:otherwise>
+														<c:out value="${product.ITEMUNIT}" />
+													</c:otherwise>
+												</c:choose>
+											</h6>
 										</div>
 										<div class="col-12">
 											<h6>
@@ -122,7 +133,9 @@
 						<div class="col-9 deliveryNowName">기본배송지</div>
 						<br /> <br />
 						<div class="col-3"></div>
-						<div class="col-9 deliveryNowAddr"><span>${ cart[0].MEMBERADDR }</span> <span>${ cart[0].MEMBERADDRDETAIL }</span></div>
+						<div class="col-9 deliveryNowAddr">
+							<span>${ cart[0].MEMBERADDR }</span> <span>${ cart[0].MEMBERADDRDETAIL }</span>
+						</div>
 						<br /> <br />
 						<div class="col-3"></div>
 						<div class="col-9">
@@ -178,12 +191,10 @@
 					<div class="row">
 						<div class="col-3">배송 요청사항</div>
 						<div class="col-9 requestRider">안전한 배송 부탁드려요 ^^</div>
-						<br />
-						<br />
+						<br /> <br />
 						<div class="col-3">업체 요청사항</div>
 						<div class="col-9 requestCompany"></div>
-						<br />
-						<br />
+						<br /> <br />
 						<div class="col-3"></div>
 						<div class="col-9">
 							<button type="button" class="delivery_button requestChange"
