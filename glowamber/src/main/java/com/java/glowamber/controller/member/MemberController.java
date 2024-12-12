@@ -39,7 +39,7 @@ public class MemberController {
 
 		MemberDTO result = memberService.idCheck_Login(dto);
 		if(result==null || result.getMemberId()==null) {
-
+			session.setAttribute("again", "again");
 			return "member/Login";
 
 		}else {

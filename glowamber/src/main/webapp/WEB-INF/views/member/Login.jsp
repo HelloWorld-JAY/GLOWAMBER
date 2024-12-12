@@ -21,13 +21,18 @@
 <!-- 제이쿼리 -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	
+
 <script type="text/javascript">
-	
+$(function(){
+<% if(session.getAttribute("again") !=null){%>
+alert("아이디 & 비밀번호를 확인해 주세용.");
+
+<%}%>
+})
 </script>
 </head>
 <body>
-	
+
 	<!-- 헤더 -->
 	<jsp:include page="../headerfooter/Header.jsp" />
 	<!-- 헤더 -->
@@ -43,8 +48,7 @@
 				<input type="password" name="memberPass" placeholder="비밀번호를 입력하세요">
 			</div>
 			<div>
-				<label for="id_save"><input type="checkbox">아이디저장</label> <span><a
-					href="">아이디찾기</a></span> <span>ㅣ</span> <span><a href="">비밀번호찾기</a></span>
+				
 			</div>
 			<div>
 				<button id="Login" name="Login">로그인</button>
@@ -54,25 +58,17 @@
 			</div>
 			<div class="container text-center">
 				<div class="row">
-					<div class="col-4">
-						
-					</div>
-					<div class="col-4">
-					<!-- <a class="p-2" href="https://kauth.kakao.com/oauth/authorize?client_id=15fb9c3a60a3c244855ab9c513ece3ee&redirect_uri=
-http://localhost:8080/glowamber/mainpage/MainPage/response_type=code">
-					<img src="/glowamber/resources/imgs/sociallogin/kakao_login_large_narrow.png" style="height:60px">					
-					</a> -->
-					<a class="p-2" href="https://kauth.kakao.com/oauth/authorize?client_id=15fb9c3a60a3c244855ab9c513ece3ee&redirect_uri=http://localhost:8080/glowamber/member/kakaoLogin&response_type=code">
-					<img src="/glowamber/resources/imgs/sociallogin/kakao_login_large_wide.png" style="height:60px">					
-					</a>
 					
-					<a class="p-2" href="https://kauth.kakao.com/oauth/authorize?client_id=15fb9c3a60a3c244855ab9c513ece3ee&redirect_uri=http://localhost:8080/glowamber/member/kakaoLogin&response_type=code">
-					ㅋㅋㅋㅋㅋㅋㅋ					
-					</a>
+						<a class="p-2"
+							href="https://kauth.kakao.com/oauth/authorize?client_id=15fb9c3a60a3c244855ab9c513ece3ee&redirect_uri=http://localhost:8080/glowamber/member/kakaoLogin&response_type=code">
+							<img
+							src="/glowamber/resources/imgs/sociallogin/kakao_login_medium_wide.png"
+							style="width: 100%">
+						</a>
+
+
 					</div>
-					<div class="col-4">구글</div>
-				</div>
-			</div>
+					
 
 		</form>
 	</div>

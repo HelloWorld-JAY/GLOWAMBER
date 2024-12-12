@@ -79,9 +79,7 @@
 	width: 330px;
 	/* height:50px;
  */
-	border: 2px solid red;
+	
 }
 
-#login_div div:nth-of-type(6)>div {
-	border: 2px solid blue;
-}
+

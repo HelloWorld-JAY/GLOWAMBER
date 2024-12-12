@@ -14,4 +14,6 @@ public class MemberDTO {
 	private String  emailAddr;	   //이메일 뒷자리
 	private String  memberJoinDate;//회원 가입일 
 	private String  memberAuth;    //관리자 권한
+	private String  memberAddr;    //회원 주소
+    private String	memberAddrDetail; //회원 상세 주소
 }
