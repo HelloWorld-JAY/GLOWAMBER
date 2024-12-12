@@ -1,8 +1,14 @@
 $(function(){
-	selectOrderList()
-	$('.orderStatus').parent().hide()
+ 	
+    $('.orderStatus').parent().hide()
 	$('#orderStatusWait').parent().show()
-	
+	/* 날짜 지정 */
+	const today = new Date().toISOString().split('T')[0];
+	$('#orderdate').val(today)
+   	let orderdate = $('#orderdate').val()
+    selectOrderList(orderdate)
+   
+    
 	/* 주문상태 변경 */
 	$(".orderStatus").click(function(){
 	
@@ -16,7 +22,7 @@ $(function(){
 			let checkedItemVal = $(this).parent().next().val()
 			allCheckedItemVal.push(checkedItemVal)
 	})
-		
+		let nowdate=$('#orderdate').val()
 		/* 주문상태 변경 */
 			let orderStatusParam = {
 										allCheckedItemVal : allCheckedItemVal
@@ -27,7 +33,7 @@ $(function(){
 				,data : orderStatusParam
 				,url : '/glowamber/updateOrderStatus'
 				,success : function(){
-					selectOrderList()
+					selectOrderList(nowdate)
 				}
 			})
 	})
@@ -127,10 +133,17 @@ $(function(){
 			$('.orderStatus').parent().hide()
 		}
 	})
+	/* 날짜 변경시 */
+	$('#orderdate').change(function(){
+		let selectorderdate = $(this).val()
+		selectOrderList(selectorderdate)
+	})
 	
 	/* 주문목록 출력 */
-	function selectOrderList(){
-		let OrderListParam={ orderDetailStatus : $('#orderStatus').val()}
+	function selectOrderList(date){
+		let OrderListParam={ orderDetailStatus : $('#orderStatus').val()
+							,orderDate : date
+							}
 		$.ajax({
 			type:'post'
 			,data : OrderListParam

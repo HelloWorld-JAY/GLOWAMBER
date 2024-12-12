@@ -28,7 +28,12 @@
 	
 	<!-- 주문검색 -->
 	<div class='row justify-content-end'>
-		<div class='col-1 '>
+		<div class='col justify-content-center'>
+			<div class='col-2 '>
+				<input type='date' id='orderdate' >
+			</div>
+		</div>
+		<div class='col-1'>
 			<select id='orderStatus'>
 				<option value='신규'>신규</option>
 				<option value='대기'>대기</option>

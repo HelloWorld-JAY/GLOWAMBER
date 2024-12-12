@@ -250,7 +250,7 @@
 								<span>상품상세</span>
 							</div>
 							<div >
-								<textarea rows="20" cols="10" name='itemDetailsub' id="itemdetailsub" placeholder="내용을 입력해 주세요"></textarea>
+								<textarea rows="20" cols="10" name='itemDetailSub' id="itemdetailsub" placeholder="내용을 입력해 주세요"></textarea>
 							</div>
 						</div>
 					</div>

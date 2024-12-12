@@ -53,6 +53,30 @@ div{
 #itemListHead table th{
 	height : 40px;
 }
+#itemListHead table th:nth-child(1){
+	width : 4%;
+}
+#itemListHead table th:nth-child(3){
+	width : 5%;
+}
+#itemListHead table th:nth-child(4){
+	width : 8%;
+}
+#itemListHead table th:nth-child(5){
+	width : 6%;
+}
+#itemListHead table th:nth-child(6){
+	width : 8%;
+}
+#itemListHead table th:nth-child(7){
+	width : 5%;
+}
+#itemListHead table th:nth-child(8){
+	width : 9%;
+}
+#itemListHead table th:nth-child(9){
+	width : 12%;
+}
 
 #itemListBody{
 	padding-top : 0px;
@@ -71,7 +95,30 @@ div{
 	width : 100%;
 	
 }
-
+#itemListBody table td:nth-child(1){
+	width : 4%;
+}
+#itemListBody table td:nth-child(3){
+	width : 5%;
+}
+#itemListBody table td:nth-child(4){
+	width : 8%;
+}
+#itemListBody table td:nth-child(5){
+	width : 6%;
+}
+#itemListBody table td:nth-child(6){
+	width : 8%;
+}
+#itemListBody table td:nth-child(7){
+	width : 5%;
+}
+#itemListBody table td:nth-child(8){
+	width : 10%;
+}
+#itemListBody table td:nth-child(9){
+	width : 10%;
+}
 #ItemTable td{
 	padding : 20px 0px;
 }

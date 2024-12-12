@@ -21,6 +21,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 													<if test='orderDetailStatus != null'>
 														AND o.orderdetailstatus = #{orderDetailStatus}
 													</if>
+													<if test="orderDate !=null">
+														AND TO_CHAR(o2.orderdate,'yyyy-mm-dd') = #{orderDate}
+													</if>
 												</where>
 												GROUP BY o2.ordernum) sub1
 											ON o.ORDERNUM = sub1.ordernum
@@ -30,6 +33,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 			<if test='orderDetailStatus != null'>
 				AND o.orderdetailstatus = #{orderDetailStatus}
+			</if>
+			<if test="orderDate !=null">
+				AND TO_CHAR(o2.orderdate,'yyyy-mm-dd') = #{orderDate}
 			</if>
 		</where>
 		ORDER BY o.ordernum
