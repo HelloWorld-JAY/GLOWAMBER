@@ -8,6 +8,7 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,7 +43,7 @@ public class SocialLoginServiceImpl implements SocialLoginService{
 			StringBuilder sb = new StringBuilder();
 			sb.append("grant_type=authorization_code");
 			sb.append("&client_id=15fb9c3a60a3c244855ab9c513ece3ee"); //본인이 발급받은 key
-			sb.append("&redirect_uri=http://localhost:8080/glowamber/member/kakaoLogin"); // 본인이 설정한 주소
+			sb.append("&redirect_uri=http://192.168.0.191:8080/glowamber/member/kakaoLogin"); // 본인이 설정한 주소
 			sb.append("&code=" + authorize_code);
 			bw.write(sb.toString());
 			bw.flush();
@@ -104,6 +105,8 @@ public class SocialLoginServiceImpl implements SocialLoginService{
  					 }
  }
  */
+			String uuid = UUID.randomUUID().toString();
+			userInfo.put("pass", uuid);
 			userInfo.put("email", memberemail);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -111,7 +114,7 @@ public class SocialLoginServiceImpl implements SocialLoginService{
 
 		// catch 아래 코드 추가.
 		MemberDTO result = socialLoginDAO.findkakao(userInfo);
-
+		
 		// 위 코드는 먼저 정보가 저장되있는지 확인하는 코드.
 		System.out.println("-----------------------> [MemberDTO result]:" + result);
 		if(result==null) {

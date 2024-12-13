@@ -99,22 +99,92 @@
 	<!-- 베스트상품목록 출력 -->
 	<select id="SelectBestList" parameterType="HashMap"
 		resultType="ItemDTO">
-		SELECT * FROM(
-		SELECT ROWNUM RN, I.* FROM(
-		SELECT i.*
-		FROM (
-		SELECT
-		ITEMNUM
-		FROM ORDERDETAILTABLE
-		GROUP BY ITEMNUM
-		ORDER BY
-		SUM(ORDERDETAILCOUNT) DESC
-		) o
-		INNER JOIN ITEMTABLE i ON o.ITEMNUM =
-		i.ITEMNUM
-		WHERE ROWNUM &lt;= 100
-		) i
-		)
+	SELECT * 
+
+FROM (
+
+    SELECT ROWNUM AS RN, 
+
+           total_sales.*
+
+    FROM (
+
+        SELECT i.ITEMNUM,
+
+        i.ITEMNAME,
+
+        i.SMALLCATENUM,
+
+        i.ITEMTHUMNAIL,
+
+        i.ITEMDETAIL,
+
+        i.ITEMUNIT,
+
+        i.ITEMORIGIN,
+
+		i.ITEMVOLUME,
+
+		i.ITEMALLERGYINFO,
+
+		i.ITEMCOST,
+
+		i.ITEMPRICE,
+
+		i.ITEMDATE,
+
+		i.ITEMSUPPLIER,
+
+		i.BIGCATENUM,
+
+		i.ITEMDETAILSUB,
+
+		i.REALFILENAME,
+
+        SUM(od.ORDERDETAILCOUNT) AS TOTAL_SOLD
+
+        FROM ITEMTABLE i
+
+        INNER JOIN ORDERDETAILTABLE od ON i.ITEMNUM = od.ITEMNUM
+
+        GROUP BY i.ITEMNUM,
+
+        i.ITEMNAME,
+
+        i.SMALLCATENUM,
+
+        i.ITEMTHUMNAIL,
+
+        i.ITEMDETAIL,
+
+        i.ITEMUNIT,
+
+        i.ITEMORIGIN,
+
+		i.ITEMVOLUME,
+
+		i.ITEMALLERGYINFO,
+
+		i.ITEMCOST,
+
+		i.ITEMPRICE,
+
+		i.ITEMDATE,
+
+		i.ITEMSUPPLIER,
+
+		i.BIGCATENUM,
+
+		i.ITEMDETAILSUB,
+
+		i.REALFILENAME
+
+        ORDER BY TOTAL_SOLD DESC
+
+    ) total_sales
+
+    WHERE ROWNUM &lt;= 100
+    )
 		<if test="startRow != null">
 			WHERE RN BETWEEN #{startRow} AND #{endRow}
 		</if>
@@ -127,7 +197,8 @@
 		FROM (
 		SELECT *
 		FROM ITEMTABLE
-		ORDER BY ITEMDATE DESC
+		ORDER
+		BY ITEMDATE DESC
 		) i
 		WHERE ROWNUM &lt;= 100
 		)

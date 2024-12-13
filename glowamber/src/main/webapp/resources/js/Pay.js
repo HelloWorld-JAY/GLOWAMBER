@@ -37,7 +37,7 @@ $(function(){
 				"totalPayAmount": totalPayAmount,
 				"taxScopeAmount": taxScopeAmount,
 				"taxExScopeAmount": "0",
-				"returnUrl": "http://192.168.0.184:8080/glowamber/mainpage/MainPage"
+				"returnUrl": "http://192.168.0.191:8080/glowamber/mainpage/MainPage"
 			});
 			 // 팝업이 닫혔을 때 처리
             var pollTimer = setInterval(function() {

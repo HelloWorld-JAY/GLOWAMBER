@@ -71,14 +71,14 @@ $(function(){
 	/* 팝업창 확인버튼 누를시 */
 	$('#popupCheck').click(function(){
 		$('.popup_layer').hide()
-		let auth = 0;
-		if($('#memberAuth').is('checked',true)){
+		/*let auth=0;
+		if($(this).parent().parent().find('#memberAuth').is('checked',true)){
 			auth = 1;
 		}
 		$.ajax({
 			type:'post'
 			,data : { 
-				memberNum : $('#usernum').val()
+				memberNum :$(this).parent().parent().find('#usernum').val()
 				,memberAuth : auth	
 			 }
 			,dataType : 'json'
@@ -87,9 +87,9 @@ $(function(){
 				console.log('ok')
 			}
 			
-		})
+		}))*/
 		
-	})
+	}
 	
 	
 })

@@ -136,13 +136,13 @@ $(function(){
 				type :'post'
 				,data : SelectSmallCateParam
 				,url  :'/glowamber/smallcateinsert'
-				,success :  SelectSmallCate(SelectSmallCateParam)
+				,success :  SelectSmallCate
 			})
 		}	
 	})
 	/* 카테고리 수정*/
 	$('#CateUpdateBtn').click(function(){
-	
+	e.stopPropagation()
 		/* 대분류 수정 */
 		if($('#UpdateCateType').val()=='대분류'){
 			let UpdateBigCateParam = {
@@ -169,8 +169,9 @@ $(function(){
 				type  : 'post'
 				,data :	SelectSmallCateParam
 				,url  : '/glowamber/smallcateupdate'
-				,success : SelectSmallCate(SelectSmallCateParam)
+				,success : SelectSmallCate
 			})
+			e.stopPropagation()
 		}
 	})
 	
@@ -198,7 +199,7 @@ $(function(){
 				type : 'post'
 				,data : SelectSmallCateParam
 				,url  : '/glowamber/Smallcatedelete'
-				,success : SelectSmallCate(SelectSmallCateParam)
+				,success : SelectSmallCate
 			})
 			e.stopPropagation()
 	})
@@ -259,6 +260,7 @@ $(function(){
 		$('#UpdateBigCateName').val($(this).text())
 		$('#UpdateCateName').val($(this).text())
 		$('#bigCateNum').val($(this).find('input').val())
+		e.stopPropagation()
 	})
 	
 	/* 소분류 리스트 클릭시 */
@@ -273,6 +275,7 @@ $(function(){
 		}else{
 			$('#UpdateCateType').parent().parent().next().hide()
 	}
+	e.stopPropagation()
 	})
 	
 	/* 카테고리 화면 띄우기 */

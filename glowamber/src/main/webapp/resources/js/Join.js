@@ -61,6 +61,10 @@ function combineAddress() {
 
 $(function(){
 
+
+$('#memberjoinbtn').click(function(){
+	location.href="/glowamber/member/Join"
+})
 	//유효성검사에 필요한 변수 생성
 	let checkID = RegExp(/^[a-zA-Z0-9]{6,20}$/);
 	let checkPW = RegExp(/^(?=.*[a-z])(?=.*\d)(?=.*[~!@#$%^&*()_+])[A-Za-z\d~!@#$%^&*()_+]{8,25}$/);

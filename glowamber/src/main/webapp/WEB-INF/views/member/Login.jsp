@@ -21,15 +21,8 @@
 <!-- 제이쿼리 -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-<script type="text/javascript">
-$(function(){
-<% if(session.getAttribute("again") !=null){%>
-alert("아이디 & 비밀번호를 확인해 주세용.");
-
-<%}%>
-})
-</script>
+<script type="text/javascript" src="/glowamber/resources/js/Join.js"></script>
+	
 </head>
 <body>
 
@@ -54,13 +47,13 @@ alert("아이디 & 비밀번호를 확인해 주세용.");
 				<button id="Login" name="Login">로그인</button>
 			</div>
 			<div>
-				<button>회원가입</button>
+				<button id="memberjoinbtn"><a href='/glowamber/member/Join'>회원가입</a></button>
 			</div>
 			<div class="container text-center">
 				<div class="row">
 					
 						<a class="p-2"
-							href="https://kauth.kakao.com/oauth/authorize?client_id=15fb9c3a60a3c244855ab9c513ece3ee&redirect_uri=http://localhost:8080/glowamber/member/kakaoLogin&response_type=code">
+							href="https://kauth.kakao.com/oauth/authorize?client_id=15fb9c3a60a3c244855ab9c513ece3ee&redirect_uri=http://192.168.0.191:8080/glowamber/member/kakaoLogin&response_type=code">
 							<img
 							src="/glowamber/resources/imgs/sociallogin/kakao_login_medium_wide.png"
 							style="width: 100%">

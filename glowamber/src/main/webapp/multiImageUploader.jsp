@@ -38,6 +38,7 @@
    		String filePath = defaultPath + "resources" + File.separator + "itemDetail" + File.separator;
    		
    		File file = new File(filePath);
+   		System.out.println(filePath);
    		// filePath에 해당하는 디렉토리가 없으면, 부모 디렉토리까지 포함해 모든 디렉토리 생성
    		if (!file.exists()){
    			file.mkdirs();

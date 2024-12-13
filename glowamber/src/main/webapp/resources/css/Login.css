@@ -74,6 +74,7 @@
 	border: 2px solid #101010;
 	border-radius: 5px;
 }
+
 /*소셜 로그인 버튼*/
 #login_div div:nth-of-type(6) {
 	width: 330px;
